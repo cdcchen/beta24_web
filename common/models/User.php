@@ -4,7 +4,7 @@ namespace common\models;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
-use app\behaviors\IPAddressBehavior;
+use common\behaviors\IPAddressBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -13,10 +13,12 @@ use yii\web\IdentityInterface;
  *
  * @property integer $id
  * @property string $username
+ * @property string $nickname
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
  * @property string $phone
+ * @property string $auth_key
  * @property integer $created_at
  * @property string $created_ip
  * @property integer $updated_at
@@ -55,11 +57,25 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['username', 'nickname', 'email'], 'filter', 'filter' => 'trim'],
             ['username', 'required'],
+            [['username', 'nickname'], 'string', 'max'=>50],
+            [['nickname', 'email', 'phone'], 'unique'],
+
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_INACTIVE]],
+
+            ['email', 'email'],
         ];
     }
+
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
+    }
+
+
+    ##################### IdentityInterface start #####################
 
     /**
      * @inheritdoc
@@ -135,6 +151,14 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
      * Validates password
      *
      * @param string $password password to validate
@@ -169,5 +193,23 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+}
+
+
+use yii\db\ActiveQuery;
+
+class UserQuery extends ActiveQuery
+{
+    public function active($status = true)
+    {
+        $this->andWhere(['status' => $status ? User::STATUS_ACTIVE : User::STATUS_INACTIVE]);
+        return $this;
+    }
+
+    public function deleted()
+    {
+        $this->andWhere(['status' => User::STATUS_DELETED]);
+        return $this;
     }
 }

@@ -12,6 +12,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use common\models\User;
 
 /**
  * Site controller
@@ -67,7 +68,17 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+//        echo Yii::getAlias('@app');exit;
+
         return $this->render('index');
+    }
+
+    public function actionTest()
+    {
+        echo a('test link', '#');
+        exit;
+        $model = User::find()->deleted()->orderBy(['id'=>SORT_DESC])->one();
+        var_dump($model);
     }
 
     public function actionLogin()

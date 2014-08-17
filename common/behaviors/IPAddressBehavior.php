@@ -1,8 +1,9 @@
 <?php
 
-namespace app\behaviors;
+namespace common\behaviors;
 
 use yii\db\BaseActiveRecord;
+use yii\behaviors\AttributeBehavior;
 
 class IPAddressBehavior extends AttributeBehavior
 {
@@ -18,8 +19,8 @@ class IPAddressBehavior extends AttributeBehavior
 
         if (empty($this->attributes)) {
             $this->attributes = [
-                BaseActiveRecord::EVENT_BEFORE_INSERT => [$this->createdAtAttribute, $this->updatedAtAttribute],
-                BaseActiveRecord::EVENT_BEFORE_UPDATE => $this->updatedAtAttribute,
+                BaseActiveRecord::EVENT_BEFORE_INSERT => [$this->createdIPAttribute, $this->updatedIPAttribute],
+                BaseActiveRecord::EVENT_BEFORE_UPDATE => $this->createdIPAttribute,
             ];
         }
     }
@@ -29,11 +30,7 @@ class IPAddressBehavior extends AttributeBehavior
      */
     protected function getValue($event)
     {
-        if ($this->value instanceof Expression) {
-            return $this->value;
-        } else {
-            return $this->value !== null ? call_user_func($this->value, $event) : time();
-        }
+        return $this->value !== null ? call_user_func($this->value, $event) : static::getUserIP();
     }
 
     /**
@@ -47,5 +44,14 @@ class IPAddressBehavior extends AttributeBehavior
     public function touch($attribute)
     {
         $this->owner->updateAttributes(array_fill_keys((array) $attribute, $this->getValue(null)));
+    }
+
+    /**
+     * Returns the user IP address.
+     * @return string user IP address. Null is returned if the user IP address cannot be detected.
+     */
+    private static function getUserIP()
+    {
+        return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null;
     }
 }
