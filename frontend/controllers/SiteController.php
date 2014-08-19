@@ -2,7 +2,6 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -13,6 +12,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\User;
+use common\models\Question;
+use common\models\LoginForm;
 
 /**
  * Site controller
@@ -75,10 +76,33 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        echo a('test link', '#');
-        exit;
-        $model = User::find()->deleted()->orderBy(['id'=>SORT_DESC])->one();
-        var_dump($model);
+
+//        $questions1 = Question::find()->joinWith('user')->all();
+//        var_dump($questions1);
+//        $questions2 = Question::find()->joinWith('user')->all();
+//        var_dump($questions2);
+
+//        exit;
+
+//        $questions = Question::find()->with([
+//            'user' => function(ActiveQuery $query){
+//                    $query->with('questions');
+//                }
+//        ])->all();
+//        var_dump($questions[0]->user->questions[0] === $questions[0]);
+//        $question = Question::findOne(1);
+//        var_dump($question->user->questions[1] === $question);
+//        exit;
+
+        $user = User::findOne(1);
+//        var_dump($question->user === $user);
+//        exit;
+
+        $questions = $user->getQuestions()->status([Question::STATUS_DONE, Question::STATUS_ACTIVE])->all();
+        var_dump($questions);
+//        exit;
+
+        return $this->render('test');
     }
 
     public function actionLogin()

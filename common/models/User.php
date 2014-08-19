@@ -7,6 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use common\behaviors\IPAddressBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\db\ActiveQuery;
 
 /**
  * User model
@@ -25,6 +26,8 @@ use yii\web\IdentityInterface;
  * @property string $updated_ip
  * @property integer $status
  * @property string $password write-only password
+ *
+ * @property array $questions Question model array
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -32,12 +35,21 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 10;
 
+    public static function statuses()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_INACTIVE,
+            self::STATUS_DELETED,
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%user}}';
+        return TBL_USER;
     }
 
     /**
@@ -69,13 +81,44 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => '账号',
+            'nickname' => '昵称',
+            'password' => '密码(明文)',
+            'password_hash' => '密码(密文)',
+            'password__reset_token' => '重设密码token',
+            'email' => '邮箱',
+            'phone' => '电话',
+            'auth_key' => 'Auth Key',
+            'created_at' => '创建时间',
+            'created_ip' => '创建IP',
+            'updated_at' => '更新时间',
+            'updated_ip' => '更新IP',
+            'status' => '状态',
+        ];
+    }
+
     public static function find()
     {
         return new UserQuery(get_called_class());
     }
 
+    /******************** Relational Data ***********************/
 
-    ##################### IdentityInterface start #####################
+    public function getQuestions()
+    {
+        return $this->hasMany(Question::className(), ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+
+    /******************** IdentityInterface  *********************/
 
     /**
      * @inheritdoc
@@ -197,13 +240,24 @@ class User extends ActiveRecord implements IdentityInterface
 }
 
 
-use yii\db\ActiveQuery;
 
 class UserQuery extends ActiveQuery
 {
-    public function active($status = true)
+    public function status($status)
     {
-        $this->andWhere(['status' => $status ? User::STATUS_ACTIVE : User::STATUS_INACTIVE]);
+        $this->andWhere(['status' => $status]);
+        return $this;
+    }
+
+    public function active()
+    {
+        $this->andWhere(['status' => User::STATUS_ACTIVE]);
+        return $this;
+    }
+
+    public function inactive()
+    {
+        $this->andWhere(['status' => User::STATUS_INACTIVE]);
         return $this;
     }
 
