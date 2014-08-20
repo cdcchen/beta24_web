@@ -14,8 +14,11 @@ use yii\db\ActiveQuery;
  * @property integer $view_count
  * @property integer $favorite_count
  * @property integer $answer_count
- * @property integer $vote_count
- * @property integer $bounty
+ * @property integer $vote_up
+ * @property integer $vote_down
+ * @property integer $answer_reputation
+ * @property integer $open_bounty
+ * @property integer $open_bounty_end_time
  * @property integer $created_at
  * @property string $created_ip
  * @property integer $updated_time
@@ -30,7 +33,6 @@ class Question extends \yii\db\ActiveRecord
 {
     const STATUS_ACTIVE = 10;
     const STATUS_DONE = 1;
-    const STATUS_DELETED = -1;
 
     /**
      * @inheritdoc
@@ -46,7 +48,7 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_count', 'bounty', 'created_at', 'updated_at', 'status'], 'integer'],
+            [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_up', 'vote_down', 'open_bounty', 'open_bounty_end_time', 'answer_reputation', 'created_at', 'updated_at', 'status'], 'integer'],
             [['content'], 'string'],
             [['title', 'tags'], 'string', 'max' => 250],
             [['create_ip', 'updated'], 'string', 'max' => 15]
@@ -60,13 +62,16 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'title' => 'Title',
-            'view_count' => 'View Count',
-            'favorite_count' => 'Favorite Count',
-            'answer_count' => 'Answer Count',
-            'vote_count' => 'Vote Count',
-            'bounty' => 'Bounty',
+            'user_id' => '用户ID',
+            'title' => '标题',
+            'view_count' => '浏览数',
+            'favorite_count' => '收藏数',
+            'answer_count' => '回答数',
+            'vote_up' => '支持数',
+            'vote_down' => '反对数',
+            'open_bounty' => '赏金',
+            'open_bounty_end_time' => '悬赏结束时间',
+            'answer_reputation' => '需要声望',
             'created_at' => '创建时间',
             'created_ip' => '创建IP',
             'updated_at' => '更新时间',

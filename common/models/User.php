@@ -14,7 +14,7 @@ use yii\db\ActiveQuery;
  *
  * @property integer $id
  * @property string $username
- * @property string $nickname
+ * @property string $display_name
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
@@ -69,10 +69,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'nickname', 'email'], 'filter', 'filter' => 'trim'],
+            [['username', 'display_name', 'email'], 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            [['username', 'nickname'], 'string', 'max'=>50],
-            [['nickname', 'email', 'phone'], 'unique'],
+            [['username', 'display_name'], 'string', 'max'=>50],
+            [['display_name', 'email', 'phone'], 'unique'],
 
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_INACTIVE]],
@@ -89,7 +89,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'username' => '账号',
-            'nickname' => '昵称',
+            'display_name' => '昵称',
             'password' => '密码(明文)',
             'password_hash' => '密码(密文)',
             'password__reset_token' => '重设密码token',
