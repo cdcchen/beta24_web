@@ -15,6 +15,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['account/login']
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -34,6 +35,9 @@ return [
             'rules' => [
                 '' => 'site/index',
             ],
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
     ],
     'params' => $params,

@@ -198,7 +198,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+        $this->auth_key = security()->generateRandomString();
     }
 
     /**
@@ -209,7 +209,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);
+        return security()->validatePassword($password, $this->password_hash);
     }
 
     /**
@@ -219,7 +219,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        $this->password_hash = security()->generatePasswordHash($password);
     }
 
     /**
@@ -227,7 +227,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        $this->password_reset_token = security()->generateRandomString() . '_' . time();
     }
 
     /**
