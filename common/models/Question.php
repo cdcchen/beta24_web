@@ -39,7 +39,7 @@ class Question extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%question}}';
+        return TBL_QUESTION;
     }
 
     /**
@@ -77,8 +77,8 @@ class Question extends \yii\db\ActiveRecord
             'updated_at' => '更新时间',
             'updated_ip' => '更新IP',
             'status' => '状态',
-            'tags' => 'Tags',
-            'content' => 'Content',
+            'tags' => '标签',
+            'content' => '内容',
         ];
     }
 
