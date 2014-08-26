@@ -18,7 +18,8 @@ use yii\db\ActiveRecord;
  * @property string $created_ip
  * @property integer $score
  * @property string $content
- * @property User $user
+ *
+ * @property \common\models\User $user
  * @property Question $question
  */
 class QuestionComment extends \yii\db\ActiveRecord

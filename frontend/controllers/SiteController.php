@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\QuestionComment;
+use common\models\QuestionQuery;
 use Yii;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
@@ -77,12 +78,20 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        $ac = new QuestionComment();
-        $q = Question::find()->with('answers')->one();
+        $q = Question::find();
+        $all = $q->andWhere(['or like', 'title', 'php'])
+            ->all();
+
+        var_dump($all);
+//        exit;
+
+
+//        $ac = new QuestionComment();
+//        $q = Question::find()->with('answers')->one();
 //        var_dump($q);
 //        $a = $q->getAnswers()->all();
-        $a = $q->getAnswers()->all();
-        var_dump($a);
+//        $a = $q->getAnswers()->all();
+//        var_dump($a);
 //        exit;
 
 

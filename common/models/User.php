@@ -32,6 +32,7 @@ use yii\db\ActiveQuery;
  * @property UserProfile $profile
  * @property array|Answer[] $answers
  * @property array|AnswerComment[] $answerComments
+ * @property array|UserConfig[] $configs
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -146,6 +147,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function getProfile()
     {
         return $this->hasOne(UserProfile::className(), ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
+     * User has_many UserConfig via UserConfig.user_id -> id
+     * @return UserConfigQuery
+     */
+    public function getConfigs()
+    {
+        return $this->hasMany(UserConfig::className(), ['user_id' => 'id'])
             ->inverseOf('user');
     }
 

@@ -21,7 +21,7 @@ use yii\db\ActiveQuery;
  * @property integer $vote_down
  * @property string $content
  *
- * @property User $user
+ * @property \common\models\User $user
  * @property array|AnswerComment[] $comments
  * @property Question $question
  */

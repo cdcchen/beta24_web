@@ -29,9 +29,10 @@ use yii\db\ActiveQuery;
  * @property string $tags
  * @property string $content
  *
- * @property User $user
+ * @property \common\models\User $user
  * @property array|QuestionComment[] $comments
  * @property array|Answer[] $answers
+ * @property array|Tag[] $tags
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -139,6 +140,16 @@ class Question extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Answer::className(), ['question_id' => 'id'])
             ->inverseOf('question');
+    }
+
+    /**
+     * Question has_many Tag via Tag.id -> question_tag.tag_id and question_tag.question_id -> id
+     * @return TagQuery
+     */
+    public function getQuestions()
+    {
+        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
+            ->viaTable(TBL_QUESTION_TAG, ['question_id' => 'id']);
     }
 }
 

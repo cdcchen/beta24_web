@@ -20,7 +20,7 @@ use yii\web\User;
  * @property integer $data_reputation
  * @property integer $data_money
  *
- * @property User $user
+ * @property \common\models\User $user
  */
 class UserProfile extends \yii\db\ActiveRecord
 {

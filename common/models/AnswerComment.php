@@ -19,7 +19,7 @@ use yii\db\ActiveRecord;
  * @property integer $score
  * @property string $content
  *
- * @property User $user
+ * @property \common\models\User $user
  */
 class AnswerComment extends \yii\db\ActiveRecord
 {
