@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use common\behaviors\IPAddressBehavior;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 
 /**
@@ -28,11 +30,18 @@ use yii\db\ActiveQuery;
  * @property string $content
  *
  * @property User $user
+ * @property array|QuestionComment[] $comments
+ * @property array|Answer[] $answers
  */
 class Question extends \yii\db\ActiveRecord
 {
     const STATUS_ACTIVE = 10;
-    const STATUS_DONE = 1;
+    const STATUS_DONE = 20;
+
+    public static function statuses()
+    {
+        return [self::STATUS_ACTIVE, self::STATUS_DONE];
+    }
 
     /**
      * @inheritdoc
@@ -48,10 +57,12 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['user_id', 'title', 'content'], 'required'],
             [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_up', 'vote_down', 'open_bounty', 'open_bounty_end_time', 'answer_reputation', 'created_at', 'updated_at', 'status'], 'integer'],
-            [['content'], 'string'],
             [['title', 'tags'], 'string', 'max' => 250],
-            [['create_ip', 'updated'], 'string', 'max' => 15]
+            [['create_ip', 'updated'], 'string', 'max' => 15],
+            ['status', 'in', 'range' => static::statuses()],
+            [['content'], 'string'],
         ];
     }
 
@@ -82,6 +93,17 @@ class Question extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            IPAddressBehavior::className(),
+        ];
+    }
+
     public static function find()
     {
         return new QuestionQuery(get_called_class());
@@ -90,21 +112,39 @@ class Question extends \yii\db\ActiveRecord
 
     /******************** Relational Data ***********************/
 
+    /**
+     * Question has_one User via User.id -> user_id
+     * @return UserQuery
+     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('questions');
+    }
+
+    /**
+     * Question has_many QuestionComment via QuestionComment.question_id -> id
+     * @return QuestionQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(QuestionComment::className(), ['question_id' => 'id'])->inverseOf('question');
+    }
+
+    /**
+     * Question has_many Answer via Answer.question_id -> id
+     *
+     * @return AnswerQuery
+     */
+    public function getAnswers()
+    {
+        return $this->hasMany(Answer::className(), ['question_id' => 'id'])
+            ->inverseOf('question');
     }
 }
 
 
 class QuestionQuery extends ActiveQuery
 {
-    public function status($status)
-    {
-        $this->andWhere(['status' => $status]);
-        return $this;
-    }
-
     public function active()
     {
         $this->andWhere(['status' => Question::STATUS_ACTIVE]);
@@ -114,12 +154,6 @@ class QuestionQuery extends ActiveQuery
     public function done()
     {
         $this->andWhere(['status' => Question::STATUS_DONE]);
-        return $this;
-    }
-
-    public function deleted()
-    {
-        $this->andWhere(['status' => Question::STATUS_DELETED]);
         return $this;
     }
 }

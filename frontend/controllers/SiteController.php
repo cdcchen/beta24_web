@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\QuestionComment;
 use Yii;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
@@ -76,7 +77,16 @@ class SiteController extends Controller
 
     public function actionTest()
     {
-        user()->can('admin');
+        $ac = new QuestionComment();
+        $q = Question::find()->with('answers')->one();
+//        var_dump($q);
+//        $a = $q->getAnswers()->all();
+        $a = $q->getAnswers()->all();
+        var_dump($a);
+//        exit;
+
+
+//        user()->can('admin');
 
 //        $questions1 = Question::find()->joinWith('user')->all();
 //        var_dump($questions1);
@@ -95,12 +105,12 @@ class SiteController extends Controller
 //        var_dump($question->user->questions[1] === $question);
 //        exit;
 
-        $user = User::findOne(1);
+//        $user = User::findOne(1);
 //        var_dump($question->user === $user);
 //        exit;
 
-        $questions = $user->getQuestions()->status([Question::STATUS_DONE, Question::STATUS_ACTIVE])->all();
-        var_dump($questions);
+//        $questions = $user->getQuestions()->status([Question::STATUS_DONE, Question::STATUS_ACTIVE])->all();
+//        var_dump($questions);
 //        exit;
 
         return $this->render('test');

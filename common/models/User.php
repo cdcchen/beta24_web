@@ -27,7 +27,11 @@ use yii\db\ActiveQuery;
  * @property integer $status
  * @property string $password write-only password
  *
- * @property array $questions Question model array
+ * @property array|Question[] $questions user's question
+ * @property array|QuestionComment[] $questionComments user's question comments
+ * @property UserProfile $profile
+ * @property array|Answer[] $answers
+ * @property array|AnswerComment[] $answerComments
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -53,29 +57,18 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-            IPAddressBehavior::className(),
-        ];
-    }
-
-    /**
       * @inheritdoc
       */
     public function rules()
     {
         return [
             [['username', 'display_name', 'email'], 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
+            [['username', 'password', 'password_hash'], 'required'],
             [['username', 'display_name'], 'string', 'max'=>50],
             [['display_name', 'email', 'phone'], 'unique'],
 
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_INACTIVE]],
+            ['status', 'in', 'range' => static::statuses()],
 
             ['email', 'email'],
         ];
@@ -104,6 +97,21 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+            IPAddressBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return UserQuery|ActiveQuery
+     */
     public static function find()
     {
         return new UserQuery(get_called_class());
@@ -111,9 +119,33 @@ class User extends ActiveRecord implements IdentityInterface
 
     /******************** Relational Data ***********************/
 
+    /**
+     * User has_many Question via Question.user_id -> id
+     * @return QuestionQuery
+     */
     public function getQuestions()
     {
         return $this->hasMany(Question::className(), ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
+     * User has_many QuestionComment via QuestionComment.user_id -> id
+     * @return array|QuestionComment[]
+     */
+    public function getQuestionComments()
+    {
+        return $this->hasMany(QuestionComment::className(), ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
+     * User has_one UserProfile via UserProfile.user_id -> id
+     * @return UserProfile
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(UserProfile::className(), ['user_id' => 'id'])
             ->inverseOf('user');
     }
 
