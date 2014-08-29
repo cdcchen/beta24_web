@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\base\DateTimeTrait;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -36,6 +37,8 @@ use yii\db\ActiveQuery;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    use DateTimeTrait;
+
     const STATUS_DELETED = -1;
     const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 10;
@@ -101,6 +104,21 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+    public function fields()
+    {
+        $fields = parent::fields();
+        unset($fields['auth_key'], $fields['password'], $fields['password_hash'], $fields['password__reset_token'], $fields['created_at'], $fields['updated_at']);
+
+        $fields['createdAt'] =  [$this, 'getCreatedAt'];
+        $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
+        $fields['displayName'] = [$this, 'getDisplayName'];
+
+        return $fields;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -158,6 +176,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(UserConfig::className(), ['user_id' => 'id'])
             ->inverseOf('user');
+    }
+
+
+    /******************** get function ***************************/
+
+    public function getDisplayName()
+    {
+        return $this->display_name ? $this->display_name : $this->username;
     }
 
 

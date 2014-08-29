@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\base\DateTimeTrait;
 use common\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -26,7 +27,7 @@ use yii\db\ActiveQuery;
  * @property integer $updated_time
  * @property string $updated_ip
  * @property integer $status
- * @property string $tags
+ * @property string $tags_text
  * @property string $content
  *
  * @property \common\models\User $user
@@ -36,6 +37,8 @@ use yii\db\ActiveQuery;
  */
 class Question extends \yii\db\ActiveRecord
 {
+    use DateTimeTrait;
+
     const STATUS_ACTIVE = 10;
     const STATUS_DONE = 20;
 
@@ -60,7 +63,7 @@ class Question extends \yii\db\ActiveRecord
         return [
             [['user_id', 'title', 'content'], 'required'],
             [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_up', 'vote_down', 'open_bounty', 'open_bounty_end_time', 'answer_reputation', 'created_at', 'updated_at', 'status'], 'integer'],
-            [['title', 'tags'], 'string', 'max' => 250],
+            [['title', 'tags_text'], 'string', 'max' => 250],
             [['create_ip', 'updated'], 'string', 'max' => 15],
             ['status', 'in', 'range' => static::statuses()],
             [['content'], 'string'],
@@ -89,9 +92,22 @@ class Question extends \yii\db\ActiveRecord
             'updated_at' => '更新时间',
             'updated_ip' => '更新IP',
             'status' => '状态',
-            'tags' => '标签',
+            'tags_text' => '标签',
             'content' => '内容',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields['createdAt'] =  [$this, 'getCreatedAt'];
+        $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
+
+        return $fields;
     }
 
     /**
@@ -146,7 +162,7 @@ class Question extends \yii\db\ActiveRecord
      * Question has_many Tag via Tag.id -> question_tag.tag_id and question_tag.question_id -> id
      * @return TagQuery
      */
-    public function getQuestions()
+    public function getTags()
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
             ->viaTable(TBL_QUESTION_TAG, ['question_id' => 'id']);

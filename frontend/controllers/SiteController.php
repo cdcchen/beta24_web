@@ -76,8 +76,18 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionTest()
+    public function actionTest($b = 111)
     {
+        var_dump(app()->version);
+        exit;
+
+        var_dump(app()->requestedRoute);
+        exit;
+
+        $u = User::find()->with('profile')->one();
+        var_dump($u->toArray([], ['profile']));
+
+        exit;
         $q = Question::find();
         $all = $q->andWhere(['or like', 'title', 'php'])
             ->all();

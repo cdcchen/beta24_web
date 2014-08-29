@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\base\DateTimeTrait;
 use common\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -24,6 +25,8 @@ use yii\db\ActiveRecord;
  */
 class QuestionComment extends \yii\db\ActiveRecord
 {
+    use DateTimeTrait;
+
     /**
      * @inheritdoc
      */
@@ -59,6 +62,18 @@ class QuestionComment extends \yii\db\ActiveRecord
             'score' => '评分',
             'content' => '内容',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields['createdAt'] =  [$this, 'getCreatedAt'];
+
+        return $fields;
     }
 
     /**

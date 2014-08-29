@@ -97,7 +97,7 @@ class UserConfig extends \yii\db\ActiveRecord
 
 class UserConfigQuery extends ActiveQuery
 {
-    public function setUserID($id)
+    public function userID($id)
     {
         $this->andWhere('user_id = :user_id', [':user_id' => $id]);
         return $this;

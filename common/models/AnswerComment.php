@@ -63,6 +63,18 @@ class AnswerComment extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields['createdAt'] =  [$this, 'getCreatedAt'];
+
+        return $fields;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

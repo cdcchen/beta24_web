@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\base\DateTimeTrait;
 use Yii;
 use common\behaviors\IPAddressBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -28,6 +29,8 @@ use yii\db\ActiveQuery;
 
 class Answer extends \yii\db\ActiveRecord
 {
+    use DateTimeTrait;
+
     /**
      * @inheritdoc
      */
@@ -76,6 +79,19 @@ class Answer extends \yii\db\ActiveRecord
             'vote_down' => 'Vote Down',
             'content' => 'Content',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fields()
+    {
+        $fields = parent::fields();
+
+        $fields['createdAt'] =  [$this, 'getCreatedAt'];
+        $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
+
+        return $fields;
     }
 
     /**
