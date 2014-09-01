@@ -1,0 +1,21 @@
+// Tables
+
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+table-row-variant(state, bgcolor)
+  .table > thead > tr
+  .table > tbody > tr
+  .table > tfoot > tr
+    > td.{state}
+    > th.{state}
+    &.{state} > td
+    &.{state} > th
+      background-color bgcolor
+
+    > td.{state}:hover
+    > th.{state}:hover
+    &.{state}:hover > td
+    &:hover > .{state}
+    &.{state}:hover > th
+      background-color darken(bgcolor, 5%)
