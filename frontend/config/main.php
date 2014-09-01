@@ -40,6 +40,14 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,
+                    'js' => ['http://libs.baidu.com/jquery/1.11.1/jquery.min.js']
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];

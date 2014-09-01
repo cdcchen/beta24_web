@@ -159,6 +159,26 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * User has_many Answer via Answer.user_id -> id
+     * @return AnswerQuery
+     */
+    public function getAnswers()
+    {
+        return $this->hasMany(Answer::className(), ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
+     * User has_many AnswerComment via AnswerComment.user_id -> id
+     * @return array|AnswerComment[]
+     */
+    public function getAnswerComments()
+    {
+        return $this->hasMany(AnswerComment::className(), ['user_id' => 'id'])
+            ->inverseOf('user');
+    }
+
+    /**
      * User has_one UserProfile via UserProfile.user_id -> id
      * @return UserProfile
      */

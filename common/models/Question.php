@@ -172,12 +172,18 @@ class Question extends \yii\db\ActiveRecord
 
 class QuestionQuery extends ActiveQuery
 {
+    /**
+     * @return QuestionQuery $this
+     */
     public function active()
     {
         $this->andWhere(['status' => Question::STATUS_ACTIVE]);
         return $this;
     }
 
+    /**
+     * @return QuestionQuery $this
+     */
     public function done()
     {
         $this->andWhere(['status' => Question::STATUS_DONE]);
