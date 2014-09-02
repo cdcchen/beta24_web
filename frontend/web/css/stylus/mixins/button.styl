@@ -4,17 +4,17 @@ button-variant(color, bgcolor, border)
   background-color bgcolor
   border-color border
   
-  &hover,
-  &focus,
+  &:hover,
+  &:focus,
   &.focus,
-  &active,
+  &:active,
   &.active,
   .open > .dropdown-toggle& 
     color color
     background-color darken(bgcolor, 10%)
     border-color darken(border, 12%)
   
-  &active,
+  &:active,
   &.active,
   .open > .dropdown-toggle& 
     background-image none
@@ -23,10 +23,10 @@ button-variant(color, bgcolor, border)
   &[disabled],
   fieldset[disabled] & 
     &,
-    &hover,
-    &focus,
+    &:hover,
+    &:focus,
     &.focus,
-    &active,
+    &:active,
     &.active 
       background-color bgcolor
       border-color border

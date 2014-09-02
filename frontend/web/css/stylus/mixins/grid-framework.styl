@@ -1,0 +1,74 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+// Common styles for all sizes of grid columns, widths 1-12
+make-grid-columns(grid-columns = $grid-columns, grid-gutter-width = $grid-gutter-width)
+  selectors = ''
+  for i in (1..grid-columns)
+    for j in (xs sm md lg)
+      selectors += '.col-%s-%s,' % (j i)
+
+  {selectors}
+    position relative;
+    min-height 1px;
+    padding-left  (grid-gutter-width / 2);
+    padding-right (grid-gutter-width / 2);
+
+
+float-grid-columns(class, grid-columns = $grid-columns)
+  selectors = ''
+  for i in (1..grid-columns)
+    selectors += '.col-%s-%s,' % (class i)
+
+  {selectors}
+    float left
+
+
+calc-grid-column(index, class, type)
+  if type == width and index > 0
+    selector = '.col-%s-%s' % (class index)
+    {selector}
+       width (index / $grid-columns * 100)%
+
+  else if type == push
+    selector = '.col-%s-push-%s' % (class index)
+    if index > 0
+      {selector}
+        width (index / $grid-columns * 100)%
+    else if index == 0
+      {selector}
+        left auto
+
+  else if type == pull
+    selector = '.col-%s-pull-%s' % (class index)
+    if index > 0
+      {selector}
+        width (index / $grid-columns * 100)%
+    else if index == 0
+      {selector}
+        right auto
+
+  else if type == offset
+    selector = '.col-%s-offset-%s' % (class index)
+    {selector}
+      margin-left (index / $grid-columns * 100)%
+
+
+
+// Basic looping in Stylus
+loop-grid-columns(index, class, type)
+  if index >= 0
+    calc-grid-column(index, class, type)
+    // next iteration
+    loop-grid-columns((index - 1), class, type)
+
+
+// Create grid for specific class
+make-grid(class)
+  float-grid-columns(class)
+  loop-grid-columns($grid-columns, class, width)
+  loop-grid-columns($grid-columns, class, pull)
+  loop-grid-columns($grid-columns, class, push)
+  loop-grid-columns($grid-columns, class, offset)
