@@ -1,0 +1,207 @@
+body {
+  font: 14px/1.428571429 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: underline;
+  color: #428bca;
+}
+.fleft {
+  float: left !important;
+}
+.fright {
+  float: right !important;
+}
+.gravatar32 {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+}
+.beta-wrapper {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background: #fff;
+}
+.beta-container {
+  width: 1050px;
+  margin: 0 auto;
+}
+.beta-content {
+  width: 730px;
+  height: 500px;
+}
+.beta-sidebar {
+  width: 300px;
+  height: 500px;
+}
+#beta-topbar {
+  width: 100%;
+  background: rgba(0,0,0,0.86);
+  line-height: 1;
+  font-size: 14px;
+  height: 34px;
+}
+#beta-footer {
+  background: #777;
+  border-top: 8px solid #000;
+  clear: both;
+  padding: 15px;
+  margin-top: 30px;
+}
+.questions {
+  clear: both;
+}
+.question-item {
+  border-bottom: 1px solid #eaeaea;
+  overflow: hidden;
+  padding: 10px 0;
+}
+.question-stats {
+  float: left;
+  width: 85px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+.q-stats {
+  background: #eee;
+  margin: 0 0 0 7px;
+  padding: 4px 7px 6px 7px;
+}
+.q-stats .votes,
+.q-stats .answers {
+  padding: 0 0 7px 0;
+  text-align: center;
+  color: #555;
+  line-height: 1;
+}
+.q-stats strong {
+  display: block;
+  font-family: Arial, Liberation Sans, DejaVu Sans, "sans-serif";
+}
+.q-stats .votes strong {
+  font-size: 24px;
+  font-weight: normal;
+  color: #808185;
+}
+.q-stats .answers {
+  padding: 4px 0;
+}
+.q-stats .answers strong {
+  font-size: 18px;
+}
+.q-stats .answered,
+.q-stats .done {
+  background: #75845c;
+}
+.q-stats .unanswered {
+  color: #9a4444;
+}
+.q-stats .answered {
+  color: #fff;
+  font-weight: normal;
+}
+.q-stats .done {
+  color: #e1e818;
+}
+.q-views {
+  text-align: center;
+  color: #999;
+  margin-top: 4px;
+  -webkit-transform: rotate(10px);
+  -moz-transform: rotate(10px);
+  -o-transform: rotate(10px);
+  -ms-transform: rotate(10px);
+  transform: rotate(10px);
+  overflow: hidden;
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+  resize: horizontal;
+  overflow: auto;
+}
+.question-summary {
+  float: left;
+  width: 635px;
+}
+.question-summary h3 {
+  font-size: 100%;
+  line-height: 1.3;
+  margin: 0 0 5px;
+  padding: 0;
+}
+.q-excerpt {
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+.q-tags,
+.q-userinfo {
+  line-height: 18px;
+  font-size: 12px;
+}
+.q-tags {
+  float: left;
+}
+.q-userinfo {
+  float: right;
+  color: #888;
+  width: 200px;
+  line-height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.q-userinfo img {
+  vertical-align: baseline;
+}
+.q-userinfo .asked-time {
+  margin: 2px 0;
+}
+.q-userinfo .gravatar {
+  display: block;
+}
+.q-userinfo .detail {
+  margin-left: 37px;
+}
+.q-userinfo .detail span {
+  font-family: Arial, Liberation Sans, DejaVu Sans, "sans-serif";
+}
+h1 {
+  font-size: 40px;
+  width: 500px;
+  height: 500px;
+  border: 10px solid;
+  background-color: #ccc;
+  border-color: #f00;
+  color: #999;
+}
+h1 hr {
+  border-top-color: #f20000;
+}
+h1 .alert-link {
+  color: #8a8a8a;
+}
+.test {
+  width: 500px;
+  height: 500px;
+  background-image: -webkit-linear-gradient(45deg, #f00 25%, transparent 25%, transparent 50%, #f00 50%, #f00 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(45deg, #f00 25%, transparent 25%, transparent 50%, #f00 50%, #f00 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, #f00 25%, transparent 25%, transparent 50%, #f00 50%, #f00 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(45deg, #f00 25%, transparent 25%, transparent 50%, #f00 50%, #f00 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, #f00 25%, transparent 25%, transparent 50%, #f00 50%, #f00 75%, transparent 75%, transparent);
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  -webkit-transition: height 0.35s ease;
+  -moz-transition: height 0.35s ease;
+  -o-transition: height 0.35s ease;
+  -ms-transition: height 0.35s ease;
+  transition: height 0.35s ease;
+}
+.icon-test {
+  background: #563d7c;
+  color: #fff;
+}

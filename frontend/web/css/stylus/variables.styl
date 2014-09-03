@@ -41,6 +41,18 @@ $headings-line-height = 1.1
 $headings-color = inherit
 
 
+//== Iconography
+//
+//## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
+
+//** Load fonts from this directory.
+$icon-font-path =          "./fonts/";
+//** File name for all font files.
+$icon-font-name =          "glyphicons-halflings-regular";
+//** Element ID within SVG icon file.
+$icon-font-svg-id =        "glyphicons_halflingsregular";
+
+
 /* Components */
 $padding-base-vertical = 6px
 $padding-base-horizontal = 12px
@@ -53,6 +65,18 @@ $padding-xs-horizontal = 5px
 $border-radius-base = 4px
 $border-radius-large = 6px
 $border-radius-small = 3px
+
+//** Global color for active items (e.g., navs or dropdowns).
+$component-active-color =    #fff
+//** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg =       $brand-primary
+
+
+//** Width of the `border` for generating carets that indicator dropdowns.
+$caret-width-base =          4px
+//** Carets increase slightly in size for larger components.
+$caret-width-large =         5px
+
 
 /* Tables */
 $table-cell-padding = 8px
@@ -83,6 +107,7 @@ $btn-warning-border = darken($btn-warning-bg, 5%)
 $btn-danger-color = #fff
 $btn-danger-bg = $brand-danger
 $btn-danger-border = darken($btn-danger-bg, 5%)
+$btn-link-disabled-color = $gray-light
 
 /* Forms */
 $input-bg = #fff
@@ -99,6 +124,58 @@ $legend-color = $gray-dark
 $legend-border-color = #e5e5e5
 $input-group-addon-bg = $gray-lighter
 $input-group-addon-border-color = $input-border
+
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+
+//** Background for the dropdown menu.
+$dropdown-bg =                    #fff
+//** Dropdown menu `border-color`.
+$dropdown-border =                rgba(0,0,0,.15)
+//** Dropdown menu `border-color` **for IE8**.
+$dropdown-fallback-border =       #ccc
+//** Divider color for between dropdown items.
+$dropdown-divider-bg =            #e5e5e5
+
+//** Dropdown link text color.
+$dropdown-link-color =            $gray-dark
+//** Hover color for dropdown links.
+$dropdown-link-hover-color =      darken($gray-dark, 5%)
+//** Hover background for dropdown links.
+$dropdown-link-hover-bg =         #f5f5f5
+
+//** Active dropdown menu item text color.
+$dropdown-link-active-color =     $component-active-color
+//** Active dropdown menu item background color.
+$dropdown-link-active-bg =        $component-active-bg
+
+//** Disabled dropdown menu item background color.
+$dropdown-link-disabled-color =   $gray-light
+
+//** Text color for headers within dropdown menus.
+$dropdown-header-color =          $gray-light
+
+//** Deprecated `$dropdown-caret-color` as of v3.1.0
+$dropdown-caret-color =           #000
+
+
+//-- Z-index master list
+//
+// Warning = Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+//
+// Note = These variables are not generated into the Customizer.
+
+$zindex-navbar =            1000
+$zindex-dropdown =          1000
+$zindex-popover =           1060
+$zindex-tooltip =           1070
+$zindex-navbar-fixed =      1030
+$zindex-modal-background =  1040
+$zindex-modal =             1050
+
 
 
 
@@ -265,13 +342,67 @@ $badge-bg = $gray-light
 $badge-active-color = $link-color
 $badge-active-bg = #fff
 $badge-font-weight = bold
+$badge-line-height = 1
 $badge-border-radius = 10px
+
+
+//== Breadcrumbs
+//
+//##
+
+$breadcrumb-padding-vertical = 8px
+$breadcrumb-padding-horizontal = 15px
+//** Breadcrumb background color
+$breadcrumb-bg = #f5f5f5
+//** Breadcrumb text color
+$breadcrumb-color = #ccc
+//** Text color of current page in the breadcrumb
+$breadcrumb-active-color = $gray-light
+//** Textual separator for between breadcrumb elements
+$breadcrumb-separator = '/'
 
 /* Close */
 $close-font-weight = bold
 $close-color = #000
 $close-text-shadow = 0 1px 0 #fff
 
+//== Code
+//
+//##
 
-/* hr */
-$hr-border = $gray-lighter;
+$code-color =                  #c7254e
+$code-bg =                     #f9f2f4
+
+$kbd-color =                   #fff
+$kbd-bg =                      #333
+
+$pre-bg =                      #f5f5f5
+$pre-color =                   $gray-dark
+$pre-border-color =            #ccc
+$pre-scrollable-max-height =   340px
+
+
+//== Type
+//
+//##
+
+//** Horizontal offset for forms and lists.
+$component-offset-horizontal = 180px
+//** Text muted color
+$text-muted =                  $gray-light
+//** Abbreviations and acronyms border color
+$abbr-border-color =           $gray-light
+//** Headings small color
+$headings-small-color =        $gray-light
+//** Blockquote small color
+$blockquote-small-color =      $gray-light
+//** Blockquote font size
+$blockquote-font-size =        ($font-size-base * 1.25)
+//** Blockquote border color
+$blockquote-border-color =     $gray-lighter
+//** Page header border color
+$page-header-border-color =    $gray-lighter
+//** Width of horizontal description list titles
+$dl-horizontal-offset =        $component-offset-horizontal
+//** Horizontal line color.
+$hr-border =                   $gray-lighter
