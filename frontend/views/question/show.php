@@ -4,7 +4,46 @@
 /* @var $comments array|common\models\QuestionComment[] */
 /* @var $answers array|common\models\Answer[] */
 ?>
-    <br />
+<br />
+
+<div class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object" src="http://static.waduanzi.com/images/qrcode_wx_200.png" width="100" alt="...">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">Media heading</h4>
+        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="http://static.waduanzi.com/images/qrcode_wx_200.png" width="100" alt="...">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                media body
+            </div>
+        </div>
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="http://static.waduanzi.com/images/qrcode_wx_200.png" width="100" alt="...">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                media body
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="http://static.waduanzi.com/images/qrcode_wx_200.png" width="100" alt="...">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Media heading</h4>
+                        media body
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
 <div class="btn-group">
     <button type="button" class="btn btn-default">Left</button>
     <button type="button" class="btn btn-default">Middle</button>

@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
 
 h1, .h1, h2, .h2, h3, .h3
   margin-top  $line-height-computed
-  margin-bottom ( $line-height-computed / 2)
+  margin-bottom ($line-height-computed / 2)
 
   small
   .small 
@@ -30,8 +30,8 @@ h1, .h1, h2, .h2, h3, .h3
   
 
 h4, .h4, h5, .h5, h6, .h6
-  margin-top ( $line-height-computed / 2)
-  margin-bottom ( $line-height-computed / 2)
+  margin-top ($line-height-computed / 2)
+  margin-bottom ($line-height-computed / 2)
 
   small
   .small 
@@ -62,12 +62,12 @@ p
 
 .lead 
   margin-bottom  $line-height-computed
-  font-size floor(( $font-size-base * 1.15))
+  font-size floor(($font-size-base * 1.15))
   font-weight 300
   line-height 1.4
 
   @media (min-width: $screen-sm-min)
-    font-size ( $font-size-base * 1.5)
+    font-size ($font-size-base * 1.5)
   
 
 
@@ -112,19 +112,19 @@ mark
   color  $text-muted
 
 .text-primary
-  text-emphasis-variant( $brand-primary)
+  text-emphasis-variant($brand-primary)
 
 .text-success
-  text-emphasis-variant( $state-success-text)
+  text-emphasis-variant($state-success-text)
 
 .text-info
-  text-emphasis-variant( $state-info-text)
+  text-emphasis-variant($state-info-text)
 
 .text-warning
-  text-emphasis-variant( $state-warning-text)
+  text-emphasis-variant($state-warning-text)
 
 .text-danger
-  text-emphasis-variant( $state-danger-text)
+  text-emphasis-variant($state-danger-text)
 
 
 // Contextual backgrounds
@@ -134,19 +134,19 @@ mark
   // Given the contrast here, this is the only class to have its color inverted
   // automatically.
   color #fff
-  bg-variant( $brand-primary)
+  bg-variant($brand-primary)
 
 .bg-success
-  bg-variant( $state-success-bg)
+  bg-variant($state-success-bg)
 
 .bg-info
-  bg-variant( $state-info-bg)
+  bg-variant($state-info-bg)
 
 .bg-warning
-  bg-variant( $state-warning-bg)
+  bg-variant($state-warning-bg)
 
 .bg-danger
-  bg-variant( $state-danger-bg)
+  bg-variant($state-danger-bg)
 
 
 
