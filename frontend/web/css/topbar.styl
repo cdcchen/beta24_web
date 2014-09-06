@@ -1,0 +1,47 @@
+
+#beta-topbar
+  width 100%
+  height $topbar-height
+  background rgba(0, 0, 0, 0.86)
+  line-height 1
+
+  .container
+    height inherit
+    relative()
+    color $gray-lighter
+
+  a
+    color $gray-lighter
+    display inline-block
+    height inherit
+    line-height $topbar-height
+    padding 0 10px
+    &:hover
+      background $gray
+
+
+  .site-links
+  .search
+  .user-links
+    absolute()
+    top 0
+
+  .site-links
+    left 0
+    height inherit
+    margin-left ($grid-gutter-width / 2)
+
+  .search
+    right 0
+    margin-right ($grid-gutter-width / 2)
+    input
+      color $gray
+      width $input-search-width
+      height 24px
+      margin 6px 0 0
+      border($base-color)
+      padding 2px 3px
+
+  .user-links
+    right $input-search-width + 20px
+    margin-right ($grid-gutter-width / 2)

@@ -18,10 +18,11 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/stylus/betaboot.css',
+//        'css/stylus/betaboot.css',
         'css/site.css',
     ];
     public $js = [
+        'http://static.waduanzi.com/libs/bootstrap/js/bootstrap.min.js',
         'js/site.js',
     ];
     public $depends = [

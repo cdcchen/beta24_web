@@ -26,7 +26,7 @@ use yii\helpers\Url;
             <div class="q-tags"><?= $q->tags_text ?></div>
             <div class="q-userinfo">
                 <div class="asked-time"><?= $q->createdAt ?></div>
-                <a class="gravatar gravatar32 fleft"><img src="https://www.gravatar.com/avatar/5aa7277dc04182669afa6e3b89772e29?s=32&d=identicon&r=PG" /></a>
+                <a class="gravatar gravatar32 pull-left"><img src="http://sfault-avatar.b0.upaiyun.com/112/403/1124034541-1030000000645241_medium40" /></a>
                 <div class="detail">
                     <a href="#"><?=$q->user->getDisplayName() ?></a><br />
                     <span>10</span>

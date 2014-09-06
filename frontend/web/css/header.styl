@@ -1,0 +1,44 @@
+#beta-header
+  padding 20px 0 35px
+
+  .logo
+    display inline-block
+    size($logo-width, 60px)
+    float left
+    background url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3c6263c3453b) no-repeat 0 0
+
+  ul
+    @extend .list-unstyled
+    margin-bottom 0
+    margin-top 34px
+
+  li
+    display inline-block
+    margin-right 5px
+    vertical-align baseline
+
+    a
+      color #ffffff
+      display block
+      padding 6px 15px
+      text-decoration none
+      background-color $gray-light
+      line-height 1
+      letter-spacing 1px
+
+      &:hover
+        background-color $mainnav-current-background
+
+  li.active
+    a
+      background-color $mainnav-current-background
+
+
+  .main-nav
+    margin-left $logo-width + 10px
+  .ask-nav
+    float right
+
+
+#sub-header
+  margin-bottom 15px

@@ -1,30 +1,29 @@
 
-$container-width = 1050px
+$topbar-height = 36px
+$input-search-width = 180px
+
+$logo-width = 250px
+$mainnav-current-background = #f90
+
 $sidebar-width = 300px
-$content-sidebar-spacing-width = 20px
-$stats-container-width = 85px
+$content-sidebar-spacing-width = 30px
+$stats-container-width = 78px
 
-body
-  font $font-size-base/$line-height-base $font-family-base
+serif-font()
+  font-family $font-family-serif
 
-a
-  color $text-color
-  text-decoration none
-  cursor pointer
-  &:hover
-    text-decoration underline
-    color $link-color
+font-size-small()
+  font-size $font-size-small
 
+font-size-middle()
+  font-size $font-size-middle
 
-.fleft
-  float left !important
-
-.fright
-  float right !important
+font-size-large()
+  font-size $font-size-large
 
 
-numeral-font()
-  font-family Arial,Liberation Sans,DejaVu Sans,"sans-serif"
+
+
 
 .gravatar32
   size(32px)

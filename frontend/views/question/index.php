@@ -6,21 +6,21 @@ use yii\widgets\LinkPager;
 /* @var $questions common\models\Question[] */
 ?>
 
-<h1>question/index</h1>
+<div class="beta-sidebar">
+    sidebar<br /><br /><br />
+    sidebar<br /><br /><br />
+    sidebar<br /><br /><br />
+    sidebar<br /><br /><br />
+    sidebar<br /><br /><br />
+</div>
 
-<div class="beta-content fleft">
+<div class="beta-mainbar">
 
+<?php echo $this->render('/public/question_tab');?>
 <?php echo $this->render('_list', ['models' => $questions]);?>
 
-<?php
-echo LinkPager::widget([
-    'pagination' => $pages,
-]);
+<?php echo LinkPager::widget(['pagination' => $pages]);
 ?>
-
 </div>
 
-
-<div class="beta-sidebar fright">
-    sidebar
-</div>
+<div class="clear"></div>

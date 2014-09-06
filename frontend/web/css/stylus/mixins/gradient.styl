@@ -7,7 +7,7 @@
 gradient-horizontal(start-color = #555, end-color = #333, start-percent = 0%, end-percent = 100%)
   background-image linear-gradient(left, start-color start-percent, end-color end-percent)
   background-repeat repeat-x
-  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=1)" % (rgba(start-color) rgba(end-color)) // IE9 and down
+  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=1)" % (start-color end-color) // IE9 and down
 
 
 // Vertical gradient, from top to bottom
@@ -17,7 +17,7 @@ gradient-horizontal(start-color = #555, end-color = #333, start-percent = 0%, en
 gradient-vertical(start-color = #555, end-color = #333, start-percent = 0%, end-percent = 100%)
   background-image linear-gradient(top, start-color start-percent, end-color end-percent)
   background-repeat repeat-x
-  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=0)" % (rgba(start-color) rgba(end-color)) // IE9 and down
+  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=0)" % (start-color end-color) // IE9 and down
 
 
 gradient-directional(start-color = #555, end-color = #333, deg = 45deg)
@@ -27,12 +27,12 @@ gradient-directional(start-color = #555, end-color = #333, deg = 45deg)
 gradient-horizontal-three-colors(start-color = #00b3ee, mid-color = #7a43b6, color-stop = 50%, end-color = #c3325f)
   background-image linear-gradient(left, start-color, mid-color color-stop, end-color)
   background-repeat no-repeat
-  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=1)" % (rgba(start-color) rgba(end-color)) // IE9 and down, gets no color-stop at all for proper fallback
+  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=1)" % (start-color end-color) // IE9 and down, gets no color-stop at all for proper fallback
 
 gradient-vertical-three-colors(start-color = #00b3ee, mid-color = #7a43b6, color-stop = 50%, end-color = #c3325f)
   background-image linear-gradient(start-color, mid-color color-stop, end-color)
   background-repeat no-repeat
-  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=0)" % (rgba(start-color) rgba(end-color)) // IE9 and down, gets no color-stop at all for proper fallback
+  filter "progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=0)" % (start-color end-color) // IE9 and down, gets no color-stop at all for proper fallback
 
 gradient-radial(inner-color = #555, outer-color = #333)
   background-image radial-gradient(circle, inner-color, outer-color)
