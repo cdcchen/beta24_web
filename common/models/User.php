@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use common\behaviors\IPAddressBehavior;
 use yii\db\ActiveRecord;
+use yii\helpers\Url;
 use yii\web\IdentityInterface;
 use yii\db\ActiveQuery;
 
@@ -28,6 +29,10 @@ use yii\db\ActiveQuery;
  * @property integer $status
  * @property string $password write-only password
  *
+ * __get property
+ * @property string $homeUrl
+ *
+ * Relations
  * @property array|Question[] $questions user's question
  * @property array|QuestionComment[] $questionComments user's question comments
  * @property UserProfile $profile
@@ -112,6 +117,7 @@ class User extends ActiveRecord implements IdentityInterface
         $fields['createdAt'] =  [$this, 'getCreatedAt'];
         $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
         $fields['displayName'] = [$this, 'getDisplayName'];
+        $fields['homeUrl'] = [$this, 'getHomeUrl'];
 
         return $fields;
     }
@@ -199,11 +205,16 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
 
-    /******************** get function ***************************/
+    /******************** __get function ***************************/
 
     public function getDisplayName()
     {
         return $this->display_name ? $this->display_name : $this->username;
+    }
+
+    public function getHomeUrl()
+    {
+        return Url::toRoute(['user/home', 'id' => $this->id, 'name'=>$this->getDisplayName()]);
     }
 
 

@@ -18,17 +18,22 @@ use yii\helpers\Url;
                     <strong><?= $q->answer_count ?></strong>answers
                 </div>
             </div>
-            <div class="q-views"><?= $q->view_count ?>&nbsp;views</div>
+            <div class="q-views"><?= $q->getViews() ?>&nbsp;views</div>
         </div>
         <div class="question-summary">
             <h3><?= a($q->title, Url::toRoute(['question/show', 'id' => $q->id])) ?></h3>
             <p class="q-excerpt"><?= $q->content ?></p>
             <div class="q-tags"><?= $q->tags_text ?></div>
             <div class="q-userinfo">
-                <div class="asked-time"><?= $q->createdAt ?></div>
-                <a class="gravatar gravatar32 pull-left"><img src="http://sfault-avatar.b0.upaiyun.com/112/403/1124034541-1030000000645241_medium40" /></a>
+                <div class="asked-time">asked：<?= $q->createdAt ?></div>
+                <a class="gravatar gravatar32 pull-left" href="<?= $q->user->getHomeUrl() ?>" target="_blank">
+                    <?= $q->user->profile->getGavatarImg(32) ?>
+                </a>
                 <div class="detail">
-                    <a href="#"><?=$q->user->getDisplayName() ?></a><br />
+                    <a href="<?= $q->user->getHomeUrl() ?>" target="_blank">
+                        <?=$q->user->getDisplayName() ?>
+                    </a>
+                    <br />
                     <span>10</span>
                     <span>20</span>
                 </div>

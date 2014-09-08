@@ -6,6 +6,7 @@ use common\base\DateTimeTrait;
 use Yii;
 use yii\db\ActiveQuery;
 use common\models\User;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "cd_user_profile".
@@ -25,7 +26,10 @@ use common\models\User;
  * @property integer $data_money
  * @property string $im_qq
  *
+ * Relations
  * @property \common\models\User $user
+ * @property string $birthday
+ * @property string $location
  */
 class UserProfile extends \yii\db\ActiveRecord
 {
@@ -121,7 +125,7 @@ class UserProfile extends \yii\db\ActiveRecord
     }
 
 
-    /******************** get function ***********************/
+    /******************** __get magic peoperty ***********************/
 
     /**
      * @return null|string Full birthday description
@@ -139,6 +143,21 @@ class UserProfile extends \yii\db\ActiveRecord
             return $this->location_province . '省' . $this->location_city . '市';
         else
             return null;
+    }
+
+    public function getGavatarImg($size, $options = [])
+    {
+        $size = (array)$size;
+        if (isset($size[1])) {
+
+            $options['width'] = $size[0];
+            $options['height'] = $size[1];
+        }
+        else
+            $options['width'] = $options['height'] = $size[0];
+
+        $url = empty($this->avatar_url) ? param : $this->avatar_url;
+        return Html::img($url, $options);
     }
 }
 

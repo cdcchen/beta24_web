@@ -30,6 +30,10 @@ use yii\db\ActiveQuery;
  * @property string $tags_text
  * @property string $content
  *
+ * __get property
+ * @property string views
+ *
+ * Relations
  * @property \common\models\User $user
  * @property array|QuestionComment[] $comments
  * @property array|Answer[] $answers
@@ -106,6 +110,7 @@ class Question extends \yii\db\ActiveRecord
 
         $fields['createdAt'] =  [$this, 'getCreatedAt'];
         $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
+        $fields['views'] =  [$this, 'getViews'];
 
         return $fields;
     }
@@ -124,6 +129,14 @@ class Question extends \yii\db\ActiveRecord
     public static function find()
     {
         return new QuestionQuery(get_called_class());
+    }
+
+
+    /******************** __get *********************************/
+
+    public function getViews()
+    {
+        return formatter()->asSizeNumber((int)$this->view_count, 1);
     }
 
 

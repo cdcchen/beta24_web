@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use frontend\assets\AppAsset;
 
 /* @var $this \yii\web\View */
@@ -46,11 +47,11 @@ AppAsset::register($this);
                 <li><a href="#">提问问题</a></li>
             </ul>
             <ul class="main-nav">
-                <li class="active"><a href="#">问题</a></li>
-                <li><a href="#">标签</a></li>
-                <li><a href="#">用户</a></li>
-                <li><a href="#">徽章</a></li>
-                <li><a href="#">未回答</a></li>
+                <li class="active"><a href="<?= Url::toRoute('question/index') ?>">问题</a></li>
+                <li><a href="<?= Url::toRoute('tag/index') ?>">标签</a></li>
+                <li><a href="<?= Url::toRoute('user/index') ?>">用户</a></li>
+                <li><a href="<?= Url::toRoute('badge/index') ?>">徽章</a></li>
+                <li><a href="<?= Url::toRoute('question/unanswered') ?>">未回答</a></li>
                 </ul>
         </div>
     </div>

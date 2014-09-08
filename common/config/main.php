@@ -10,5 +10,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'class' => 'common\base\Formatter',
+            'timeZone' => 'Asia/Shanghai',
+        ],
     ],
 ];

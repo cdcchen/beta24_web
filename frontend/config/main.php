@@ -35,6 +35,8 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '' => 'site/index',
+                '<controller:(question|tag|user|badge)>s' => '<controller>/index',
+                'user/<id:\d+>/<name:[0-9a-zA-Z_@\-\.]+>' => 'user/home',
             ],
         ],
         'authManager' => [

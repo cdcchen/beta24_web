@@ -2,10 +2,10 @@
 
 namespace frontend\controllers;
 
+use common\base\Pagination;
 use common\models\QuestionCommentQuery;
 use common\models\Question;
 use common\models\QuestionQuery;
-use yii\data\Pagination;
 
 class QuestionController extends \yii\web\Controller
 {
@@ -13,6 +13,7 @@ class QuestionController extends \yii\web\Controller
     {
         $query = static::buildQuery($sort);
         $pages = new Pagination(['totalCount' => $query->count()]);
+//        $pages->setPageSize(2);
         $questions = static::fetchQuestions($query, $pages);
 //        var_dump($questions);
 

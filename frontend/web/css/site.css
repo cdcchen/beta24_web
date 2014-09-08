@@ -1170,7 +1170,7 @@ html {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 body {
-  font-family: Arial, "Hiragino Sans GB", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Microsoft YaHei", Arial, "Hiragino Sans GB", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333;
@@ -1275,7 +1275,7 @@ h6,
 .h5,
 .h6 {
   font-family: inherit;
-  font-weight: 550;
+  font-weight: 500;
   line-height: 1.1;
   color: inherit;
 }
@@ -5458,6 +5458,9 @@ button {
   height: 32px;
   overflow: hidden;
 }
+.pages .per-page-label {
+  margin: 27px 0;
+}
 .beta-wrapper {
   width: 100%;
   height: 100%;
@@ -5574,6 +5577,11 @@ button {
   border-bottom: 1px solid #eaeaea;
   overflow: hidden;
   padding: 10px 0;
+}
+.tagged-ignored {
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
 }
 .question-stats {
   float: left;
