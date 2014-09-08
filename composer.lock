@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cdcchen/yii2plus.git",
-                "reference": "93ed7e92da285f7faa4f8a26b6d226c4ef430e0a"
+                "reference": "8007b1e4440e09acaa40c6ea73cd001f33863252"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cdcchen/yii2plus/zipball/93ed7e92da285f7faa4f8a26b6d226c4ef430e0a",
-                "reference": "93ed7e92da285f7faa4f8a26b6d226c4ef430e0a",
+                "url": "https://api.github.com/repos/cdcchen/yii2plus/zipball/8007b1e4440e09acaa40c6ea73cd001f33863252",
+                "reference": "8007b1e4440e09acaa40c6ea73cd001f33863252",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 "shortcut",
                 "yii2"
             ],
-            "time": "2014-08-17 20:25:44"
+            "time": "2014-09-08 09:14:08"
         },
         {
             "name": "cebe/markdown",

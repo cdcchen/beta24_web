@@ -19,7 +19,7 @@ trait DateTimeTrait
     public function getCreatedAt($format = null)
     {
         if (empty($format))
-            $format = 'Y-m-d H:i:s';
+            $format = 'Y-m-d H:i';
         return empty($this->created_at) ? '' : date($format, $this->created_at);
     }
 
@@ -31,7 +31,7 @@ trait DateTimeTrait
     public function getUpdatedAt($format = null)
     {
         if (empty($format))
-            $format = 'Y-m-d H:i:s';
+            $format = 'Y-m-d H:i';
         return empty($this->updated_at) ? '' : date($format, $this->updated_at);
     }
 }

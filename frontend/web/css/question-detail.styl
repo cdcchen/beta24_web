@@ -1,0 +1,71 @@
+
+.question-header
+  margin-bottom 20px
+  h1
+    font-size 180%
+    margin 0
+    font-weight bold
+    padding-bottom 10px
+    border-bottom 1px solid $gray-lighter
+
+.question
+  .vote-cell
+    float left
+    width 60px
+    vertical-align top
+
+  .post-cell
+    margin-left 70px
+
+.vote-up-on
+.vote-up-off
+.vote-down-on
+.vote-down-off
+.star-on
+.star-off
+  size(41px, 25px)
+  text-hide()
+  cursor pointer
+  center-block()
+
+.vote-up-off
+  background-position 0 -265px
+.vote-up-on
+  background-position 0 -230px
+.vote-down-off
+  background-position 0 -300px
+.vote-down-on
+  background-position 0 -330px
+
+.star-off
+.star-on
+  size(33px, 31px)
+.star-off
+  background-position 0 -150px
+.star-on
+  background-position 0 -190px
+
+.vote-count
+  margin-top 2px
+  text-align center
+  cursor pointer
+  center-block()
+  font-size ($font-size-large + 6px)
+
+
+
+.post-content
+  word-wrap break-word
+  margin 0 5px 5px 0
+
+.share-box
+  float left
+  > a
+    font-size-small()
+    color $gray-light
+    text-decoration none
+    padding 0 3px 2px
+
+    &:hover
+      background-color $gray
+      color #ffffff

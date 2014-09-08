@@ -7,6 +7,8 @@ use common\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "cd_question".
@@ -31,7 +33,10 @@ use yii\db\ActiveQuery;
  * @property string $content
  *
  * __get property
- * @property string views
+ * @property string $createdAt
+ * @property string $updatedAt
+ * @property string $views
+ * @property string $summary
  *
  * Relations
  * @property \common\models\User $user
@@ -108,8 +113,8 @@ class Question extends \yii\db\ActiveRecord
     {
         $fields = parent::fields();
 
-        $fields['createdAt'] =  [$this, 'getCreatedAt'];
-        $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
+        $fields['createdAt'] = [$this, 'getCreatedAt'];
+        $fields['updatedAt'] = [$this, 'getUpdatedAt'];
         $fields['views'] =  [$this, 'getViews'];
 
         return $fields;
@@ -137,6 +142,25 @@ class Question extends \yii\db\ActiveRecord
     public function getViews()
     {
         return formatter()->asSizeNumber((int)$this->view_count, 1);
+    }
+
+    public function getTagsLinks($tagname = 'a', $class='label-tag')
+    {
+        $html = '';
+        $tags = explode(',', $this->tags_text);
+        foreach ($tags as $tag) {
+            $url = Url::toRoute(['question/tagged', 'name'=>$tag]);
+            $html .= Html::tag($tagname, $tag, ['class'=>$class, 'href'=>$url]);
+        }
+
+        return $html;
+    }
+
+    public function getSummary($len = 180)
+    {
+        $len = (int)$len;
+        $text = formatter()->asPlain($this->content);
+        return ($len > 0) ? mb_strimwidth($text, 0, $len, '...', app()->charset) : $text;
     }
 
 

@@ -10,7 +10,7 @@ use yii\helpers\Url;
 <?php foreach ($models as $q):?>
     <div class="question-item clearfix">
         <div class="question-stats">
-            <div class="q-stats">
+            <div class="post-stats">
                 <div class="votes">
                     <strong><?= $q->vote_up ?></strong>votes
                 </div>
@@ -18,13 +18,15 @@ use yii\helpers\Url;
                     <strong><?= $q->answer_count ?></strong>answers
                 </div>
             </div>
-            <div class="q-views"><?= $q->getViews() ?>&nbsp;views</div>
+            <div class="post-views"><?= $q->getViews() ?>&nbsp;views</div>
         </div>
         <div class="question-summary">
-            <h3><?= a($q->title, Url::toRoute(['question/show', 'id' => $q->id])) ?></h3>
-            <p class="q-excerpt"><?= $q->content ?></p>
-            <div class="q-tags"><?= $q->tags_text ?></div>
-            <div class="q-userinfo">
+            <h3><?= a(hencode($q->title), Url::toRoute(['question/show', 'id' => $q->id])) ?></h3>
+            <p class="post-excerpt"><?= $q->summary ?></p>
+            <div class="post-tags">
+                <?= $q->getTagsLinks() ?>
+            </div>
+            <div class="post-userinfo">
                 <div class="asked-time">asked：<?= $q->createdAt ?></div>
                 <a class="gravatar gravatar32 pull-left" href="<?= $q->user->getHomeUrl() ?>" target="_blank">
                     <?= $q->user->profile->getGavatarImg(32) ?>

@@ -9,6 +9,7 @@
 namespace common\base;
 
 use yii;
+use yii\web\Request;
 
 class Pagination extends \yii\data\Pagination
 {
@@ -43,6 +44,7 @@ class Pagination extends \yii\data\Pagination
         }
         $params[0] = $this->route === null ? Yii::$app->controller->getRoute() : $this->route;
         $urlManager = $this->urlManager === null ? Yii::$app->getUrlManager() : $this->urlManager;
+
         if ($absolute) {
             return $urlManager->createAbsoluteUrl($params);
         } else {

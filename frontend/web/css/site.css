@@ -1170,7 +1170,7 @@ html {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 body {
-  font-family: "Microsoft YaHei", Arial, "Hiragino Sans GB", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Arial, "Hiragino Sans GB", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333;
@@ -1185,12 +1185,12 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #428bca;
+  color: #07c;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #3277b2;
+  color: #0065ad;
   text-decoration: underline;
 }
 a:focus {
@@ -1428,10 +1428,10 @@ mark,
   color: #777;
 }
 .text-primary {
-  color: #428bca;
+  color: #07c;
 }
 a.text-primary:hover {
-  color: #357ebc;
+  color: #006bb8;
 }
 .text-success {
   color: #3c763d;
@@ -1459,10 +1459,10 @@ a.text-danger:hover {
 }
 .bg-primary {
   color: #fff;
-  background-color: #428bca;
+  background-color: #07c;
 }
 a.bg-primary:hover {
-  background-color: #357ebc;
+  background-color: #006bb8;
 }
 .bg-success {
   background-color: #dff0d8;
@@ -3023,8 +3023,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #fff;
-  background-color: #428bca;
-  border-color: #3885c7;
+  background-color: #07c;
+  border-color: #0071c2;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -3033,8 +3033,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: #357ebc;
-  border-color: #3175af;
+  background-color: #006bb8;
+  border-color: #0063ab;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -3059,11 +3059,11 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #428bca;
-  border-color: #3885c7;
+  background-color: #07c;
+  border-color: #0071c2;
 }
 .btn-primary .badge {
-  color: #428bca;
+  color: #07c;
   background-color: #fff;
 }
 .btn-success {
@@ -3247,7 +3247,7 @@ fieldset[disabled] .btn-danger.active {
   background-color: #fff;
 }
 .btn-link {
-  color: #428bca;
+  color: #07c;
   font-weight: normal;
   -webkit-border-radius: 0;
   border-radius: 0;
@@ -3269,7 +3269,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #3277b2;
+  color: #0065ad;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -3417,7 +3417,7 @@ tbody.collapse.in {
   color: #fff;
   text-decoration: none;
   outline: 0;
-  background-color: #428bca;
+  background-color: #07c;
 }
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
@@ -3824,7 +3824,7 @@ tbody.collapse.in {
   padding: 6px 12px;
   line-height: 1.428571429;
   text-decoration: none;
-  color: #428bca;
+  color: #07c;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -3848,7 +3848,7 @@ tbody.collapse.in {
 .pagination > li > span:hover,
 .pagination > li > a:focus,
 .pagination > li > span:focus {
-  color: #3277b2;
+  color: #0065ad;
   background-color: #eee;
   border-color: #ddd;
 }
@@ -3860,8 +3860,8 @@ tbody.collapse.in {
 .pagination > .active > span:focus {
   z-index: 2;
   color: #fff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #07c;
+  border-color: #07c;
   cursor: default;
 }
 .pagination > .disabled > span,
@@ -3947,11 +3947,11 @@ a.label:focus {
   background-color: #6b6b6b;
 }
 .label-primary {
-  background-color: #428bca;
+  background-color: #07c;
 }
 .label-primary[href]:hover,
 .label-primary[href]:focus {
-  background-color: #357ebc;
+  background-color: #006bb8;
 }
 .label-success {
   background-color: #5cb85c;
@@ -4015,7 +4015,7 @@ a.badge:focus {
 }
 a.list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
-  color: #428bca;
+  color: #07c;
   background-color: #fff;
 }
 .nav-pills > li > a > .badge {
@@ -4084,7 +4084,7 @@ a.list-group-item.active > .badge,
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
-  border-color: #428bca;
+  border-color: #07c;
 }
 .thumbnail .caption {
   padding: 9px;
@@ -4184,7 +4184,7 @@ a.thumbnail.active {
   line-height: 20px;
   color: #fff;
   text-align: center;
-  background-color: #428bca;
+  background-color: #07c;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
   box-shadow: inset 0 -1px 0 rgba(0,0,0,0.15);
   -webkit-transition: width;
@@ -4526,22 +4526,22 @@ a.thumbnail.active {
   border-bottom-color: #ddd;
 }
 .panel-primary {
-  border-color: #428bca;
+  border-color: #07c;
 }
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #07c;
+  border-color: #07c;
 }
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #428bca;
+  border-top-color: #07c;
 }
 .panel-primary > .panel-heading .badge {
-  color: #428bca;
+  color: #07c;
   background-color: #fff;
 }
 .panel-primary > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #428bca;
+  border-bottom-color: #07c;
 }
 .panel-success {
   border-color: #d7eac8;
@@ -5322,7 +5322,7 @@ button {
 .nav-small .open > a:hover,
 .nav-small .open > a:focus {
   background-color: #eee;
-  border-color: #428bca;
+  border-color: #07c;
 }
 .nav-small .nav-divider {
   height: 1px;
@@ -5373,7 +5373,7 @@ button {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #428bca;
+  background-color: #07c;
 }
 .nav-stacked > li {
   float: none;
@@ -5453,13 +5453,54 @@ button {
   -webkit-border-top-right-radius: 0;
   border-top-right-radius: 0;
 }
+.bg-icons {
+  background-image: url("http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3c6263c3453b");
+  background-repeat: no-repeat;
+}
+.label-tag {
+  display: inline-block;
+  padding: 3px 4px;
+  margin: 2px 2px 0;
+  font-size: 12px;
+  color: #3e6d8e;
+  font-weight: normal;
+  line-height: 1.4;
+  text-align: left;
+  background-color: #e0eaf1;
+  border-right: 1px solid #b3cee1;
+  border-bottom: 1px solid #b3cee1;
+  white-space: nowrap;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+a.label-tag:hover,
+a.label-tag:focus {
+  color: #3e6d8e;
+  background-color: #c4dae9;
+  border-bottom: 1px solid #c4dae9;
+  border-right: 1px solid #c4dae9;
+  text-decoration: none;
+}
+.pages .per-page-label {
+  margin: 27px 0;
+}
+.gravatar {
+  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
 .gravatar32 {
   width: 32px;
   height: 32px;
   overflow: hidden;
 }
-.pages .per-page-label {
-  margin: 27px 0;
+.cdc-block {
+  display: block;
+}
+.cdc-block.question-top {
+  margin-bottom: 10px;
+}
+.cdc-block.question-top img {
+  width: 810px;
 }
 .beta-wrapper {
   width: 100%;
@@ -5588,56 +5629,51 @@ button {
   width: 78px;
   font-size: 12px;
 }
-.q-stats {
+.post-stats {
   background: #eee;
   padding: 4px 7px 6px 7px;
   margin-left: 7px;
 }
-.q-stats .votes,
-.q-stats .answers {
+.post-stats .votes,
+.post-stats .answers {
   padding: 0 0 7px 0;
   text-align: center;
   color: #555;
   line-height: 1;
 }
-.q-stats strong {
+.post-stats strong {
   display: block;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
-.q-stats .votes strong {
+.post-stats .votes strong {
   font-size: 24px;
   font-weight: normal;
   color: #808185;
 }
-.q-stats .answers {
+.post-stats .answers {
   padding: 4px 0;
 }
-.q-stats .answers strong {
+.post-stats .answers strong {
   font-size: 18px;
 }
-.q-stats .answered,
-.q-stats .done {
+.post-stats .answered,
+.post-stats .done {
   background: #75845c;
 }
-.q-stats .unanswered {
+.post-stats .unanswered {
   color: #9a4444;
 }
-.q-stats .answered {
+.post-stats .answered {
   color: #fff;
   font-weight: normal;
 }
-.q-stats .done {
+.post-stats .done {
   color: #e1e818;
 }
-.q-views {
+.post-views {
   text-align: center;
   color: #999;
   margin-top: 4px;
-  -webkit-transform: rotate(10px);
-  -moz-transform: rotate(10px);
-  -o-transform: rotate(10px);
-  -ms-transform: rotate(10px);
-  transform: rotate(10px);
   overflow: hidden;
 }
 .question-summary {
@@ -5645,21 +5681,23 @@ button {
 }
 .question-summary h3 {
   font-size: 16px;
-  margin: 0 0 7px;
+  margin: 0 0 10px;
 }
-.q-excerpt {
-  line-height: 1.2;
+.question-summary .post-tags {
+  float: left;
+}
+.post-excerpt {
   margin-bottom: 5px;
 }
-.q-tags,
-.q-userinfo {
+.post-tags,
+.post-userinfo {
   line-height: 18px;
   font-size: 12px;
 }
-.q-tags {
-  float: left;
+.post-tags {
+  margin-bottom: 10px;
 }
-.q-userinfo {
+.post-userinfo {
   float: right;
   color: #888;
   width: 200px;
@@ -5667,21 +5705,110 @@ button {
   white-space: nowrap;
   overflow: hidden;
 }
-.q-userinfo img {
+.post-userinfo img {
   vertical-align: baseline;
 }
-.q-userinfo .asked-time {
+.post-userinfo .asked-time {
   font-family: Georgia, "Times New Roman", Times, serif;
   margin: 2px 0;
 }
-.q-userinfo .gravatar {
+.post-userinfo .gravatar {
   display: block;
 }
-.q-userinfo .detail {
+.post-userinfo .detail {
   margin-left: 37px;
 }
-.q-userinfo .detail span {
+.post-userinfo .detail span {
   font-family: Georgia, "Times New Roman", Times, serif;
+}
+.post-cell .post-userinfo {
+  padding: 2px 5px 3px;
+  background-color: #e0eaf1;
+}
+.question-header {
+  margin-bottom: 20px;
+}
+.question-header h1 {
+  font-size: 180%;
+  margin: 0;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.question .vote-cell {
+  float: left;
+  width: 60px;
+  vertical-align: top;
+}
+.question .post-cell {
+  margin-left: 70px;
+}
+.vote-up-on,
+.vote-up-off,
+.vote-down-on,
+.vote-down-off,
+.star-on,
+.star-off {
+  width: 41px;
+  height: 25px;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.vote-up-off {
+  background-position: 0 -265px;
+}
+.vote-up-on {
+  background-position: 0 -230px;
+}
+.vote-down-off {
+  background-position: 0 -300px;
+}
+.vote-down-on {
+  background-position: 0 -330px;
+}
+.star-off,
+.star-on {
+  width: 33px;
+  height: 31px;
+}
+.star-off {
+  background-position: 0 -150px;
+}
+.star-on {
+  background-position: 0 -190px;
+}
+.vote-count {
+  margin-top: 2px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+}
+.post-content {
+  word-wrap: break-word;
+  margin: 0 5px 5px 0;
+}
+.share-box {
+  float: left;
+}
+.share-box > a {
+  font-size: 12px;
+  color: #777;
+  text-decoration: none;
+  padding: 0 3px 2px;
+}
+.share-box > a:hover {
+  background-color: #555;
+  color: #fff;
 }
 #beta-footer {
   background: #777;

@@ -42,4 +42,14 @@ class Formatter extends \yii\base\Formatter
 
         return $value;
     }
+
+    public function asPlain($value)
+    {
+        if ($value === null)
+            return $this->nullDisplay;
+
+        $value = strip_tags($value);
+
+        return $value;
+    }
 } 

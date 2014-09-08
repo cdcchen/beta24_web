@@ -16,7 +16,7 @@
 
 
 
-.q-stats
+.post-stats
   background #EEEEEE
   padding 4px 7px 6px 7px
   margin-left 7px
@@ -48,29 +48,32 @@
     color #e1e818
 
 
-.q-views
+.post-views
   text-align center
   color #999
   margin-top 4px
-  t-rotate 10px 20px
   overflow(hidden)
 
 .question-summary
   margin-left ($stats-container-width + 15px)
   h3
     font-size-middle()
-    margin 0 0 7px
+    margin 0 0 10px
 
-.q-excerpt
-  line-height 1.2
+  .post-tags
+    float left
+
+.post-excerpt
   margin-bottom 5px
-.q-tags
-.q-userinfo
+.post-tags
+.post-userinfo
   line-height 18px
   font-size 12px
-.q-tags
-  float left
-.q-userinfo
+
+.post-tags
+  margin-bottom 10px
+
+.post-userinfo
   float right
   color #888
   width 200px
@@ -88,3 +91,7 @@
     margin-left 37px
     span
       serif-font()
+
+  .post-cell &
+    padding 2px 5px 3px
+    background-color #e0eaf1

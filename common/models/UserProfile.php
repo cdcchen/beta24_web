@@ -156,7 +156,7 @@ class UserProfile extends \yii\db\ActiveRecord
         else
             $options['width'] = $options['height'] = $size[0];
 
-        $url = empty($this->avatar_url) ? param : $this->avatar_url;
+        $url = empty($this->avatar_url) ? param('user_default_avatar') : $this->avatar_url;
         return Html::img($url, $options);
     }
 }

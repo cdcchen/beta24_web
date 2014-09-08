@@ -13,11 +13,11 @@ class QuestionController extends \yii\web\Controller
     {
         $query = static::buildQuery($sort);
         $pages = new Pagination(['totalCount' => $query->count()]);
-//        $pages->setPageSize(2);
+        $pages->defaultPageSize = 15;
         $questions = static::fetchQuestions($query, $pages);
-//        var_dump($questions);
 
         return $this->render('index', [
+            'sort' => $sort,
             'pages' => $pages,
             'questions' => $questions,
         ]);
@@ -65,7 +65,7 @@ class QuestionController extends \yii\web\Controller
                 break;
             case QUESTION_SORT_BOUNTY:
                 $query->andWhere('open_bounty > 0 and open_bounty_end_time > :current_time', [':current_time' => REQUEST_TIME]);
-                $query->orderBy(['open_bounty_end_time']);
+                $query->orderBy(['open_bounty_end_time' => SORT_ASC]);
                 break;
             case QUESTION_SORT_UNANSWERED:
                 $query->andWhere('answer_count = 0');
