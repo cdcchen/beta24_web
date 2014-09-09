@@ -20,7 +20,7 @@ use yii\widgets\LinkPager;
 </div>
 
 <div class="beta-mainbar">
-    <?php echo $this->render('/public/question_tab', ['sort'=>$sort]);?>
+    <?php echo $this->render('_question_tab', ['sort'=>$sort]);?>
     <?php echo $this->render('_list', ['models' => $questions]);?>
 
     <div class="pages clearfix">

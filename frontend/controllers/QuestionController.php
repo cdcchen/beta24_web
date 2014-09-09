@@ -49,6 +49,7 @@ class QuestionController extends \yii\web\Controller
         return $this->render('show', [
             'question' => $question,
             'answers' => $answers,
+            'pages' => $pages
         ]);
     }
 

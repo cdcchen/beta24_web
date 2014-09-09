@@ -30,6 +30,7 @@ use yii\db\ActiveQuery;
  * @property string $password write-only password
  *
  * __get property
+ * @property string $displayName
  * @property string $homeUrl
  *
  * Relations

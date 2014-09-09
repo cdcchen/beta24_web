@@ -1,4 +1,7 @@
 <?php
+
+use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
 /* @var $question common\models\Question */
 /* @var $comments array|common\models\QuestionComment[] */
@@ -28,13 +31,13 @@
             <a class="bg-icons vote-down-off" href="#">反对</a>
             <a class="bg-icons star-off" href="#">收藏</a>
         </div>
-        <div class="post-cell">
+        <div class="post-cell clearfix">
             <div class="post-content"><?= formatter()->asParagraphs($question->content) ?></div>
             <div class="post-tags">
                 <?= $question->getTagsLinks() ?>
             </div>
             <div class="share-box">
-                <a href="#">share</a>
+                <a href="#">分享</a>
             </div>
             <div class="post-userinfo">
                 <div class="asked-time">asked：<?= $question->createdAt ?></div>
@@ -52,6 +55,54 @@
             </div>
         </div>
     </div>
+    <div class="bounty-notification clearfix">
+        <h2>
+            This question has an open <a href="/help/bounty">bounty</a> worth     <span class="bounty-award">+50</span>
+            reputation from <a href="/users/2818958/asif-sharif">Asif Sharif</a> ending <b title="started at 2014-09-02 07:31:32Zending at 2014-09-09 07:31:32Z">in 20 minutes</b>.
+        </h2>
+        <p>This question has not received enough attention.</p>
+        <p>Please answer as soon as you can. its urgent.</p>
+    </div>
+
+    <?php if (count($answer->comments) > 0):?>
+    <ul class="comments clearfix" id="">
+        <?php foreach ($question->comments as $c):?>
+        <li>
+            <?= hencode($c->content) ?>
+            <a href="<?= $c->user->homeUrl ?>" class="user"><?= $c->user->displayName ?></a>
+            <span class="datetime"><?= $c->createdAt ?></span>
+        </li>
+        <?php endforeach;?>
+    </ul>
+    <?php endif;?>
+    <div class="comments-link clearfix">
+        <a class="new-comment" href="#">添加评论</a>
+    </div>
+
+    <?php echo $this->render('/answer/_answer_tab', ['sort'=>$sort, 'answer_count' => $question->answer_count]);?>
+
+
+    <div class="answers clearfix">
+        <?php echo $this->render('/answer/_list', ['answers' => $answers]);?>
+        <div class="pages clearfix">
+            <ul class="pagination per-page pull-right">
+                <li class="<?= $pages->pageSize == 20 ? 'active' : '' ?>">
+                    <a href="<?= $pages->createPageSizeUrl(20) ?>">20</a>
+                </li>
+                <li class="<?= $pages->pageSize == 30 ? 'active' : '' ?>">
+                    <a href="<?= $pages->createPageSizeUrl(30) ?>">30</a>
+                </li>
+                <li class="<?= $pages->pageSize == 50 ? 'active' : '' ?>">
+                    <a href="<?= $pages->createPageSizeUrl(50) ?>">50</a>
+                </li>
+            </ul>
+            <div class="per-page-label pull-right">每页：</div>
+            <?php echo LinkPager::widget(['pagination' => $pages]);?>
+        </div>
+    </div>
+
+
+
 </div>
 
 <div class="clear"></div>

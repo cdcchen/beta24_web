@@ -20,6 +20,10 @@ use yii\db\ActiveRecord;
  * @property integer $score
  * @property string $content
  *
+ * __get property
+ * @property string $createdAt
+ *
+ * Relations
  * @property \common\models\User $user
  * @property Question $question
  */
