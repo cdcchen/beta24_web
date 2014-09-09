@@ -1,3 +1,12 @@
+<?php
+
+use yii\widgets\LinkPager;
+
+/* @var $this yii\web\View */
+/* @var $question common\models\Question */
+/* @var $answers array|common\models\Answer[] */
+?>
+
 <?php foreach ($answers as $answer):?>
     <div class="answer clearfix">
         <div class="vote-cell">
@@ -11,7 +20,7 @@
             <div class="share-box">
                 <a href="#">分享</a>
             </div>
-            <div class="post-userinfo">
+            <div class="post-userinfo <?= $answer->userIsOwner ? 'owner' : '' ?>">
                 <div class="action-time">answered：<?= $answer->createdAt ?></div>
                 <a class="gravatar gravatar32 pull-left" href="<?= $answer->user->getHomeUrl() ?>" target="_blank">
                     <?= $answer->user->profile->getGavatarImg(32) ?>

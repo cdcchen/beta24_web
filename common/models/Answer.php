@@ -20,11 +20,16 @@ use yii\db\ActiveQuery;
  * @property string $updated_ip
  * @property integer $vote_up
  * @property integer $vote_down
+ * @property integer $accepted
  * @property string $content
  *
+ * __get property
+ * @property $userIsOwner
+ *
+ * Relations
  * @property \common\models\User $user
- * @property array|AnswerComment[] $comments
- * @property Question $question
+ * @property array|\common\models\AnswerComment[] $comments
+ * @property \common\models\Question $question
  */
 
 class Answer extends \yii\db\ActiveRecord
@@ -57,6 +62,7 @@ class Answer extends \yii\db\ActiveRecord
     {
         return [
             [['question_id', 'user_id', 'created_at', 'updated_at', 'vote_up', 'vote_down'], 'integer'],
+            [['accepted'], 'boolean'],
             [['content'], 'string'],
             [['created_ip', 'updated_ip'], 'string', 'max' => 15]
         ];
@@ -69,15 +75,16 @@ class Answer extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'question_id' => 'Question ID',
-            'user_id' => 'User ID',
-            'created_at' => 'Created At',
-            'created_ip' => 'Created Ip',
-            'updated_at' => 'Updated At',
-            'updated_ip' => 'Updated Ip',
-            'vote_up' => 'Vote Up',
-            'vote_down' => 'Vote Down',
-            'content' => 'Content',
+            'question_id' => '问题ID',
+            'user_id' => '用户ID',
+            'created_at' => '回答时间',
+            'created_ip' => '回答IP',
+            'updated_at' => '更新时间',
+            'updated_ip' => '更新IP',
+            'vote_up' => '支持数',
+            'vote_down' => '反对数',
+            'accepted' => '最佳答案',
+            'content' => '内容',
         ];
     }
 
@@ -103,6 +110,13 @@ class Answer extends \yii\db\ActiveRecord
         return new AnswerQuery(get_called_class());
     }
 
+
+    /******************** Relational Data ***********************/
+
+    public function getUserIsOwner()
+    {
+        return $this->user_id == $this->question->user_id;
+    }
 
     /******************** Relational Data ***********************/
 

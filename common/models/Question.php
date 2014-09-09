@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use DateTime;
 use common\base\DateTimeTrait;
 use common\behaviors\IPAddressBehavior;
 use Yii;
@@ -26,8 +27,10 @@ use yii\helpers\Url;
  * @property integer $open_bounty_end_time
  * @property integer $created_at
  * @property string $created_ip
- * @property integer $updated_time
+ * @property integer $updated_at
  * @property string $updated_ip
+ * @property integer $locked_at
+ * @property integer $locked_user_id
  * @property integer $status
  * @property string $tags_text
  * @property string $content
@@ -35,11 +38,14 @@ use yii\helpers\Url;
  * __get property
  * @property string $createdAt
  * @property string $updatedAt
+ * @property string $lockedAt
+ * @property string $bountyEndingAt
  * @property string $views
  * @property string $summary
  *
  * Relations
  * @property \common\models\User $user
+ * @property \common\models\User $lockedUser
  * @property array|QuestionComment[] $comments
  * @property array|Answer[] $answers
  * @property array|Tag[] $tags
@@ -71,7 +77,7 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'title', 'content'], 'required'],
-            [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_up', 'vote_down', 'open_bounty', 'open_bounty_end_time', 'answer_reputation', 'created_at', 'updated_at', 'status'], 'integer'],
+            [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_up', 'vote_down', 'open_bounty', 'open_bounty_end_time', 'answer_reputation', 'created_at', 'updated_at', 'status', 'locked_at', 'locked_user_id'], 'integer'],
             [['title', 'tags_text'], 'string', 'max' => 250],
             [['create_ip', 'updated'], 'string', 'max' => 15],
             ['status', 'in', 'range' => static::statuses()],
@@ -100,6 +106,8 @@ class Question extends \yii\db\ActiveRecord
             'created_ip' => '创建IP',
             'updated_at' => '更新时间',
             'updated_ip' => '更新IP',
+            'locked_at' => '锁定时间',
+            'locked_user_id' => '锁定用户',
             'status' => '状态',
             'tags_text' => '标签',
             'content' => '内容',
@@ -115,6 +123,7 @@ class Question extends \yii\db\ActiveRecord
 
         $fields['createdAt'] = [$this, 'getCreatedAt'];
         $fields['updatedAt'] = [$this, 'getUpdatedAt'];
+        $fields['lockedAt'] = [$this, 'getLockedAt'];
         $fields['views'] =  [$this, 'getViews'];
 
         return $fields;
@@ -163,6 +172,41 @@ class Question extends \yii\db\ActiveRecord
         return ($len > 0) ? mb_strimwidth($text, 0, $len, '...', app()->charset) : $text;
     }
 
+    /**
+     * return model's locked_at text
+     * @param null|string $format
+     * @return string
+     */
+    public function getLockedAt($format = null)
+    {
+        if (empty($format))
+            $format = 'Y-m-d H:i';
+        return empty($this->locked_at) ? '' : date($format, $this->locked_at);
+    }
+
+    public function getBountyEndingAt($format = null)
+    {
+        if (empty($format))
+            $format = 'Y-m-d H:i';
+        return empty($this->open_bounty_end_time) ? '' : date($format, $this->open_bounty_end_time);
+    }
+
+    public function getBountyLeaveTime()
+    {
+        if ($this->open_bounty > 0 && $this->open_bounty_end_time > REQUEST_TIME) {
+            $endTime = new DateTime();
+            $endTime->setTimestamp($this->open_bounty_end_time);
+            $interval = $endTime->diff(new DateTime());
+            $days = $interval->d ? $interval->d . ' 天 ' : '';
+            $hours = $interval->h ? $interval->h . ' 小时 ' : '';
+            $minutes = $interval->i ? $interval->i . ' 分钟' : '';
+
+            return $days . $hours . $minutes;
+        }
+
+        return null;
+    }
+
 
     /******************** Relational Data ***********************/
 
@@ -173,6 +217,15 @@ class Question extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('questions');
+    }
+
+    /**
+     * Question has_one User via User.id -> locked_user_id
+     * @return UserQuery
+     */
+    public function getLockedUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'locked_user_id'])->inverseOf('questions');
     }
 
     /**

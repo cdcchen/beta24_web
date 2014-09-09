@@ -21,9 +21,9 @@ use yii\widgets\LinkPager;
 </div>
 
 <div class="beta-mainbar">
-    <div class="cdc-block question-top">
-        <img src="http://static.adzerk.net/Advertisers/46a9844d6e504212a85bc72ddd7dd829.png" />
-    </div>
+<!--    <div class="cdc-block question-top">-->
+<!--        <img src="http://static.adzerk.net/Advertisers/46a9844d6e504212a85bc72ddd7dd829.png" />-->
+<!--    </div>-->
     <div class="question clearfix" id="question">
         <div class="vote-cell">
             <a class="bg-icons vote-up-off" href="#">支持</a>
@@ -39,7 +39,7 @@ use yii\widgets\LinkPager;
             <div class="share-box">
                 <a href="#">分享</a>
             </div>
-            <div class="post-userinfo">
+            <div class="post-userinfo owner">
                 <div class="asked-time">asked：<?= $question->createdAt ?></div>
                 <a class="gravatar gravatar32 pull-left" href="<?= $question->user->getHomeUrl() ?>" target="_blank">
                     <?= $question->user->profile->getGavatarImg(32) ?>
@@ -55,16 +55,16 @@ use yii\widgets\LinkPager;
             </div>
         </div>
     </div>
-    <div class="bounty-notification clearfix">
-        <h2>
-            This question has an open <a href="/help/bounty">bounty</a> worth     <span class="bounty-award">+50</span>
-            reputation from <a href="/users/2818958/asif-sharif">Asif Sharif</a> ending <b title="started at 2014-09-02 07:31:32Zending at 2014-09-09 07:31:32Z">in 20 minutes</b>.
-        </h2>
-        <p>This question has not received enough attention.</p>
-        <p>Please answer as soon as you can. its urgent.</p>
-    </div>
 
-    <?php if (count($answer->comments) > 0):?>
+    <?php
+        if ($question->locked_at)
+            echo $this->render('_locked_notification', ['question'=>$question]);
+
+        if ($question->open_bounty > 0 && $question->open_bounty_end_time > REQUEST_TIME)
+            echo $this->render('_bounty_notification', ['question'=>$question]);
+    ?>
+
+    <?php if (count($question->comments) > 0):?>
     <ul class="comments clearfix" id="">
         <?php foreach ($question->comments as $c):?>
         <li>
@@ -83,7 +83,7 @@ use yii\widgets\LinkPager;
 
 
     <div class="answers clearfix">
-        <?php echo $this->render('/answer/_list', ['answers' => $answers]);?>
+        <?php echo $this->render('/answer/_list', ['question' => $question,'answers' => $answers]);?>
         <div class="pages clearfix">
             <ul class="pagination per-page pull-right">
                 <li class="<?= $pages->pageSize == 20 ? 'active' : '' ?>">
