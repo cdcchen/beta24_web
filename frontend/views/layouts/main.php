@@ -42,9 +42,9 @@ AppAsset::register($this);
 
     <div id="beta-header" class="beta-wrapper">
         <div class="container">
-            <a class="logo text-hide" href=""><?= app()->name ?></a>
+            <a class="logo text-hide" href="/"><?= app()->name ?></a>
             <ul class="ask-nav">
-                <li><a href="#">提问问题</a></li>
+                <li><a href="<?= Url::toRoute('question/ask') ?>">提问问题</a></li>
             </ul>
             <ul class="main-nav">
                 <li class="active"><a href="<?= Url::toRoute('question/index') ?>">问题</a></li>

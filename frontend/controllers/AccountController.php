@@ -19,8 +19,20 @@ use yii\web\Controller;
 
 class AccountController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
 
-    public function actionLogin()
+    public function actionLogin($url = null)
     {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -28,7 +40,10 @@ class AccountController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (empty($url))
+                return $this->goBack();
+            else
+                $this->redirect($url);
         } else {
             return $this->render('login', [
                 'model' => $model,

@@ -79,8 +79,9 @@ class Question extends \yii\db\ActiveRecord
             [['user_id', 'title', 'content'], 'required'],
             [['user_id', 'view_count', 'favorite_count', 'answer_count', 'vote_up', 'vote_down', 'open_bounty', 'open_bounty_end_time', 'answer_reputation', 'created_at', 'updated_at', 'status', 'locked_at', 'locked_user_id'], 'integer'],
             [['title', 'tags_text'], 'string', 'max' => 250],
-            [['create_ip', 'updated'], 'string', 'max' => 15],
+            [['created_ip', 'updated_ip'], 'string', 'max' => 15],
             ['status', 'in', 'range' => static::statuses()],
+            [['status'], 'default', 'value'=>self::STATUS_ACTIVE],
             [['content'], 'string'],
         ];
     }

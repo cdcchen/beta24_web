@@ -10,7 +10,8 @@
  * database table name define
  */
 
-
+define('ONE_DAY_SECONDS', 86400);
+define('ONE_WEEK_SECONDS', 604800);
 define('REQUEST_TIME', $_SERVER['REQUEST_TIME']);
 
 
@@ -44,3 +45,14 @@ define('QUESTION_SORT_FREQUENT', 'frequent');
 define('QUESTION_SORT_VOTES', 'votes');
 define('QUESTION_SORT_ACTIVE', 'active');
 define('QUESTION_SORT_UNANSWERED', 'unanswered');
+
+
+/**
+ * site home sub tab
+ */
+
+define('SITE_TAB_INTERESTING', 'interesting');
+define('SITE_TAB_FEATURED', 'featured');
+define('SITE_TAB_HOT', 'hot');
+define('SITE_TAB_WEEK', 'week');
+define('SITE_TAB_MONTH', 'month');

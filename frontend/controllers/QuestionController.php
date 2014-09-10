@@ -6,6 +6,7 @@ use common\base\Pagination;
 use common\models\QuestionCommentQuery;
 use common\models\Question;
 use common\models\QuestionQuery;
+use frontend\models\QuestionForm;
 
 class QuestionController extends \yii\web\Controller
 {
@@ -25,7 +26,19 @@ class QuestionController extends \yii\web\Controller
 
     public function actionAsk()
     {
-        return $this->render('ask');
+        if (user()->getIsGuest())
+            user()->loginRequired(false);
+
+        $model = new QuestionForm();
+
+        if (request()->getIsPost() && $model->load(request()->post()) && $model->validate()) {
+            if ($question = $model->save())
+                return $this->render('ask_confirm', ['model'=>$model]);
+            else
+                var_dump($question);
+        }
+        else
+            return $this->render('ask', ['model'=>$model]);
     }
 
     public function actionShow($id)
