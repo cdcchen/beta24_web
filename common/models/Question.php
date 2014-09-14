@@ -6,6 +6,7 @@ use DateTime;
 use common\base\DateTimeTrait;
 use common\behaviors\IPAddressBehavior;
 use Yii;
+use yii\base\InvalidValueException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\helpers\Html;
@@ -42,6 +43,8 @@ use yii\helpers\Url;
  * @property string $bountyEndingAt
  * @property string $views
  * @property string $summary
+ * @property string $url
+ * @property string $relativeCreatedAt
  *
  * Relations
  * @property \common\models\User $user
@@ -126,6 +129,10 @@ class Question extends \yii\db\ActiveRecord
         $fields['updatedAt'] = [$this, 'getUpdatedAt'];
         $fields['lockedAt'] = [$this, 'getLockedAt'];
         $fields['views'] =  [$this, 'getViews'];
+        $fields['summary'] =  [$this, 'getSummary'];
+        $fields['url'] =  [$this, 'getUrl'];
+        $fields['absoluteUrl'] =  [$this, 'getAbsoluteUrl'];
+        $fields['relativeCreatedAt'] =  [$this, 'getRelativeCreatedAt'];
 
         return $fields;
     }
@@ -208,6 +215,21 @@ class Question extends \yii\db\ActiveRecord
         return null;
     }
 
+    public function getRelativeCreatedAt()
+    {
+        return formatter()->asRelativeTime($this->created_at);
+    }
+
+    public function getUrl()
+    {
+        return Url::toRoute(['question/show', 'id' => $this->id]);
+    }
+
+    public function getAbsoluteUrl()
+    {
+        return Url::toRoute(['question/show', 'id' => $this->id], true);
+    }
+
 
     /******************** Relational Data ***********************/
 
@@ -258,6 +280,45 @@ class Question extends \yii\db\ActiveRecord
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
             ->viaTable(TBL_QUESTION_TAG, ['question_id' => 'id']);
     }
+
+
+    /******************** helper methods ***********************/
+
+    public function getSortComments($sort)
+    {
+        $sorts = [ANSWER_SORT_ACTIVE, ANSWER_SORT_VOTES, ANSWER_SORT_OLDEST];
+        if (in_array($sort, $sorts))
+            return Url::toRoute(['question/show', 'id'=>$this->id, 'sort'=>$sort, '#'=>'answers']);
+        else
+            throw new \InvalidArgumentException('$sort 只能取以下值：' . join('|', $sorts));
+    }
+
+    public function getViewsClassName($bg = false)
+    {
+        $count = (int)$this->view_count;
+        if ($count > 102400)
+            $class = $bg ? 'supernovabg' : 'supernova';
+        elseif ($count > 10240)
+            $class = $bg ? 'hotbg' : 'hot';
+        elseif ($count > 1024)
+            $class = 'warm';
+        else
+            $class = '';
+
+        return $class;
+    }
+
+    /******************** event methods ***********************/
+
+    public function afterDelete()
+    {
+        // delete all answers
+        if ($this->answers) {
+            foreach ($this->answers as $answer)
+                $answer->delete();
+        }
+    }
+
 }
 
 

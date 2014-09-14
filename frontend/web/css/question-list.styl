@@ -19,20 +19,28 @@
 .post-stats
   background #EEEEEE
   padding 4px 7px 6px 7px
-  margin-left 7px
-  .votes, .answers
+  margin 0 15px 7px 0
+
+  strong
+    display block
+    serif-font()
+
+  .votes
+  .answers
     padding 0 0 7px 0
     text-align center
     color #555555
     line-height 1
-  strong
-    display block
-    serif-font()
   .votes
     strong
       font-size ($font-size-large + 6px)
       font-weight normal
       color #808185
+
+  .answers
+  .unanswered
+    color #9a4444
+
   .answers
     padding 4px 0
     strong
@@ -42,7 +50,7 @@
   .unanswered
     color #9a4444
   .answered
-    color #ffffff
+    color #e1e818
     font-weight normal
   .done
     color #e1e818
@@ -52,12 +60,14 @@
   text-align center
   color #999
   margin-top 4px
+  margin-right 15px
   overflow(hidden)
+  views-extra-class()
+
 
 .question-summary
-  margin-left ($stats-container-width + 15px)
   h3
-    font-size-middle()
+    font-size 120%
     margin 0 0 10px
 
   .post-tags
@@ -88,7 +98,7 @@
   .gravatar
     display block
   .detail
-    margin-left 37px
+    margin-left 40px
     span
       serif-font()
 

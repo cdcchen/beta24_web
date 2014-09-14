@@ -7,6 +7,7 @@ use Yii;
 use common\behaviors\IPAddressBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "cd_answer".
@@ -24,7 +25,10 @@ use yii\db\ActiveQuery;
  * @property string $content
  *
  * __get property
+ * @property string $createdAt
+ * @property string $updatedAt
  * @property $userIsOwner
+ * @property $url
  *
  * Relations
  * @property \common\models\User $user
@@ -97,6 +101,7 @@ class Answer extends \yii\db\ActiveRecord
 
         $fields['createdAt'] =  [$this, 'getCreatedAt'];
         $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
+        $fields['url'] =  [$this, 'getUrl'];
 
         return $fields;
     }
@@ -111,11 +116,16 @@ class Answer extends \yii\db\ActiveRecord
     }
 
 
-    /******************** Relational Data ***********************/
+    /******************** __get Data ***********************/
 
     public function getUserIsOwner()
     {
         return $this->user_id == $this->question->user_id;
+    }
+
+    public function getUrl()
+    {
+        return Url::toRoute(['question/show', 'id'=>$this->question_id, '#'=>'answer-' . $this->id]);
     }
 
     /******************** Relational Data ***********************/
@@ -148,6 +158,25 @@ class Answer extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id'])
             ->inverseOf('answers');
+    }
+
+
+    /******************** event methods ***********************/
+
+    public function afterSave()
+    {
+        if ($this->getIsNewRecord() && $this->question) {
+            $this->question->answer_count++;
+            $this->question->save(true, ['answer_count']);
+        }
+    }
+
+    public function afterDelete()
+    {
+        if ($this->question) {
+            $this->question->answer_count--;
+            $this->question->save(true, ['answer_count']);
+        }
     }
 }
 

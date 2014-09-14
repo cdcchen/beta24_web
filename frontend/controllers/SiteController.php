@@ -15,13 +15,10 @@ class SiteController extends Controller
     public function actionIndex($tab = '')
     {
         $query = static::buildQuery($tab);
-        $pages = new Pagination(['totalCount' => $query->count()]);
-        $pages->defaultPageSize = 15;
-        $questions = static::fetchQuestions($query, $pages);
+        $questions = static::fetchQuestions($query, 90);
 
         return $this->render('index', [
             'tab' => $tab,
-            'pages' => $pages,
             'questions' => $questions,
         ]);
     }
@@ -75,10 +72,10 @@ class SiteController extends Controller
         return $query;
     }
 
-    private static function fetchQuestions(QuestionQuery $query, Pagination $pages)
+    private static function fetchQuestions(QuestionQuery $query, $count = 50)
     {
 
-        return $query->limit($pages->limit)->offset($pages->offset)->all();
+        return $query->limit($count)->all();
     }
 
 }

@@ -36,7 +36,7 @@ return [
             'rules' => [
                 '' => 'site/index',
                 '<controller:(question|tag|user|badge)>s' => '<controller>/index',
-                'user/<id:\d+>/<name:[0-9a-zA-Z_@\-\.]+>' => 'user/home',
+                'users/<id:\d+>/<name:[0-9a-zA-Z_\-\.\一-\龥]+>' => 'user/home',
             ],
         ],
         'authManager' => [

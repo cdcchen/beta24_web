@@ -1,0 +1,54 @@
+.questions-mini
+  .question-summary
+    margin-left $mini-stats-container-width
+
+
+.question-mini-stats
+  float left
+  font-size-small()
+  width $mini-stats-container-width
+  overflow(hidden)
+
+  strong
+    display block
+    font-size 148%
+    font-weight normal
+    serif-font()
+    height 25px
+
+  .votes
+  .views
+  .answers
+    float left
+    padding 5px
+    margin 0 3px 0 0
+    text-align center
+    color #555555
+    line-height 1
+
+  .views
+    color $gray-light2
+    views-extra-class()
+
+  .answers
+  .unanswered
+    color #9a4444
+    background transparent
+
+  .answered
+  .done
+    background #75845c
+    color #ffffff
+    strong
+      color @color
+
+.post-started
+  float right
+
+  a, span
+    font-size-small()
+
+    &.started-link
+      color $gray-light2
+
+

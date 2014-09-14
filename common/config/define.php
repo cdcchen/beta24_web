@@ -48,6 +48,15 @@ define('QUESTION_SORT_UNANSWERED', 'unanswered');
 
 
 /**
+ * answers list sort define
+ */
+
+define('ANSWER_SORT_ACTIVE', 'active');
+define('ANSWER_SORT_OLDEST', 'oldest');
+define('ANSWER_SORT_VOTES', 'votes');
+
+
+/**
  * site home sub tab
  */
 

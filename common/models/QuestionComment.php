@@ -22,6 +22,7 @@ use yii\db\ActiveRecord;
  *
  * __get property
  * @property string $createdAt
+ * @property boolean $userIsOwner
  *
  * Relations
  * @property \common\models\User $user
@@ -106,6 +107,13 @@ class QuestionComment extends \yii\db\ActiveRecord
     public static function find()
     {
         return new QuestionCommentQuery(get_called_class());
+    }
+
+    /******************** __get Data ***********************/
+
+    public function getUserIsOwner()
+    {
+        return $this->user_id == $this->answer->user_id;
     }
 
 

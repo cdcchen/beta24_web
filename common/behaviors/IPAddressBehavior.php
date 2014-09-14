@@ -20,7 +20,7 @@ class IPAddressBehavior extends AttributeBehavior
         if (empty($this->attributes)) {
             $this->attributes = [
                 BaseActiveRecord::EVENT_BEFORE_INSERT => [$this->createdIPAttribute, $this->updatedIPAttribute],
-                BaseActiveRecord::EVENT_BEFORE_UPDATE => $this->createdIPAttribute,
+                BaseActiveRecord::EVENT_BEFORE_UPDATE => $this->updatedIPAttribute,
             ];
         }
     }

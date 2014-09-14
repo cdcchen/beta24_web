@@ -6,6 +6,7 @@ use yii\widgets\LinkPager;
 /* @var $question common\models\Question */
 /* @var $comments array|common\models\QuestionComment[] */
 /* @var $answers array|common\models\Answer[] */
+/* @var $sort string */
 ?>
 
 <div class="question-header">
@@ -70,7 +71,7 @@ use yii\widgets\LinkPager;
         <li>
             <?= hencode($c->content) ?>
             <a href="<?= $c->user->homeUrl ?>" class="user"><?= $c->user->displayName ?></a>
-            <span class="datetime"><?= $c->createdAt ?></span>
+            <span class="datetime"><?= $c->getCreatedAt() ?></span>
         </li>
         <?php endforeach;?>
     </ul>
@@ -79,7 +80,7 @@ use yii\widgets\LinkPager;
         <a class="new-comment" href="#">添加评论</a>
     </div>
 
-    <?php echo $this->render('/answer/_answer_tab', ['sort'=>$sort, 'answer_count' => $question->answer_count]);?>
+    <?php echo $this->render('/answer/_answer_tab', ['sort'=>$sort, 'question' => $question]);?>
 
 
     <div class="answers clearfix">

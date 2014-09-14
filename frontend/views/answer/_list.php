@@ -8,6 +8,7 @@ use yii\widgets\LinkPager;
 ?>
 
 <?php foreach ($answers as $answer):?>
+    <a name="answer-<?= $answer->id ?>"></a>
     <div class="answer clearfix">
         <div class="vote-cell">
             <a class="bg-icons vote-up-off" href="#">支持</a>

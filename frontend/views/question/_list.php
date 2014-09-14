@@ -14,15 +14,15 @@ use yii\helpers\Url;
                 <div class="votes">
                     <strong><?= $q->vote_up ?></strong>votes
                 </div>
-                <div class="answers answered">
+                <div class="answers <?= $q->answer_count > 0 ? 'answered' : 'unanswered' ?>">
                     <strong><?= $q->answer_count ?></strong>answers
                 </div>
             </div>
-            <div class="post-views"><?= $q->getViews() ?>&nbsp;views</div>
+            <div class="post-views <?= $q->getViewsClassName(false) ?>"><?= $q->getViews() ?>&nbsp;views</div>
         </div>
         <div class="question-summary">
-            <h3><?= a(hencode($q->title), Url::toRoute(['question/show', 'id' => $q->id])) ?></h3>
-            <p class="post-excerpt"><?= $q->summary ?></p>
+            <h3><?= a(hencode($q->title), $q->getUrl()) ?></h3>
+            <p class="post-excerpt"><?= hencode($q->getSummary()) ?></p>
             <div class="post-tags">
                 <?= $q->getTagsLinks() ?>
             </div>
@@ -32,12 +32,10 @@ use yii\helpers\Url;
                     <?= $q->user->profile->getGavatarImg(32) ?>
                 </a>
                 <div class="detail">
-                    <a href="<?= $q->user->getHomeUrl() ?>" target="_blank">
-                        <?=$q->user->getDisplayName() ?>
-                    </a>
+                    <?= a($q->user->getDisplayName(), $q->user->getHomeUrl(), ['target'=>'_blank']) ?>
                     <br />
-                    <span>10</span>
-                    <span>20</span>
+                    <span title="声望值"><?= (int)$q->user->profile->data_reputation ?></span>
+                    <span title="徽章数">20</span>
                 </div>
             </div>
         </div>

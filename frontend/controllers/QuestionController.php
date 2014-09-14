@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use common\base\Pagination;
+use common\models\Answer;
+use common\models\AnswerQuery;
 use common\models\QuestionCommentQuery;
 use common\models\Question;
 use common\models\QuestionQuery;
@@ -12,7 +14,7 @@ class QuestionController extends \yii\web\Controller
 {
     public function actionIndex($sort = null)
     {
-        $query = static::buildQuery($sort);
+        $query = static::buildQuestionQuery($sort);
         $pages = new Pagination(['totalCount' => $query->count()]);
         $pages->defaultPageSize = 15;
         $questions = static::fetchQuestions($query, $pages);
@@ -41,7 +43,7 @@ class QuestionController extends \yii\web\Controller
             return $this->render('ask', ['model'=>$model]);
     }
 
-    public function actionShow($id)
+    public function actionShow($id, $sort = ANSWER_SORT_ACTIVE)
     {
         $id = (int)$id;
 
@@ -56,20 +58,44 @@ class QuestionController extends \yii\web\Controller
         $pages = new Pagination(['totalCount' => $question->getAnswers()->count()]);
 
         // get answers
-        $answers = $question->getAnswers()->limit($pages->limit)->offset($pages->offset)
-            ->with(['user', 'comments'])->all();
+        $answers = static::buildAnswerQuery($question->getAnswers(), $sort)
+            ->limit($pages->limit)
+            ->offset($pages->offset)
+            ->with(['user', 'comments'])
+            ->all();
 
         return $this->render('show', [
             'question' => $question,
             'answers' => $answers,
-            'pages' => $pages
+            'pages' => $pages,
+            'sort' => $sort,
         ]);
     }
 
+    /***************************** fetch question list *****************************/
+
+    private static function buildAnswerQuery(AnswerQuery $query, $sort)
+    {
+        switch ($sort)
+        {
+            case ANSWER_SORT_OLDEST:
+                $query->orderBy(['created_at' => SORT_DESC]);
+                break;
+            case ANSWER_SORT_VOTES:
+                $query->orderBy(['vote_up' => SORT_DESC]);
+                break;
+            case ANSWER_SORT_ACTIVE:
+            default:
+                $query->orderBy(['created_at' => SORT_ASC]);
+                break;
+        }
+
+        return $query;
+    }
 
     /***************************** fetch question list *****************************/
 
-    private static function buildQuery($sort)
+    private static function buildQuestionQuery($sort)
     {
         $query = Question::find()->active();
         switch ($sort)

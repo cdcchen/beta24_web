@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\base\DateTimeTrait;
 use common\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -19,10 +20,18 @@ use yii\db\ActiveRecord;
  * @property integer $score
  * @property string $content
  *
+ * __get property
+ * @property string $createdAt
+ * @property boolean $userIsOwner
+ *
+ * Relations
  * @property \common\models\User $user
+ * @property \common\models\Answer $answer
  */
 class AnswerComment extends \yii\db\ActiveRecord
 {
+    use DateTimeTrait;
+
     /**
      * @inheritdoc
      */
@@ -102,6 +111,13 @@ class AnswerComment extends \yii\db\ActiveRecord
     public static  function find()
     {
         return new AnswerCommentQuery(get_called_class());
+    }
+
+    /******************** __get Data ***********************/
+
+    public function getUserIsOwner()
+    {
+        return $this->user_id == $this->answer->user_id;
     }
 
 

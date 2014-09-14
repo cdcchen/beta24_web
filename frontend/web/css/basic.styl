@@ -8,6 +8,7 @@ $mainnav-current-background = #f90
 $sidebar-width = 300px
 $content-sidebar-spacing-width = 30px
 $stats-container-width = 78px
+$mini-stats-container-width = 155px
 
 chinese-font()
   font-family $font-family-sans-serif-chinese
@@ -24,8 +25,26 @@ font-size-middle()
 font-size-large()
   font-size $font-size-large
 
+views-extra-class()
+  &.warm
+    color #9B7642 !important
+  &.hot
+    color #cf7721 !important
+  &.hotbg
+    color:#fff !important
+    background-color #cf7721 !important
+  &.supernova
+    color #fe7a15 !important
+  &.supernovabg
+    color #fff !important
+    background-color #fe7a15 !important
+
 
 .bg-icons
   background-image url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3c6263c3453b)
   background-repeat no-repeat
 
+.bottom-notice
+  color $base-color
+  font-size 130%
+  line-height 1.4
