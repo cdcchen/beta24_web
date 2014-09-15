@@ -3,12 +3,9 @@
 namespace frontend\controllers;
 
 use common\base\Pagination;
-use common\base\Controller;
-use common\models\AnswerQuery;
-use common\models\QuestionCommentQuery;
+use frontend\base\Controller;
 use common\models\Question;
 use common\models\QuestionQuery;
-use frontend\models\QuestionForm;
 
 class UnansweredController extends Controller
 {

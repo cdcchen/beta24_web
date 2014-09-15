@@ -286,7 +286,7 @@ class Question extends \yii\db\ActiveRecord
 
     public function getSortComments($sort)
     {
-        $sorts = [ANSWER_SORT_ACTIVE, ANSWER_SORT_VOTES, ANSWER_SORT_OLDEST];
+        $sorts = [TAB_ANSWER_SORT_ACTIVE, TAB_ANSWER_SORT_VOTES, TAB_ANSWER_SORT_OLDEST];
         if (in_array($sort, $sorts))
             return Url::toRoute(['question/show', 'id'=>$this->id, 'sort'=>$sort, '#'=>'answers']);
         else

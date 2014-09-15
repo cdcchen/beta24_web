@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\assets\AppAsset;
+use frontend\widgets\UserNavBar;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -29,8 +30,7 @@ AppAsset::register($this);
                 <a href="#">标签</a>
             </div>
             <div class="user-links">
-                <a href="#">登录</a>
-                <a href="#">注册</a>
+                <?= UserNavBar::widget() ?>
             </div>
             <div class="search">
                 <form action="#">

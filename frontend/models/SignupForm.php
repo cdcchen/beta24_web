@@ -11,6 +11,7 @@ use Yii;
 class SignupForm extends Model
 {
     public $username;
+    public $display_name;
     public $email;
     public $phone;
     public $password;
@@ -21,19 +22,36 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 50],
-
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
-
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            [['username', 'email'], 'filter', 'filter' => 'trim'],
+            [['username', 'email', 'display_name', 'password'], 'required'],
+            [['username'], 'string', 'min' => 2, 'max' => 50],
+            [['password'], 'string', 'min' => 6],
+            [['email'], 'email'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => '账号名已经被注册过了。'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => '邮箱已经被使用过了。'],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => '账号',
+            'email' => '邮箱',
+            'phone' => '手机号',
+            'password' => '密码',
+            'display_name' => '昵称',
+        ];
+    }
+
+    public function beforeValidate()
+    {
+        if (empty($this->username))
+            $this->username = $this->email;
+
+        return true;
     }
 
     /**
@@ -47,6 +65,7 @@ class SignupForm extends Model
             $user = new User();
             $user->username = $this->username;
             $user->email = $this->email;
+            $user->display_name = $this->display_name;
             $user->password = $this->password;
             $user->setPassword($this->password);
             $user->generateAuthKey();

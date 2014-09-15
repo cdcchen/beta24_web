@@ -10,7 +10,7 @@
 namespace frontend\controllers;
 
 
-use common\base\Controller;
+use frontend\base\Controller;
 
 class TagController extends  Controller
 {

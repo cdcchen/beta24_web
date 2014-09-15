@@ -8,7 +8,7 @@ use yii\helpers\Url;
 <ul class="nav nav-tabs nav-right nav-small" id="sub-header">
     <li class="title"><h1>没有回答的问题</h1></li>
     <li class="<?= (empty($sort) || $sort == TAB_UNANSWERED_SORT_NO_ANSWERS) ? 'active' : '' ?>">
-        <a href="<?= Url::toRoute(['unanswered/index', 'sort'=>TAB_UNANSWERED_SORT_NO_ANSWERS]) ?>">无任何回答的</a>
+        <a href="<?= Url::toRoute(['unanswered/index', 'sort'=>TAB_UNANSWERED_SORT_NO_ANSWERS]) ?>">无回答的</a>
     </li>
     <li class="<?= ($sort == TAB_UNANSWERED_SORT_NO_UPVOTED) ? 'active' : '' ?>">
         <a href="<?= Url::toRoute(['unanswered/index', 'sort'=>TAB_UNANSWERED_SORT_NO_UPVOTED]) ?>">无有效回答的</a>

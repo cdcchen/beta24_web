@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\base\Pagination;
-use common\base\Controller;
+use frontend\base\Controller;
 use common\models\AnswerQuery;
 use common\models\QuestionCommentQuery;
 use common\models\Question;

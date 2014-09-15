@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $models common\models\Question[] */
 /* @var $tab string */
 
-$this->title = 'My Yii Application';
+$this->title = app()->name;
 
 ?>
 

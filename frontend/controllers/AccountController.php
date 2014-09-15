@@ -15,7 +15,7 @@ use Yii;
 use common\models\LoginForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use common\base\Controller;
+use frontend\base\Controller;
 
 class AccountController extends Controller
 {
@@ -32,7 +32,7 @@ class AccountController extends Controller
         ];
     }
 
-    public function actionLogin($url = null)
+    public function actionLogin($returnurl = null)
     {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -40,11 +40,13 @@ class AccountController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if (empty($url))
-                return $this->goBack();
-            else
-                $this->redirect($url);
-        } else {
+            return $this->goBack();
+        }
+        else {
+            $returnurl = $returnurl ? $returnurl : request()->getReferrer();
+            if ($returnurl)
+                app()->getUser()->setReturnUrl($returnurl);
+
             return $this->render('login', [
                 'model' => $model,
             ]);

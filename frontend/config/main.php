@@ -9,6 +9,11 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
+    'name' => 'PHP程序猿',
+    'language' => 'zh-CN',
+    'sourceLanguage' => 'zh-CN',
+    'charset' => 'UTF-8',
+    'timeZone' => 'Asia/Shanghai',
     'version' => '1.0.0',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

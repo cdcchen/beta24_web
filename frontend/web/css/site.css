@@ -5992,6 +5992,12 @@ a.label-tag:focus {
 .post-started span.started-link {
   color: #9f9f9f;
 }
+.site-signup .notice {
+  color: #d9534f;
+}
+#form-signup .hint-block {
+  color: #9f9f9f;
+}
 #beta-footer {
   background: #777;
   border-top: 8px solid #000;
