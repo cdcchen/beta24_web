@@ -1,10 +1,9 @@
 <?php
 namespace frontend\controllers;
 
-use common\base\Pagination;
+use common\base\Controller;
 use common\models\QuestionQuery;
 use Yii;
-use yii\web\Controller;
 use common\models\Question;
 
 /**

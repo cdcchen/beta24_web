@@ -32,36 +32,55 @@ define('TBL_FRIEND_LINK', '{{%friend_link}}');
 define('TBL_FEED_BACK', '{{%feed_back}}');
 
 
+/**
+ * channel define
+ */
 
+define('CHANNEL_QUESTION', 'question');
+define('CHANNEL_TAG', 'tag');
+define('CHANNEL_USER', 'user');
+define('CHANNEL_BADGE', 'badge');
+define('CHANNEL_UNANSWERED', 'unanswered');
 
 
 /**
  * questions list sort define
  */
 
-define('QUESTION_SORT_NEWEST', 'newest');
-define('QUESTION_SORT_BOUNTY', 'bounty');
-define('QUESTION_SORT_FREQUENT', 'frequent');
-define('QUESTION_SORT_VOTES', 'votes');
-define('QUESTION_SORT_ACTIVE', 'active');
-define('QUESTION_SORT_UNANSWERED', 'unanswered');
+define('TAB_QUESTION_SORT_NEWEST', 'newest');
+define('TAB_QUESTION_SORT_BOUNTY', 'bounty');
+define('TAB_QUESTION_SORT_FREQUENT', 'frequent');
+define('TAB_QUESTION_SORT_VOTES', 'votes');
+define('TAB_QUESTION_SORT_ACTIVE', 'active');
+define('TAB_QUESTION_SORT_UNANSWERED', 'unanswered');
+
+
+/**
+ * unanswered questions list sort define
+ */
+
+define('TAB_UNANSWERED_SORT_NEWEST', 'newest');
+define('TAB_UNANSWERED_SORT_BOUNTY', 'bounty');
+define('TAB_UNANSWERED_SORT_MY_TAGS', 'my_tags');
+define('TAB_UNANSWERED_SORT_NO_UPVOTED', 'no_upvoted');
+define('TAB_UNANSWERED_SORT_NO_ANSWERS', 'no_answers');
 
 
 /**
  * answers list sort define
  */
 
-define('ANSWER_SORT_ACTIVE', 'active');
-define('ANSWER_SORT_OLDEST', 'oldest');
-define('ANSWER_SORT_VOTES', 'votes');
+define('TAB_ANSWER_SORT_ACTIVE', 'active');
+define('TAB_ANSWER_SORT_OLDEST', 'oldest');
+define('TAB_ANSWER_SORT_VOTES', 'votes');
 
 
 /**
  * site home sub tab
  */
 
-define('SITE_TAB_INTERESTING', 'interesting');
-define('SITE_TAB_FEATURED', 'featured');
-define('SITE_TAB_HOT', 'hot');
-define('SITE_TAB_WEEK', 'week');
-define('SITE_TAB_MONTH', 'month');
+define('TAB_SITE_TAB_INTERESTING', 'my_tags');
+define('TAB_SITE_TAB_FEATURED', 'featured');
+define('TAB_SITE_TAB_HOT', 'hot');
+define('TAB_SITE_TAB_WEEK', 'week');
+define('TAB_SITE_TAB_MONTH', 'month');

@@ -341,4 +341,20 @@ class QuestionQuery extends ActiveQuery
         $this->andWhere(['status' => Question::STATUS_DONE]);
         return $this;
     }
+
+    public function unanswered()
+    {
+        $this->andWhere(['answer_count' => 0]);
+        return $this;
+    }
+
+    public function hasBounty($state = true)
+    {
+        if ($state)
+            $this->andWhere('open_bounty > 0 and open_bounty_end_time > :current_time', [':current_time' => REQUEST_TIME]);
+        else
+            $this->andWhere(['OR', 'open_bounty = 0', 'open_bounty_end_time <= :current_time'], [':current_time' => REQUEST_TIME]);
+
+        return $this;
+    }
 }

@@ -47,12 +47,22 @@ AppAsset::register($this);
                 <li><a href="<?= Url::toRoute('question/ask') ?>">提问问题</a></li>
             </ul>
             <ul class="main-nav">
-                <li class="active"><a href="<?= Url::toRoute('question/index') ?>">问题</a></li>
-                <li><a href="<?= Url::toRoute('tag/index') ?>">标签</a></li>
-                <li><a href="<?= Url::toRoute('user/index') ?>">用户</a></li>
-                <li><a href="<?= Url::toRoute('badge/index') ?>">徽章</a></li>
-                <li><a href="<?= Url::toRoute('question/unanswered') ?>">未回答</a></li>
-                </ul>
+                <li class="<?= app()->controller->getChannelClassName(CHANNEL_QUESTION) ?>">
+                    <a href="<?= Url::toRoute('question/index') ?>">问题</a>
+                </li>
+                <li class="<?= app()->controller->getChannelClassName(CHANNEL_TAG) ?>">
+                    <a href="<?= Url::toRoute('tag/index') ?>">标签</a>
+                </li>
+                <li class="<?= app()->controller->getChannelClassName(CHANNEL_USER) ?>">
+                    <a href="<?= Url::toRoute('user/index') ?>">用户</a>
+                </li>
+                <li class="<?= app()->controller->getChannelClassName(CHANNEL_BADGE) ?>">
+                    <a href="<?= Url::toRoute('badge/index') ?>">徽章</a>
+                </li>
+                <li class="<?= app()->controller->getChannelClassName(CHANNEL_UNANSWERED) ?>">
+                    <a href="<?= Url::toRoute('unanswered/index') ?>">未回答</a>
+                </li>
+            </ul>
         </div>
     </div>
 
