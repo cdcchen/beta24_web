@@ -5540,6 +5540,7 @@ a.label-tag:focus {
 }
 #beta-topbar a:hover {
   background: #555;
+  text-decoration: none;
 }
 #beta-topbar .site-links,
 #beta-topbar .search,
@@ -5706,7 +5707,7 @@ a.label-tag:focus {
 }
 .question-summary h3 {
   font-size: 120%;
-  margin: 0 0 10px;
+  margin: 0 0 7px;
 }
 .question-summary .post-tags {
   float: left;
@@ -5922,7 +5923,7 @@ a.label-tag:focus {
   padding-top: 20px;
 }
 .questions-mini .question-summary {
-  margin-left: 155px;
+  margin-left: 160px;
 }
 .question-mini-stats {
   float: left;
@@ -5946,6 +5947,13 @@ a.label-tag:focus {
   text-align: center;
   color: #555;
   line-height: 1;
+}
+.question-mini-stats .votes,
+.question-mini-stats .views {
+  width: 45px;
+}
+.question-mini-stats .answers {
+  width: 55px;
 }
 .question-mini-stats .views {
   color: #9f9f9f;
@@ -5997,6 +6005,11 @@ a.label-tag:focus {
 }
 #form-signup .hint-block {
   color: #9f9f9f;
+}
+#form-login .btn-submit,
+#form-signup .btn-submit {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 #beta-footer {
   background: #777;

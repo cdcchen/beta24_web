@@ -79,8 +79,8 @@ define('TAB_ANSWER_SORT_VOTES', 'votes');
  * site home sub tab
  */
 
-define('TAB_SITE_TAB_INTERESTING', 'my_tags');
-define('TAB_SITE_TAB_FEATURED', 'featured');
-define('TAB_SITE_TAB_HOT', 'hot');
-define('TAB_SITE_TAB_WEEK', 'week');
-define('TAB_SITE_TAB_MONTH', 'month');
+define('TAB_SITE_INTERESTING', 'my_tags');
+define('TAB_SITE_FEATURED', 'featured');
+define('TAB_SITE_HOT', 'hot');
+define('TAB_SITE_WEEK', 'week');
+define('TAB_SITE_MONTH', 'month');

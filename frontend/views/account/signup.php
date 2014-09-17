@@ -19,7 +19,7 @@ $this->title = '注册账号';
             <?= $form->field($model, 'display_name')->hint('起个牛X的名字是很重要的，中文、英文、数字、空格或下划线。') ?>
             <?= $form->field($model, 'password')->passwordInput()->hint('密码最少需要6位') ?>
                 <div class="form-group">
-                    <?= Html::submitButton('注册 24beta', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                    <?= Html::submitButton('注册', ['class' => 'btn btn-primary btn-submit', 'name' => 'signup-button']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
         </div>

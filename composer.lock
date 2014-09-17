@@ -12,13 +12,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cdcchen/yii2plus.git",
-                "reference": "8007b1e4440e09acaa40c6ea73cd001f33863252"
+                "reference": "f77439820b0f0431b0d47e9aed92319343a77531",
+                "mirrors": [
+                    {
+                        "url": "/%package%/%normalizedUrl%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cdcchen/yii2plus/zipball/8007b1e4440e09acaa40c6ea73cd001f33863252",
-                "reference": "8007b1e4440e09acaa40c6ea73cd001f33863252",
-                "shasum": ""
+                "url": "https://api.github.com/repos/cdcchen/yii2plus/zipball/f77439820b0f0431b0d47e9aed92319343a77531",
+                "reference": "f77439820b0f0431b0d47e9aed92319343a77531",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "http://pkg.phpcomposer.com/repo/packagist/dists/%package%/%version%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.4.0",
@@ -46,7 +58,7 @@
                 "shortcut",
                 "yii2"
             ],
-            "time": "2014-09-08 09:14:08"
+            "time": "2014-09-17 06:19:35"
         },
         {
             "name": "cebe/markdown",

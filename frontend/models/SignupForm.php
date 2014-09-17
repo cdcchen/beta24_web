@@ -2,6 +2,7 @@
 namespace frontend\models;
 
 use common\models\User;
+use common\models\UserProfile;
 use yii\base\Model;
 use Yii;
 
@@ -62,6 +63,16 @@ class SignupForm extends Model
     public function signup()
     {
         if ($this->validate()) {
+            return $this->createUser();
+        }
+
+        return null;
+    }
+
+    private function createUser()
+    {
+        $transaction = db()->beginTransaction();
+        try {
             $user = new User();
             $user->username = $this->username;
             $user->email = $this->email;
@@ -69,10 +80,18 @@ class SignupForm extends Model
             $user->password = $this->password;
             $user->setPassword($this->password);
             $user->generateAuthKey();
-            $user->save();
+            if ($user->save()) {
+                $profile = new UserProfile();
+                $user->link('profile', $profile);
+            }
+
+            $transaction->commit();
+
             return $user;
         }
-
-        return null;
+        catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
     }
 }

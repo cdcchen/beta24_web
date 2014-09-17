@@ -9,11 +9,27 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
+    const REMEMBER_ACCOUNT_SESSION_NAME = '__remember_account';
+
     public $username;
     public $password;
+    public $rememberAccount = true;
     public $rememberMe = true;
 
     private $_user = false;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        $rememberAccount = session()->get(self::REMEMBER_ACCOUNT_SESSION_NAME);
+        if ($rememberAccount)
+            $this->username = $rememberAccount;
+
+    }
 
     /**
      * @inheritdoc
@@ -24,7 +40,7 @@ class LoginForm extends Model
             // username and password are both required
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
+            [['rememberMe', 'rememberAccount'], 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
@@ -47,6 +63,16 @@ class LoginForm extends Model
         }
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => '账号',
+            'password' => '密码',
+            'rememberAccount' => '记住账号',
+            'rememberMe' => '下次自动登录',
+        ];
+    }
+
     /**
      * Logs in a user using the provided username and password.
      *
@@ -55,11 +81,18 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
+            if ($this->rememberAccount) {
+                session()->set(self::REMEMBER_ACCOUNT_SESSION_NAME, $this->username);
+            }
+
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-        } else {
+        }
+        else {
             return false;
         }
     }
+
+
 
     /**
      * Finds user by [[username]]

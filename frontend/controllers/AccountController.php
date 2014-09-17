@@ -35,7 +35,7 @@ class AccountController extends Controller
     public function actionLogin($returnurl = null)
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+//            return $this->goHome();
         }
 
         $model = new LoginForm();
@@ -63,10 +63,14 @@ class AccountController extends Controller
 
     public function actionSignup()
     {
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
         $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(request()->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
+                if (user()->login($user, param('auto_login_duration', 0))) {
                     return $this->goHome();
                 }
             }

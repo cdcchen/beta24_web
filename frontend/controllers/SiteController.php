@@ -46,17 +46,17 @@ class SiteController extends Controller
     private static function buildQuery($tab)
     {
         $query = Question::find()->active();
-        if ($tab == SITE_TAB_FEATURED)
+        if ($tab == TAB_SITE_FEATURED)
         {
             $query->andWhere('open_bounty > 0 and open_bounty_end_time > :current_time', [':current_time' => REQUEST_TIME]);
             $query->orderBy(['open_bounty_end_time' => SORT_ASC]);
         }
-        elseif (in_array($tab, [SITE_TAB_HOT, SITE_TAB_WEEK, SITE_TAB_MONTH])) {
-            if ($tab == SITE_TAB_HOT)
+        elseif (in_array($tab, [TAB_SITE_HOT, TAB_SITE_WEEK, TAB_SITE_MONTH])) {
+            if ($tab == TAB_SITE_HOT)
                 $days = 3;
-            elseif ($tab == SITE_TAB_WEEK)
+            elseif ($tab == TAB_SITE_WEEK)
                 $days = 7;
-            elseif ($tab == SITE_TAB_MONTH)
+            elseif ($tab == TAB_SITE_MONTH)
                 $days = 30;
             else
                 $days = 1;
@@ -64,7 +64,7 @@ class SiteController extends Controller
             $query->andWhere('created_at > :timestamp', [':timestamp' => $days * ONE_DAY_SECONDS]);
             $query->orderBy(['vote_up' => SORT_DESC, 'created_at' => SORT_DESC]);
         }
-        else { // include SITE_TAB_INTERESTING
+        else { // include TAB_SITE_INTERESTING
             $query->orderBy(['updated_at' => SORT_DESC, 'created_at' => SORT_DESC]);
         }
 
