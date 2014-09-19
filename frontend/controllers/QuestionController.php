@@ -8,7 +8,9 @@ use common\models\AnswerQuery;
 use common\models\QuestionCommentQuery;
 use common\models\Question;
 use common\models\QuestionQuery;
+use frontend\models\AnswerForm;
 use frontend\models\QuestionForm;
+use yii\helpers\Url;
 
 class QuestionController extends Controller
 {
@@ -43,9 +45,12 @@ class QuestionController extends Controller
 
         if (request()->getIsPost() && $model->load(request()->post()) && $model->validate()) {
             if ($question = $model->save())
-                return $this->render('ask_confirm', ['model'=>$model]);
-            else
+                $this->redirect($question->getUrl());
+            else {
+                //@todo 待处理
                 var_dump($question);
+            }
+
         }
         else
             return $this->render('ask', ['model'=>$model]);
@@ -72,12 +77,30 @@ class QuestionController extends Controller
             ->with(['user', 'comments'])
             ->all();
 
+        $answerForm = new AnswerForm();
+        $answerForm->question_id = $id;
+
         return $this->render('show', [
             'question' => $question,
             'answers' => $answers,
             'pages' => $pages,
             'sort' => $sort,
+            'answerForm' => $answerForm,
         ]);
+    }
+
+    public function actionCreateAnswer()
+    {
+        $answerForm = new AnswerForm();
+        if (request()->getIsPost() && $answerForm->load(request()->post()) && $answerForm->validate()) {
+            if ($answer = $answerForm->save()) {
+                $anchor = 'answer-' . $answer->id;
+                $returnUrl = Url::toRoute(['question/show', 'id'=>$answerForm->question_id, '#'=>$anchor]);
+                $this->redirect($answer->getUrl());
+            }
+            else
+                var_dump($answer);
+        }
     }
 
     public function actionUnanswered($sort = '')

@@ -1,11 +1,15 @@
 <?php
 
 use yii\widgets\LinkPager;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use frontend\widgets\pagedown\PageDown;
 
 /* @var $this yii\web\View */
 /* @var $question common\models\Question */
 /* @var $comments array|common\models\QuestionComment[] */
 /* @var $answers array|common\models\Answer[] */
+/* @var $answerForm frontend\models\AnswerForm */
 /* @var $sort string */
 ?>
 
@@ -33,7 +37,7 @@ use yii\widgets\LinkPager;
             <a class="bg-icons star-off" href="#">收藏</a>
         </div>
         <div class="post-cell clearfix">
-            <div class="post-content"><?= formatter()->asParagraphs($question->content) ?></div>
+            <div class="post-content"><?= $question->getPurifyContent() ?></div>
             <div class="post-tags">
                 <?= $question->getTagsLinks() ?>
             </div>
@@ -102,7 +106,18 @@ use yii\widgets\LinkPager;
         </div>
     </div>
 
-
+    <!-- answer form -->
+    <div class="answer-form">
+    <?php $form = ActiveForm::begin(['action'=>['question/create-answer']]);?>
+        <?= Html::activeHiddenInput($answerForm, 'question_id') ?>
+        <div class="form-group required <?= $answerForm->hasErrors('content') ? 'has-error' : '' ?>">
+            <?= PageDown::widget(['model'=>$answerForm]) ?>
+        </div>
+        <div class="form-group">
+            <?= Html::submitButton('提交答案', ['class' => 'btn btn-primary']) ?>
+        </div>
+    <?php ActiveForm::end();?>
+    </div>
 
 </div>
 

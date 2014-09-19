@@ -5,6 +5,7 @@ use frontend\base\Controller;
 use common\models\QuestionQuery;
 use Yii;
 use common\models\Question;
+use yii\helpers\Markdown;
 
 /**
  * Site controller
@@ -37,6 +38,7 @@ class SiteController extends Controller
 
     public function actionTest()
     {
+        var_dump($_POST);
         return $this->render('test');
     }
 

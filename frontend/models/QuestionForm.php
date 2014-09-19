@@ -20,7 +20,7 @@ class QuestionForm extends Model
             [['title', 'content', 'tags_text'], 'required'],
             ['title', 'string', 'max'=>250],
             ['content', 'string', 'max'=>65000],
-            [['title', 'content'], 'filter', 'filter' => 'trim'],
+            [['title', 'tags_text'], 'filter', 'filter' => 'trim'],
             [['tags_text'], 'validateTagsText'],
         ];
     }
@@ -57,7 +57,7 @@ class QuestionForm extends Model
             $question->attributes = $this->attributes;
             $question->user_id = user()->id;
             $question->status = Question::STATUS_ACTIVE;
-            return $question->save();
+            return $question->save() ? $question : false;
         }
         else
             return false;

@@ -2,14 +2,16 @@
 
 namespace common\models;
 
+use common\config\HtmlPurifierConfig;
 use DateTime;
 use common\base\DateTimeTrait;
 use common\behaviors\IPAddressBehavior;
 use Yii;
-use yii\base\InvalidValueException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
+use yii\helpers\Markdown;
 use yii\helpers\Url;
 
 /**
@@ -45,6 +47,7 @@ use yii\helpers\Url;
  * @property string $summary
  * @property string $url
  * @property string $relativeCreatedAt
+ * @property string $purifyContent
  *
  * Relations
  * @property \common\models\User $user
@@ -133,6 +136,7 @@ class Question extends \yii\db\ActiveRecord
         $fields['url'] =  [$this, 'getUrl'];
         $fields['absoluteUrl'] =  [$this, 'getAbsoluteUrl'];
         $fields['relativeCreatedAt'] =  [$this, 'getRelativeCreatedAt'];
+        $fields['purifyContent'] =  [$this, 'getPurifyContent'];
 
         return $fields;
     }
@@ -176,8 +180,29 @@ class Question extends \yii\db\ActiveRecord
     public function getSummary($len = 180)
     {
         $len = (int)$len;
-        $text = formatter()->asPlain($this->content);
+        $text = formatter()->asPlain($this->getPurifyContent());
         return ($len > 0) ? mb_strimwidth($text, 0, $len, '...', app()->charset) : $text;
+    }
+
+    public function getPurifyContent()
+    {
+        static $contents = [];
+        if (!array_key_exists($this->id, $contents)) {
+            $contents[$this->id] = HtmlPurifier::process($this->getParsedContent(), HtmlPurifierConfig::answer());
+        }
+
+        return $contents[$this->id];
+    }
+
+    public function getParsedContent()
+    {
+        static $contents = [];
+        if (!array_key_exists($this->id, $contents)) {
+            $contents[$this->id] = Markdown::process($this->content);
+        }
+
+        return $contents[$this->id];
+
     }
 
     /**

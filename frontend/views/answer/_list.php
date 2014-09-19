@@ -17,7 +17,7 @@ use yii\widgets\LinkPager;
 <!--            <a class="bg-icons vote-accepted-off" href="#">最佳答案</a>-->
         </div>
         <div class="post-cell clearfix">
-            <div class="post-content"><?= formatter()->asParagraphs($answer->content) ?></div>
+            <div class="post-content"><?= $answer->getPurifyContent() ?></div>
             <div class="share-box">
                 <a href="#">分享</a>
             </div>

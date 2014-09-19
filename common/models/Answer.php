@@ -3,10 +3,13 @@
 namespace common\models;
 
 use common\base\DateTimeTrait;
+use common\config\HtmlPurifierConfig;
 use Yii;
 use common\behaviors\IPAddressBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
+use yii\helpers\HtmlPurifier;
+use yii\helpers\Markdown;
 use yii\helpers\Url;
 
 /**
@@ -29,6 +32,7 @@ use yii\helpers\Url;
  * @property string $updatedAt
  * @property $userIsOwner
  * @property $url
+ * @property string $purifyContent
  *
  * Relations
  * @property \common\models\User $user
@@ -65,6 +69,7 @@ class Answer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['question_id', 'content', 'user_id'], 'required'],
             [['question_id', 'user_id', 'created_at', 'updated_at', 'vote_up', 'vote_down'], 'integer'],
             [['accepted'], 'boolean'],
             [['content'], 'string'],
@@ -102,6 +107,7 @@ class Answer extends \yii\db\ActiveRecord
         $fields['createdAt'] =  [$this, 'getCreatedAt'];
         $fields['updatedAt'] =  [$this, 'getUpdatedAt'];
         $fields['url'] =  [$this, 'getUrl'];
+        $fields['purifyContent'] =  [$this, 'getPurifyContent'];
 
         return $fields;
     }
@@ -126,6 +132,27 @@ class Answer extends \yii\db\ActiveRecord
     public function getUrl()
     {
         return Url::toRoute(['question/show', 'id'=>$this->question_id, '#'=>'answer-' . $this->id]);
+    }
+
+    public function getPurifyContent()
+    {
+        static $contents = [];
+        if (!array_key_exists($this->id, $contents)) {
+            $contents[$this->id] = HtmlPurifier::process($this->getParsedContent(), HtmlPurifierConfig::answer());
+        }
+
+        return $contents[$this->id];
+    }
+
+    public function getParsedContent()
+    {
+        static $contents = [];
+        if (!array_key_exists($this->id, $contents)) {
+            $contents[$this->id] = Markdown::process($this->content);
+        }
+
+        return $contents[$this->id];
+
     }
 
     /******************** Relational Data ***********************/
