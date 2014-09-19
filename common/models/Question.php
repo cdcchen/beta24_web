@@ -337,6 +337,8 @@ class Question extends \yii\db\ActiveRecord
 
     public function afterDelete()
     {
+        parent::afterDelete();
+
         // delete all answers
         if ($this->answers) {
             foreach ($this->answers as $answer)

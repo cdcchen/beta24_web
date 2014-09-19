@@ -190,9 +190,11 @@ class Answer extends \yii\db\ActiveRecord
 
     /******************** event methods ***********************/
 
-    public function afterSave()
+    public function afterSave($insert, $changedAttributes)
     {
-        if ($this->getIsNewRecord() && $this->question) {
+        parent::afterSave($insert, $changedAttributes);
+
+        if ($insert && $this->question) {
             $this->question->answer_count++;
             $this->question->save(true, ['answer_count']);
         }
@@ -200,6 +202,8 @@ class Answer extends \yii\db\ActiveRecord
 
     public function afterDelete()
     {
+        parent::afterDelete();
+
         if ($this->question) {
             $this->question->answer_count--;
             $this->question->save(true, ['answer_count']);

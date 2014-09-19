@@ -13,7 +13,7 @@ class AnswerForm extends Model
     {
         return [
             [['question_id', 'content'], 'required'],
-            ['content', 'string', 'min' =>20, 'max'=>65000],
+            ['content', 'string', 'min' =>10, 'max'=>65000],
         ];
     }
 

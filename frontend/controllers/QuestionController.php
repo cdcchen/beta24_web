@@ -94,8 +94,6 @@ class QuestionController extends Controller
         $answerForm = new AnswerForm();
         if (request()->getIsPost() && $answerForm->load(request()->post()) && $answerForm->validate()) {
             if ($answer = $answerForm->save()) {
-                $anchor = 'answer-' . $answer->id;
-                $returnUrl = Url::toRoute(['question/show', 'id'=>$answerForm->question_id, '#'=>$anchor]);
                 $this->redirect($answer->getUrl());
             }
             else
