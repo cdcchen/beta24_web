@@ -4,9 +4,10 @@ return [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+            'keyPrefix' => '24beta_',
         ],
         'formatter' => [
-            'class' => 'common\base\Formatter',
+            'class' => 'yii2plus\i18n\Formatter',
             'timeZone' => 'Asia/Shanghai',
         ],
     ],

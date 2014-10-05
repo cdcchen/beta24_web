@@ -1,7 +1,5 @@
 <?php
 
-use yii\widgets\LinkPager;
-
 /* @var $this yii\web\View */
 /* @var $question common\models\Question */
 /* @var $answers array|common\models\Answer[] */

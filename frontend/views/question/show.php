@@ -10,6 +10,7 @@ use frontend\widgets\pagedown\PageDown;
 /* @var $comments array|common\models\QuestionComment[] */
 /* @var $answers array|common\models\Answer[] */
 /* @var $answerForm frontend\models\AnswerForm */
+/* @var $pages yii\data\Pagination */
 /* @var $sort string */
 ?>
 
@@ -92,13 +93,13 @@ use frontend\widgets\pagedown\PageDown;
         <div class="pages clearfix">
             <ul class="pagination per-page pull-right">
                 <li class="<?= $pages->pageSize == 20 ? 'active' : '' ?>">
-                    <a href="<?= $pages->createPageSizeUrl(20) ?>">20</a>
+                    <a href="<?= $pages->createUrl($pages->page, 20) ?>">20</a>
                 </li>
                 <li class="<?= $pages->pageSize == 30 ? 'active' : '' ?>">
-                    <a href="<?= $pages->createPageSizeUrl(30) ?>">30</a>
+                    <a href="<?= $pages->createUrl($pages->page, 30) ?>">30</a>
                 </li>
                 <li class="<?= $pages->pageSize == 50 ? 'active' : '' ?>">
-                    <a href="<?= $pages->createPageSizeUrl(50) ?>">50</a>
+                    <a href="<?= $pages->createUrl($pages->page, 50) ?>">50</a>
                 </li>
             </ul>
             <div class="per-page-label pull-right">每页：</div>

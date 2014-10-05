@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\base\Pagination;
+use yii\data\Pagination;
 use frontend\base\Controller;
 use common\models\AnswerQuery;
 use common\models\QuestionCommentQuery;
@@ -10,7 +10,6 @@ use common\models\Question;
 use common\models\QuestionQuery;
 use frontend\models\AnswerForm;
 use frontend\models\QuestionForm;
-use yii\helpers\Url;
 
 class QuestionController extends Controller
 {
@@ -48,7 +47,7 @@ class QuestionController extends Controller
                 $this->redirect($question->getUrl());
             else {
                 //@todo 待处理
-                var_dump($question);
+                var_dump($question->getErrors());
             }
 
         }
@@ -97,8 +96,10 @@ class QuestionController extends Controller
                 $this->redirect($answer->getUrl());
             }
             else
-                var_dump($answer);
+                var_dump($answer->getErrors());
         }
+        else
+            var_dump($answerForm->getErrors());
     }
 
     public function actionUnanswered($sort = '')

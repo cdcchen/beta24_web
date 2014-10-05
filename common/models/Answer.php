@@ -190,6 +190,9 @@ class Answer extends \yii\db\ActiveRecord
 
     /******************** event methods ***********************/
 
+    /**
+     * @inheritdoc
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);

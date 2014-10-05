@@ -50,16 +50,27 @@ class QuestionForm extends Model
         return array_filter($tags);
     }
 
-    public function save()
+    public function beforeValidate()
     {
-        if ($this->validate()) {
-            $question = new Question();
-            $question->attributes = $this->attributes;
-            $question->user_id = user()->id;
-            $question->status = Question::STATUS_ACTIVE;
-            return $question->save() ? $question : false;
+        parent::beforeValidate();
+
+        $userID = user()->getId();
+        if ($userID === null) {
+            $this->addError('user_id', '您需要先登录');
+            return false;
         }
         else
-            return false;
+            $this->user_id = $userID;
+
+        return true;
+    }
+
+    public function save()
+    {
+        $question = new Question();
+        $question->attributes = $this->attributes;
+        $question->status = Question::STATUS_ACTIVE;
+        $question->save();
+        return $question;
     }
 }

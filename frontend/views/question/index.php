@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
 /**
  * @var $this yii\web\View
  * @var $pages yii\widgets\LinkPager
- * @var $pages common\base\Pagination
+ * @var $pages yii\data\Pagination
  * @var $questions common\models\Question[]
  * @var $sort string
  */
@@ -26,13 +26,13 @@ use yii\widgets\LinkPager;
     <div class="pages clearfix">
         <ul class="pagination per-page pull-right">
             <li class="<?= $pages->pageSize == 15 ? 'active' : '' ?>">
-                <a href="<?= $pages->createPageSizeUrl(15) ?>">15</a>
+                <a href="<?= $pages->createUrl($pages->page, 15) ?>">15</a>
             </li>
             <li class="<?= $pages->pageSize == 30 ? 'active' : '' ?>">
-                <a href="<?= $pages->createPageSizeUrl(30) ?>">30</a>
+                <a href="<?= $pages->createUrl($pages->page, 30) ?>">30</a>
             </li>
             <li class="<?= $pages->pageSize == 50 ? 'active' : '' ?>">
-                <a href="<?= $pages->createPageSizeUrl(50) ?>">50</a>
+                <a href="<?= $pages->createUrl($pages->page, 50) ?>">50</a>
             </li>
         </ul>
         <div class="per-page-label pull-right">每页：</div>

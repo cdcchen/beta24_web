@@ -32,10 +32,10 @@ class AccountController extends Controller
         ];
     }
 
-    public function actionLogin($returnurl = null)
-    {
+    public function actionLogin($return_url = null)
+    {new \yii\log\DbTarget;
         if (!\Yii::$app->user->isGuest) {
-//            return $this->goHome();
+            return $this->goHome();
         }
 
         $model = new LoginForm();
@@ -43,9 +43,12 @@ class AccountController extends Controller
             return $this->goBack();
         }
         else {
-            $returnurl = $returnurl ? $returnurl : request()->getReferrer();
-            if ($returnurl)
-                app()->getUser()->setReturnUrl($returnurl);
+            $backUrl = user()->getReturnUrl('');
+            if (empty($backUrl)) {
+                $return_url = $return_url ? $return_url : request()->getReferrer();
+                if ($return_url)
+                    app()->getUser()->setReturnUrl($return_url);
+            }
 
             return $this->render('login', [
                 'model' => $model,
