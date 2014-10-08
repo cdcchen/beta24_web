@@ -8,7 +8,7 @@
 <?php foreach ($answers as $answer):?>
     <a name="answer-<?= $answer->id ?>"></a>
     <div class="answer clearfix">
-        <div class="vote-cell">
+        <div class="vote-cell" data-id="<?= $answer->id ?>">
             <a class="bg-icons vote-up-off" href="#">支持</a>
             <span class="vote-count"><?= $answer->vote_up ?></span>
             <a class="bg-icons vote-down-off" href="#">反对</a>

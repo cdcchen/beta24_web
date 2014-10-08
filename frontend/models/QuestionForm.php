@@ -13,11 +13,12 @@ class QuestionForm extends Model
     public $title;
     public $content;
     public $tags_text;
+    public $user_id;
 
     public function rules()
     {
         return [
-            [['title', 'content', 'tags_text'], 'required'],
+            [['title', 'content', 'tags_text', 'user_id'], 'required'],
             ['title', 'string', 'max'=>250],
             ['content', 'string', 'max'=>65000],
             [['title', 'tags_text'], 'filter', 'filter' => 'trim'],
@@ -31,6 +32,7 @@ class QuestionForm extends Model
             'title' => '标题',
             'content' => '内容',
             'tags_text' => '标签',
+            'user_id' => '用户ID',
         ];
     }
 

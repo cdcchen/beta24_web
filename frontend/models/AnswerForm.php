@@ -23,6 +23,7 @@ class AnswerForm extends Model
         return [
             'question_id' => '问题ID',
             'content' => '内容',
+            'user_id' => '用户ID',
         ];
     }
 

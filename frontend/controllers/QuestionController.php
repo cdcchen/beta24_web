@@ -10,6 +10,8 @@ use common\models\Question;
 use common\models\QuestionQuery;
 use frontend\models\AnswerForm;
 use frontend\models\QuestionForm;
+use yii\db\Query;
+use yii\web\HttpException;
 
 class QuestionController extends Controller
 {
@@ -85,21 +87,21 @@ class QuestionController extends Controller
             'pages' => $pages,
             'sort' => $sort,
             'answerForm' => $answerForm,
+            'starClass' => static::buildFavoriteClass($question),
         ]);
     }
 
-    public function actionCreateAnswer()
+    private static function buildFavoriteClass($question)
     {
-        $answerForm = new AnswerForm();
-        if (request()->getIsPost() && $answerForm->load(request()->post()) && $answerForm->validate()) {
-            if ($answer = $answerForm->save()) {
-                $this->redirect($answer->getUrl());
-            }
-            else
-                var_dump($answer->getErrors());
+        if (user()->getIsGuest())
+            return 'star-off';
+        else {
+            $exist = (new Query())->from(TBL_USER_QUESTION)
+                ->where(['user_id' => user()->id, 'question_id' => $question->id])
+                ->exists();
+
+            return $exist ? 'star-off star-on' : 'star-off';
         }
-        else
-            var_dump($answerForm->getErrors());
     }
 
     public function actionUnanswered($sort = '')
@@ -115,6 +117,74 @@ class QuestionController extends Controller
             'pages' => $pages,
             'questions' => $questions,
         ]);
+    }
+
+    public function actionVoteUp()
+    {
+        $id = (int)request()->post('id');
+        static::ajaxVote($id, 'vote_up');
+    }
+
+    public function actionVoteDown()
+    {
+        $id = (int)request()->post('id');
+        static::ajaxVote($id, 'vote_down');
+    }
+
+    private static function ajaxVote($id, $column, $step = 1)
+    {
+        if (user()->getIdentity()->profile->data_reputation < 15) {
+            $data['errno'] = YES;
+            $data['message'] = '需要至少15个威望才能评价';
+        }
+        else {
+            $id = (int)$id;
+            $question = Question::find()
+                ->select(['id', 'vote_up', 'vote_down'])
+                ->where('id = :question_id', [':question_id' => $id])
+                ->one();
+            $question->$column += (int)$step;
+            $result = $question->save(true, [$column]);
+
+            $data['errno'] = $result ? NO : YES;
+            $data['vote_score'] = $result ? $question->getVoteScore() : 0;
+        }
+
+        echo json_encode($data);
+        exit(0);
+    }
+
+    public function actionFavorite()
+    {
+        $id = (int)request()->post('id');
+        $exist = Question::find()
+            ->where('id = :question_id', [':question_id' => $id])
+            ->exists();
+
+        if ($exist) {
+            $exist = (new Query())->from(TBL_USER_QUESTION)
+                ->where(['user_id' => user()->id, 'question_id' => $id])
+                ->exists();
+
+            $columns = ['user_id' => user()->id, 'question_id' => $id];
+            if ($exist) {
+                db()->createCommand()->delete(TBL_USER_QUESTION, $columns)->execute();
+                $data['errno'] = NO;
+                $data['action'] = 'delete';
+            }
+            else {
+                $result = db()->createCommand()->insert(TBL_USER_QUESTION, $columns)->execute();
+                $data['errno'] = NO;
+                $data['action'] = 'insert';
+            }
+        }
+        else {
+            $data['errno'] = YES;
+            $data['message'] = '问题不存在，非法操作。';
+        }
+
+        echo json_encode($data);
+        exit;
     }
 
     /***************************** fetch question list *****************************/

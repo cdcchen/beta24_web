@@ -5751,6 +5751,13 @@ a.label-tag:focus {
   padding: 2px 5px 3px;
   background-color: #e0eaf1;
 }
+.post-content {
+  word-wrap: break-word;
+  margin: 0 5px 5px 0;
+}
+.post-content img {
+  max-width: 650px;
+}
 .question-header {
   margin-bottom: 20px;
 }
@@ -5841,10 +5848,6 @@ a.label-tag:focus {
   margin-left: auto;
   margin-right: auto;
   font-size: 24px;
-}
-.post-content {
-  word-wrap: break-word;
-  margin: 0 5px 5px 0;
 }
 .share-box {
   float: left;

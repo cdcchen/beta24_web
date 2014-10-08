@@ -35,6 +35,7 @@ use yii\db\ActiveQuery;
  *
  * Relations
  * @property array|Question[] $questions user's question
+ * @property array|Question[] $favorites user's favorite question
  * @property array|QuestionComment[] $questionComments user's question comments
  * @property UserProfile $profile
  * @property array|Answer[] $answers
@@ -203,6 +204,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(UserConfig::className(), ['user_id' => 'id'])
             ->inverseOf('user');
+    }
+
+    /**
+     * Question has_many Tag via Tag.id -> question_tag.tag_id and question_tag.question_id -> id
+     * @return TagQuery
+     */
+    public function getFavorites()
+    {
+        return $this->hasMany(Question::className(), ['id' => 'question_id'])
+            ->viaTable(TBL_USER_QUESTION, ['user_id' => 'id']);
     }
 
 

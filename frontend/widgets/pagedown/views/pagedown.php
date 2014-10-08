@@ -1,5 +1,4 @@
 <?php
-use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\QuestionForm */
@@ -14,21 +13,20 @@ use yii\helpers\Html;
 
     <?= $errorMessage ?>
 </div>
-<div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+<div id="wmd-preview" class="wmd-panel wmd-preview post-content"></div>
 
 <script type="text/javascript">
 (function(){
-    var converter1 = Markdown.getSanitizingConverter();
+    var converter = Markdown.getSanitizingConverter();
 
-    converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+    converter.hooks.chain("preBlockGamut", function (text, rbg) {
         return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
             return "<blockquote>" + rbg(inner) + "</blockquote>\n";
         });
     });
 
-    var editor1 = new Markdown.Editor(converter1);
-
-    editor1.run();
+    var editor = new Markdown.Editor(converter);
+    editor.run();
 })();
 
 </script>

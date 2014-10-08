@@ -4,6 +4,7 @@ use yii\widgets\LinkPager;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\widgets\pagedown\PageDown;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $question common\models\Question */
@@ -32,10 +33,10 @@ use frontend\widgets\pagedown\PageDown;
 <!--    </div>-->
     <div class="question clearfix" id="question">
         <div class="vote-cell">
-            <a class="bg-icons vote-up-off" href="#">支持</a>
-            <span class="vote-count"><?= $question->vote_up ?></span>
-            <a class="bg-icons vote-down-off" href="#">反对</a>
-            <a class="bg-icons star-off" href="#">收藏</a>
+            <a class="bg-icons vote vote-up-off" href="javascript:void(0);" data-class="vote-up-on" data-id="<?= $question->id ?>" data-url="<?= Url::toRoute(['question/vote-up'])?>">支持</a>
+            <span class="vote-count"><?= $question->getVoteScore() ?></span>
+            <a class="bg-icons vote-down-off" href="javascript:void(0);" data-class="vote-down-on" data-id="<?= $question->id ?>" data-url="<?= Url::toRoute(['question/vote-down'])?>">反对</a>
+            <a class="bg-icons <?= $starClass ?>" href="javascript:void(0);" data-class="star-on" data-id="<?= $question->id ?>" data-url="<?= Url::toRoute(['question/favorite'])?>">收藏</a>
         </div>
         <div class="post-cell clearfix">
             <div class="post-content"><?= $question->getPurifyContent() ?></div>
@@ -109,7 +110,7 @@ use frontend\widgets\pagedown\PageDown;
 
     <!-- answer form -->
     <div class="answer-form">
-    <?php $form = ActiveForm::begin(['action'=>['question/create-answer']]);?>
+    <?php $form = ActiveForm::begin(['action'=>['answer/create-answer']]);?>
         <?= Html::activeHiddenInput($answerForm, 'question_id') ?>
         <div class="form-group required <?= $answerForm->hasErrors('content') ? 'has-error' : '' ?>">
             <?= PageDown::widget(['model'=>$answerForm]) ?>

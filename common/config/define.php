@@ -6,6 +6,10 @@
  * Time: 下午1:19
  */
 
+define('YES', 1);
+define('NO', 0);
+
+
 /**
  * database table name define
  */
@@ -20,6 +24,7 @@ define('TBL_USER_CONFIG', '{{%user_config}}');
 define('TBL_USER_PROFILE', '{{%user_profile}}');
 define('TBL_CONFIG_GROUP', '{{%config_group}}');
 define('TBL_CONFIG_ITEM', '{{%config_item}}');
+define('TBL_USER_QUESTION', '{{%user_question}}');
 define('TBL_QUESTION', '{{%question}}');
 define('TBL_QUESTION_COMMENT', '{{%question_comment}}');
 define('TBL_QUESTION_TAG', '{{%question_tag}}');

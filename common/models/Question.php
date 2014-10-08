@@ -39,6 +39,7 @@ use yii\helpers\Url;
  * @property string $content
  *
  * __get property
+ * @property string $voteScore
  * @property string $createdAt
  * @property string $updatedAt
  * @property string $lockedAt
@@ -159,6 +160,11 @@ class Question extends \yii\db\ActiveRecord
 
 
     /******************** __get *********************************/
+
+    public function getVoteScore()
+    {
+        return $this->vote_up - $this->vote_down;
+    }
 
     public function getViews()
     {

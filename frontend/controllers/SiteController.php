@@ -5,7 +5,9 @@ use frontend\base\Controller;
 use common\models\QuestionQuery;
 use Yii;
 use common\models\Question;
+use yii\helpers\Json;
 use yii\helpers\Markdown;
+use yii\web\HttpException;
 
 /**
  * Site controller
@@ -25,7 +27,21 @@ class SiteController extends Controller
 
     public function actionError()
     {
-        $exception = \Yii::$app->errorHandler->exception;
+        $exception = app()->errorHandler->exception;
+
+        if (request()->getIsAjax()) {
+            $data= [
+                'errno' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ];
+            if ($exception instanceof HttpException)
+                $data['status'] = $exception->statusCode;
+
+            header('Content-Type: application/json');
+            return Json::encode($data);
+        }
+
+
         if (YII_DEBUG && $exception !== null) {
             return $this->render('/system/error', ['exception' => $exception]);
         }

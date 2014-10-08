@@ -33,7 +33,7 @@ class AccountController extends Controller
     }
 
     public function actionLogin($return_url = null)
-    {new \yii\log\DbTarget;
+    {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
