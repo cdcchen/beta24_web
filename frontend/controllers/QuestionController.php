@@ -42,6 +42,7 @@ class QuestionController extends Controller
         if (user()->getIsGuest())
             user()->loginRequired(false);
 
+        $this->channel = 'ask_question';
         $model = new QuestionForm();
 
         if (request()->getIsPost() && $model->load(request()->post()) && $model->validate()) {

@@ -43,7 +43,7 @@ AppAsset::register($this);
         <div class="container">
             <a class="logo text-hide" href="/"><?= app()->name ?></a>
             <ul class="ask-nav">
-                <li><a href="<?= Url::toRoute('question/ask') ?>">提问问题</a></li>
+                <li><a class="<?= app()->controller->getChannelClassName('ask_question') ?>" href="<?= Url::toRoute('question/ask') ?>">提问问题</a></li>
             </ul>
             <ul class="main-nav">
                 <li class="<?= app()->controller->getChannelClassName(CHANNEL_QUESTION) ?>">

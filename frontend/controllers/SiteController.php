@@ -6,7 +6,6 @@ use common\models\QuestionQuery;
 use Yii;
 use common\models\Question;
 use yii\helpers\Json;
-use yii\helpers\Markdown;
 use yii\web\HttpException;
 
 /**

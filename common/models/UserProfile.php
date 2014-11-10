@@ -33,8 +33,6 @@ use yii\helpers\Html;
  */
 class UserProfile extends \yii\db\ActiveRecord
 {
-    use DateTimeTrait;
-
     const GENDER_UNKNOWN = 0;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;

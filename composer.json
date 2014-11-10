@@ -12,13 +12,13 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "2.0.0-rc",
+        "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "cdcchen/yii2plus": "*"
+	"cdcchen/yii2plus": "~0.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
