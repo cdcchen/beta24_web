@@ -2,11 +2,10 @@
 
 namespace common\models;
 
-use common\base\DateTimeTrait;
 use Yii;
 use yii\db\ActiveQuery;
-use common\models\User;
 use yii\helpers\Html;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "cd_user_profile".
@@ -31,7 +30,7 @@ use yii\helpers\Html;
  * @property string $birthday
  * @property string $location
  */
-class UserProfile extends \yii\db\ActiveRecord
+class UserProfile extends ActiveRecord
 {
     const GENDER_UNKNOWN = 0;
     const GENDER_MALE = 1;

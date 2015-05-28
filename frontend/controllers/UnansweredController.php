@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\base\Pagination;
+use yii\data\Pagination;
 use frontend\base\Controller;
 use common\models\Question;
 use common\models\QuestionQuery;
@@ -19,8 +19,11 @@ class UnansweredController extends Controller
     public function actionIndex($sort = '')
     {
         $query = static::buildQuestionQuery($sort);
-        $pages = new Pagination(['totalCount' => $query->count()]);
+
+        $cloneQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $cloneQuery->count()]);
         $pages->defaultPageSize = 15;
+
         $questions = static::fetchQuestions($query, $pages);
 
         return $this->render('/question/index', [
@@ -33,6 +36,10 @@ class UnansweredController extends Controller
 
     /***************************** fetch question list *****************************/
 
+    /**
+     * @param $sort
+     * @return QuestionQuery
+     */
     private static function buildQuestionQuery($sort)
     {
         $query = Question::find()->active();

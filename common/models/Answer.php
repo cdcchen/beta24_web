@@ -2,15 +2,15 @@
 
 namespace common\models;
 
-use common\base\DateTimeTrait;
 use common\config\HtmlPurifierConfig;
 use Yii;
-use common\behaviors\IPAddressBehavior;
+use yiiplus\behaviors\IPAddressBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\helpers\HtmlPurifier;
 use yii\helpers\Markdown;
 use yii\helpers\Url;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "cd_answer".
@@ -40,7 +40,7 @@ use yii\helpers\Url;
  * @property \common\models\Question $question
  */
 
-class Answer extends \yii\db\ActiveRecord
+class Answer extends ActiveRecord
 {
     use DateTimeTrait;
 
@@ -217,13 +217,13 @@ class Answer extends \yii\db\ActiveRecord
 
 class AnswerQuery extends ActiveQuery
 {
-    public function setQuestionID($id)
+    public function questionID($id)
     {
         $this->andWhere('question_id = :question_id', [':question_id' => $id]);
         return $this;
     }
 
-    public function setUserID($id)
+    public function userID($id)
     {
         $this->andWhere('user_id = :user_id', [':user_id' => $id]);
         return $this;

@@ -18,7 +18,8 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-	"cdcchen/yii2plus": "~0.1"
+	    "cdcchen/php-plus": "1.0.x-dev",
+	    "cdcchen/yii-plus": "1.0.x-dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -2,8 +2,7 @@
 
 namespace common\models;
 
-use common\base\DateTimeTrait;
-use common\behaviors\IPAddressBehavior;
+use yiiplus\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -28,7 +27,7 @@ use yii\db\ActiveRecord;
  * @property \common\models\User $user
  * @property \common\models\Answer $answer
  */
-class AnswerComment extends \yii\db\ActiveRecord
+class AnswerComment extends ActiveRecord
 {
     use DateTimeTrait;
 
@@ -147,13 +146,13 @@ class AnswerComment extends \yii\db\ActiveRecord
 
 class AnswerCommentQuery extends ActiveQuery
 {
-    public function setAnswerID($id)
+    public function answerID($id)
     {
         $this->andWhere('answer_id = :answer_id', [':answer_id' => $id]);
         return $this;
     }
 
-    public function setUserID($id)
+    public function userID($id)
     {
         $this->andWhere('user_id = :user_id', [':user_id' => $id]);
         return $this;

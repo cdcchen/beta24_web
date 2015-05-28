@@ -2,10 +2,10 @@
 
 namespace common\models;
 
+use yii\db\ActiveRecord;
 use common\config\HtmlPurifierConfig;
 use DateTime;
-use common\base\DateTimeTrait;
-use common\behaviors\IPAddressBehavior;
+use yiiplus\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -57,7 +57,7 @@ use yii\helpers\Url;
  * @property array|Answer[] $answers
  * @property array|Tag[] $tags
  */
-class Question extends \yii\db\ActiveRecord
+class Question extends ActiveRecord
 {
     use DateTimeTrait;
 
@@ -357,18 +357,20 @@ class Question extends \yii\db\ActiveRecord
 
 class QuestionQuery extends ActiveQuery
 {
-    /**
-     * @return QuestionQuery $this
-     */
+    use QueryScopeTrait;
+
+    public function status($status)
+    {
+        $this->columnEqualOrIn('status', $status);
+        return $this;
+    }
+
     public function active()
     {
         $this->andWhere(['status' => Question::STATUS_ACTIVE]);
         return $this;
     }
 
-    /**
-     * @return QuestionQuery $this
-     */
     public function done()
     {
         $this->andWhere(['status' => Question::STATUS_DONE]);

@@ -9,6 +9,12 @@
 define('YES', 1);
 define('NO', 0);
 
+/*
+ * Commonly used pattern
+ */
+
+define('PATTERN_PHONE', '/^\d{11}$/');
+define('PATTERN_LETTER_NUMBER_UNDERLINE', '/^[a-z_][0-9a-z_]+$/i');
 
 /**
  * database table name define

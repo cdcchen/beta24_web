@@ -2,8 +2,7 @@
 
 namespace common\models;
 
-use common\base\DateTimeTrait;
-use common\behaviors\IPAddressBehavior;
+use yiiplus\behaviors\IPAddressBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -28,7 +27,7 @@ use yii\db\ActiveRecord;
  * @property \common\models\User $user
  * @property Question $question
  */
-class QuestionComment extends \yii\db\ActiveRecord
+class QuestionComment extends ActiveRecord
 {
     use DateTimeTrait;
 

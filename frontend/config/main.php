@@ -18,11 +18,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'loginUrl' => ['account/login']
-        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -46,17 +41,6 @@ return [
                 '' => 'site/index',
                 '<controller:(question|tag|user|badge)>s' => '<controller>/index',
                 'users/<id:\d+>/<name:[0-9a-zA-Z_\-\.\一-\龥]+>' => 'user/home',
-            ],
-        ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-        ],
-        'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,
-                    'js' => ['http://libs.baidu.com/jquery/1.11.1/jquery.min.js']
-                ],
             ],
         ],
     ],

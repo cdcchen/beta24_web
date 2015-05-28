@@ -21,10 +21,10 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
-        'http://static.waduanzi.com/libs/bootstrap/js/bootstrap.min.js',
         'js/site.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
     ];
 }
