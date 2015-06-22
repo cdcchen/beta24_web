@@ -18,8 +18,8 @@ use yii\web\View;
  */
 class PageDownAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $basePath = '@staticRoot';
+    public $baseUrl = '@static';
 
     public $css = [
         'libs/pagedown/markdown_editor.css',

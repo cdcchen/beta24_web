@@ -15,6 +15,8 @@ return [
             'class' => 'yii\rbac\DbManager',
         ],
         'assetManager' => [
+            'basePath' => '@staticRoot/assets',
+            'baseUrl' => '@static/assets',
             'bundles' => [
                 'yii\web\JqueryAsset' => [
                     'sourcePath' => null,
