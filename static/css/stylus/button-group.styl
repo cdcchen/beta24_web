@@ -135,12 +135,12 @@
 
 // Carets in other button sizes
 .btn-lg .caret 
-  border-width @caret-width-large @caret-width-large 0
+  border-width $caret-width-large $caret-width-large 0
   border-bottom-width 0
 
 // Upside down carets for .dropup
 .dropup .btn-lg .caret 
-  border-width 0 @caret-width-large @caret-width-large
+  border-width 0 $caret-width-large $caret-width-large
 
 
 
@@ -179,11 +179,11 @@
     border-radius 0
   
   &:first-child:not(:last-child) 
-    border-top-right-radius @border-radius-base
+    border-top-right-radius $border-radius-base
     border-bottom-radius(0)
 
   &:last-child:not(:first-child)
-    border-bottom-left-radius @border-radius-base
+    border-bottom-left-radius $border-radius-base
     border-top-radius(0)
 
 

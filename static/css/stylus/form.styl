@@ -52,36 +52,36 @@ input[type="search"]
 input[type="radio"],
 input[type="checkbox"] 
   margin 4px 0 0
-  margin-top 1px \9 // IE8-9
+  margin-top 1px unquote("\9") // IE8-9
   line-height normal
 
 
 // Set the height of file controls to match text inputs
-input[type="file"] 
+input[type="file"]
   display block
 
 
 // Make range inputs behave like textual form controls
-input[type="range"] 
+input[type="range"]
   display block
   width 100%
 
 
 // Make multiple select elements height not fixed
 select[multiple],
-select[size] 
+select[size]
   height auto
 
 
 // Focus for file, radio, and checkbox
 input[type="file"]:focus,
 input[type="radio"]:focus,
-input[type="checkbox"]:focus 
+input[type="checkbox"]:focus
   tab-focus()
 
 
 // Adjust output element
-output 
+output
   display block
   padding-top ($padding-base-vertical + 1)
   font-size $font-size-base
@@ -112,7 +112,7 @@ output
 // input[type="tel"]
 // input[type="color"]
 
-.form-control 
+.form-control
   display block
   width 100%
   height $input-height-base // Make inputs at least the height of their button counterpart (base line-height + padding + border)
@@ -125,7 +125,7 @@ output
   border 1px solid $input-border
   border-radius $input-border-radius
   box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
-  transition('border-color ease-in-out .15s, box-shadow ease-in-out .15s')
+  transition(unquote('border-color ease-in-out .15s, box-shadow ease-in-out .15s'))
 
   // Customize the `:focus` state to imitate native WebKit styles.
   form-control-focus()
@@ -160,7 +160,7 @@ output
 // be added to `.form-control` as it's not specific enough. For details, see
 // https://github.com/twbs/bootstrap/issues/11586.
 
-input[type="search"] 
+input[type="search"]
   -webkit-appearance none
 
 
@@ -173,38 +173,17 @@ input[type="search"]
 // given height of the input. Since this fucks up everything else, we have to
 // appropriately reset it for Internet Explorer and the size variations.
 
-input[type="date"]
-input[type="time"]
-input[type="datetime-local"]
-input[type="month"] 
-  line-height $input-height-base
-  // IE8+ misaligns the text within date inputs, so we reset
-  line-height $line-height-base unquote("\0")
-
-  &.input-sm 
-    line-height $input-height-small
-    line-height $line-height-small unquote("\0")
-  
-  &.input-lg 
-    line-height $input-height-large
-    line-height $line-height-large unquote("\0")
-  
-
-
-// IE 11 hack to reverse the iOS temporal input hack.
-_:-ms-fullscreen, :root input[type="date"],
-_:-ms-fullscreen, :root input[type="time"],
-_:-ms-fullscreen, :root input[type="datetime-local"],
-_:-ms-fullscreen, :root input[type="month"] 
-  line-height $line-height-base
-
-  &.input-sm 
-    line-height $line-height-small
-  
-  &.input-lg 
-    line-height $line-height-large
-  
-
+@media screen and (-webkit-min-device-pixel-ratio: 0)
+  input[type="date"]
+  input[type="time"]
+  input[type="datetime-local"]
+  input[type="month"]
+    &.form-control
+      line-height $input-height-base
+    &.input-sm
+      line-height $input-height-small
+    &.input-lg
+      line-height $input-height-large
 
 
 // Form groups
@@ -212,7 +191,7 @@ _:-ms-fullscreen, :root input[type="month"]
 // Designed to help with the organization and spacing of vertical forms. For
 // horizontal forms, use the predefined grid classes.
 
-.form-group 
+.form-group
   margin-bottom 15px
 
 
@@ -222,27 +201,27 @@ _:-ms-fullscreen, :root input[type="month"]
 // Indent the labels to position radios/checkboxes as hanging controls.
 
 .radio,
-.checkbox 
+.checkbox
   position relative
   display block
   margin-top 10px
   margin-bottom 10px
 
-  label 
+  label
     min-height $line-height-computed // Ensure the input doesn't jump when there is no text
     padding-left 20px
     margin-bottom 0
     font-weight normal
     cursor pointer
-  
+
 
 .radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
-.checkbox-inline input[type="checkbox"] 
+.checkbox-inline input[type="checkbox"]
   position absolute
   margin-left -20px
-  margin-top 4px \9
+  margin-top 4px unquote("\9")
 
 
 .radio + .radio,

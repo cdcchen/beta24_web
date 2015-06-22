@@ -666,8 +666,9 @@ th {
     content: " (" attr(title) ")";
   }
   a[href^="#"]:after,
-  a[href^="javascript:"]:after,
-  content "",
+  a[href^="javascript:"]:after {
+    content: "";
+  }
   pre,
   blockquote {
     border: 1px solid #999;
@@ -1389,7 +1390,7 @@ img {
 .thumbnail a > img,
 .carousel-inner > img,
 .carousel-inner > a > img {
-  display: ;
+  display: block;
   max-width: 100%;
   height: auto;
 }
@@ -1409,7 +1410,7 @@ img {
   -o-transition: all;
   -ms-transition: all;
   transition: all;
-  display: ;
+  display: inline-block;
   max-width: 100%;
   height: auto;
 }
@@ -2639,7 +2640,7 @@ input[type="search"] {
 input[type="radio"],
 input[type="checkbox"] {
   margin: 4px 0 0;
-  margin-top: 1px 9;
+  margin-top: 1px \9;
   line-height: normal;
 }
 input[type="file"] {
@@ -2682,11 +2683,11 @@ output {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: 'border-color ease-in-out .15s, box-shadow ease-in-out .15s';
-  -moz-transition: 'border-color ease-in-out .15s, box-shadow ease-in-out .15s';
-  -o-transition: 'border-color ease-in-out .15s, box-shadow ease-in-out .15s';
-  -ms-transition: 'border-color ease-in-out .15s, box-shadow ease-in-out .15s';
-  transition: 'border-color ease-in-out .15s, box-shadow ease-in-out .15s';
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -ms-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .form-control:focus {
   border-color: #66afe9;
@@ -2709,47 +2710,25 @@ textarea.form-control {
 input[type="search"] {
   -webkit-appearance: none;
 }
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"],
-input[type="month"] {
-  line-height: 34px;
-  line-height: 1.428571429 \0;
-}
-input[type="date"].input-sm,
-input[type="time"].input-sm,
-input[type="datetime-local"].input-sm,
-input[type="month"].input-sm {
-  line-height: 30px;
-  line-height: 1.5 \0;
-}
-input[type="date"].input-lg,
-input[type="time"].input-lg,
-input[type="datetime-local"].input-lg,
-input[type="month"].input-lg {
-  line-height: 46px;
-  line-height: 1.33 \0;
-}
-_:-ms-fullscreen,
-:root input[type="date"],
-:root input[type="time"],
-:root input[type="datetime-local"],
-:root input[type="month"] {
-  line-height: 1.428571429;
-}
-_:-ms-fullscreen.input-sm,
-:root input[type="date"].input-sm,
-:root input[type="time"].input-sm,
-:root input[type="datetime-local"].input-sm,
-:root input[type="month"].input-sm {
-  line-height: 1.5;
-}
-_:-ms-fullscreen.input-lg,
-:root input[type="date"].input-lg,
-:root input[type="time"].input-lg,
-:root input[type="datetime-local"].input-lg,
-:root input[type="month"].input-lg {
-  line-height: 1.33;
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="date"].form-control,
+  input[type="time"].form-control,
+  input[type="datetime-local"].form-control,
+  input[type="month"].form-control {
+    line-height: 34px;
+  }
+  input[type="date"].input-sm,
+  input[type="time"].input-sm,
+  input[type="datetime-local"].input-sm,
+  input[type="month"].input-sm {
+    line-height: 30px;
+  }
+  input[type="date"].input-lg,
+  input[type="time"].input-lg,
+  input[type="datetime-local"].input-lg,
+  input[type="month"].input-lg {
+    line-height: 46px;
+  }
 }
 .form-group {
   margin-bottom: 15px;
@@ -2775,7 +2754,7 @@ _:-ms-fullscreen.input-lg,
 .checkbox-inline input[type="checkbox"] {
   position: absolute;
   margin-left: -20px;
-  margin-top: 4px 9;
+  margin-top: 4px \9;
 }
 .radio + .radio,
 .checkbox + .checkbox {
@@ -2934,8 +2913,8 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
 }
 .has-success .form-control:focus {
   border-color: #366a37;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #52a254;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #52a254;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #52a254;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #52a254;
 }
 .has-success .input-group-addon {
   color: #3c763d;
@@ -2964,8 +2943,8 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
 }
 .has-warning .form-control:focus {
   border-color: #7c6235;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #b48f50;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #b48f50;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #b48f50;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #b48f50;
 }
 .has-warning .input-group-addon {
   color: #8a6d3b;
@@ -2994,8 +2973,8 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
 }
 .has-error .form-control:focus {
   border-color: #983d3b;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #c16361;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075) 0 0 6px #c16361;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #c16361;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #c16361;
 }
 .has-error .input-group-addon {
   color: #a94442;
@@ -3766,11 +3745,11 @@ tbody.collapse.in {
   margin-left: 0;
 }
 .btn-lg .caret {
-  border-width: 0;
+  border-width: 5px 5px 0;
   border-bottom-width: 0;
 }
 .dropup .btn-lg .caret {
-  border-width: 0;
+  border-width: 0 5px 5px;
 }
 .btn-group-vertical > .btn,
 .btn-group-vertical > .btn-group,
@@ -3795,14 +3774,14 @@ tbody.collapse.in {
   border-radius: 0;
 }
 .btn-group-vertical > .btn:first-child:not(:last-child) {
-  border-top-right-radius: ;
+  border-top-right-radius: 4px;
   -webkit-border-bottom-left-radius: 0;
   border-bottom-left-radius: 0;
   -webkit-border-bottom-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 .btn-group-vertical > .btn:last-child:not(:first-child) {
-  border-bottom-left-radius: ;
+  border-bottom-left-radius: 4px;
   -webkit-border-top-left-radius: 0;
   border-top-left-radius: 0;
   -webkit-border-top-right-radius: 0;
@@ -5322,24 +5301,24 @@ button {
   text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .carousel-control.left {
-  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.5) rgba(0,0,0,0) 0%, #333 100%);
-  background-image: -moz-linear-gradient(left, rgba(0,0,0,0.5) rgba(0,0,0,0) 0%, #333 100%);
-  background-image: -o-linear-gradient(left, rgba(0,0,0,0.5) rgba(0,0,0,0) 0%, #333 100%);
-  background-image: -ms-linear-gradient(left, rgba(0,0,0,0.5) rgba(0,0,0,0) 0%, #333 100%);
-  background-image: linear-gradient(to right, rgba(0,0,0,0.5) rgba(0,0,0,0) 0%, #333 100%);
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  background-image: -moz-linear-gradient(left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  background-image: -o-linear-gradient(left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  background-image: -ms-linear-gradient(left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0,0,0,0.5) rgba(0,0,0,0)', endColorstr='#333', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0,0,0,0.5)', endColorstr='rgba(0,0,0,0)', GradientType=1);
 }
 .carousel-control.right {
   left: auto;
   right: 0;
-  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0) rgba(0,0,0,0.5) 0%, #333 100%);
-  background-image: -moz-linear-gradient(left, rgba(0,0,0,0) rgba(0,0,0,0.5) 0%, #333 100%);
-  background-image: -o-linear-gradient(left, rgba(0,0,0,0) rgba(0,0,0,0.5) 0%, #333 100%);
-  background-image: -ms-linear-gradient(left, rgba(0,0,0,0) rgba(0,0,0,0.5) 0%, #333 100%);
-  background-image: linear-gradient(to right, rgba(0,0,0,0) rgba(0,0,0,0.5) 0%, #333 100%);
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  background-image: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  background-image: -o-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  background-image: -ms-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  background-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0,0,0,0) rgba(0,0,0,0.5)', endColorstr='#333', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(0,0,0,0)', endColorstr='rgba(0,0,0,0.5)', GradientType=1);
 }
 .carousel-control:hover,
 .carousel-control:focus {
@@ -5403,7 +5382,7 @@ button {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   cursor: pointer;
-  background-color: #000 9;
+  background-color: #000 \9;
   background-color: rgba(0,0,0,0);
 }
 .carousel-indicators .active {
@@ -5692,6 +5671,9 @@ a.label-tag:focus {
   width: 100%;
   height: 100%;
 }
+#beta-content {
+  padding: 10px 0;
+}
 .beta-mainbar {
   margin-right: 330px;
   overflow: hidden;
@@ -5753,7 +5735,7 @@ a.label-tag:focus {
   height: 100px;
 }
 #beta-header .logo {
-  margin-top: 15px;
+  margin-top: 23px;
   display: inline-block;
   width: 200px;
   height: 50px;
@@ -5762,7 +5744,7 @@ a.label-tag:focus {
 }
 #beta-header ul {
   margin-bottom: 0;
-  margin-top: 42px;
+  margin-top: 45px;
 }
 #beta-header li {
   display: inline-block;
@@ -5797,6 +5779,11 @@ a.label-tag:focus {
 #sub-header a {
   -webkit-border-radius: 0;
   border-radius: 0;
+  -webkit-transition: background, 0.15s, ease;
+  -moz-transition: background, 0.15s, ease;
+  -o-transition: background, 0.15s, ease;
+  -ms-transition: background, 0.15s, ease;
+  transition: background, 0.15s, ease;
 }
 #sub-header li.active a {
   border-top: 2px solid #f90;
@@ -5998,19 +5985,19 @@ a.label-tag:focus {
   background-position: 0 -170px;
 }
 .vote-up-on {
-  background-position: -40 -170px;
+  background-position: -40px -170px;
 }
 .vote-down-off {
   background-position: 0 -220px;
 }
 .vote-down-on {
-  background-position: -40 -220px;
+  background-position: -40px -220px;
 }
 .star-off {
   background-position: 0 -115px;
 }
 .star-on {
-  background-position: -40 -115px;
+  background-position: -40px -115px;
 }
 .vote-accepted-off,
 .vote-accepted-on {
