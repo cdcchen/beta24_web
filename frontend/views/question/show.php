@@ -13,6 +13,7 @@ use yii\helpers\Url;
 /* @var $answerForm frontend\models\AnswerForm */
 /* @var $pages yii\data\Pagination */
 /* @var $sort string */
+/* @var $starClass string */
 ?>
 
 <div class="question-header">
@@ -37,6 +38,7 @@ use yii\helpers\Url;
             <span class="vote-count"><?= $question->getVoteScore() ?></span>
             <a class="bg-icons vote-down-off" href="javascript:void(0);" data-class="vote-down-on" data-id="<?= $question->id ?>" data-url="<?= Url::toRoute(['question/vote-down'])?>">反对</a>
             <a class="bg-icons <?= $starClass ?>" href="javascript:void(0);" data-class="star-on" data-id="<?= $question->id ?>" data-url="<?= Url::toRoute(['question/favorite'])?>">收藏</a>
+            <span class="star-count"><?= $question->favorite_count ?></span>
         </div>
         <div class="post-cell clearfix">
             <div class="post-content"><?= $question->getPurifyContent() ?></div>

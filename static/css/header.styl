@@ -1,21 +1,21 @@
 #beta-header
-  padding 20px 0 35px
+  height 100px
 
   .logo
+    margin-top 15px
     display inline-block
-    size($logo-width, 60px)
+    size($logo-width, 50px)
     float left
     background url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3c6263c3453b) no-repeat 0 0
 
   ul
     @extend .list-unstyled
     margin-bottom 0
-    margin-top 34px
+    margin-top 42px
 
   li
     display inline-block
-    margin-right 5px
-    vertical-align baseline
+    margin-left 5px
 
     a
       color #ffffff
@@ -25,20 +25,23 @@
       background-color $gray-light
       line-height 1
       letter-spacing 1px
+      transition background, 0.15s, ease
 
       &:hover
         background-color $mainnav-current-background
 
+  li.delimiter
+    width 200px
   li.active
     a
       background-color $mainnav-current-background
 
 
-  .main-nav
-    margin-left $logo-width + 10px
-  .ask-nav
-    float right
-
-
 #sub-header
   margin-bottom 15px
+
+  a
+    border-radius 0
+
+  li.active a
+    border-top 2px solid #f90

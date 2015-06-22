@@ -15,7 +15,7 @@ use Yii;
 use common\models\LoginForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
-use frontend\base\Controller;
+use yii\web\Controller;
 
 class AccountController extends Controller
 {

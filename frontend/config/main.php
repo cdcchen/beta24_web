@@ -34,15 +34,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                '' => 'site/index',
-                '<controller:(question|tag|user|badge)>s' => '<controller>/index',
-                'users/<id:\d+>/<name:[0-9a-zA-Z_\-\.\一-\龥]+>' => 'user/home',
-            ],
-        ],
+        'urlManager' => buildUrlManager(UM_FRONTEND, $managers, UM_FRONTEND),
     ],
     'params' => $params,
 ];

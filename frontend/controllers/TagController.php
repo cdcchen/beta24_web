@@ -10,7 +10,7 @@
 namespace frontend\controllers;
 
 
-use frontend\base\Controller;
+use yii\web\Controller;
 
 class TagController extends  Controller
 {
@@ -18,7 +18,7 @@ class TagController extends  Controller
     {
         parent::init();
 
-        $this->channel = CHANNEL_TAG;
+        $this->view->params['channel'] = CHANNEL_TAG;
     }
 
     public function actionIndex()

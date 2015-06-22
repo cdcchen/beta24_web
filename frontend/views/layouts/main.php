@@ -40,26 +40,27 @@ AppAsset::register($this);
     </div>
 
     <div id="beta-header" class="beta-wrapper">
-        <div class="container">
+        <div class="container clearfix">
             <a class="logo text-hide" href="/"><?= app()->name ?></a>
-            <ul class="ask-nav">
-                <li><a class="<?= app()->controller->getChannelClassName('ask_question') ?>" href="<?= Url::toRoute('question/ask') ?>">提问问题</a></li>
-            </ul>
-            <ul class="main-nav">
-                <li class="<?= app()->controller->getChannelClassName(CHANNEL_QUESTION) ?>">
-                    <a href="<?= Url::toRoute('question/index') ?>">问题</a>
+            <ul class="main-nav pull-right">
+                <li class="<?= $this->params['channel'] == CHANNEL_QUESTION ? 'active' : '' ?>">
+                    <a href="<?= Url::toRoute('question/index') ?>">所有问题</a>
                 </li>
-                <li class="<?= app()->controller->getChannelClassName(CHANNEL_TAG) ?>">
+                <li class="<?= $this->params['channel'] == CHANNEL_TAG ? 'active' : '' ?>">
                     <a href="<?= Url::toRoute('tag/index') ?>">标签</a>
                 </li>
-                <li class="<?= app()->controller->getChannelClassName(CHANNEL_USER) ?>">
+                <li class="<?= $this->params['channel'] == CHANNEL_USER ? 'active' : '' ?>">
                     <a href="<?= Url::toRoute('user/index') ?>">用户</a>
                 </li>
-                <li class="<?= app()->controller->getChannelClassName(CHANNEL_BADGE) ?>">
+                <li class="<?= $this->params['channel'] == CHANNEL_BADGE ? 'active' : '' ?>">
                     <a href="<?= Url::toRoute('badge/index') ?>">徽章</a>
                 </li>
-                <li class="<?= app()->controller->getChannelClassName(CHANNEL_UNANSWERED) ?>">
+                <li class="<?= $this->params['channel'] == CHANNEL_UNANSWERED ? 'active' : '' ?>">
                     <a href="<?= Url::toRoute('unanswered/index') ?>">未回答</a>
+                </li>
+                <li class="delimiter"></li>
+                <li class="<?= $this->params['channel'] == 'ask_question' ? 'active' : '' ?>">
+                    <a href="<?= Url::toRoute('question/ask') ?>">提问问题</a>
                 </li>
             </ul>
         </div>

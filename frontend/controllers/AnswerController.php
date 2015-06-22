@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Answer;
-use frontend\base\Controller;
+use yii\web\Controller;
 use frontend\models\AnswerForm;
 
 class AnswerController extends Controller
@@ -12,7 +12,7 @@ class AnswerController extends Controller
     {
         parent::init();
 
-        $this->channel = CHANNEL_QUESTION;
+        $this->view->params['channel'] = CHANNEL_QUESTION;
     }
 
 

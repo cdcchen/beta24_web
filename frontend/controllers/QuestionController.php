@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use yii\data\Pagination;
-use frontend\base\Controller;
+use yii\web\Controller;
 use common\models\AnswerQuery;
 use common\models\QuestionCommentQuery;
 use common\models\Question;
@@ -11,7 +11,6 @@ use common\models\QuestionQuery;
 use frontend\models\AnswerForm;
 use frontend\models\QuestionForm;
 use yii\db\Query;
-use yii\web\HttpException;
 
 class QuestionController extends Controller
 {
@@ -19,7 +18,7 @@ class QuestionController extends Controller
     {
         parent::init();
 
-        $this->channel = CHANNEL_QUESTION;
+        $this->view->params['channel'] = CHANNEL_QUESTION;
     }
 
     public function actionIndex($sort = null)
@@ -30,7 +29,7 @@ class QuestionController extends Controller
         $questions = static::fetchQuestions($query, $pages);
 
         return $this->render('index', [
-            'tab_view' => '_question_tab',
+            'tabView' => '_question_tab',
             'sort' => $sort,
             'pages' => $pages,
             'questions' => $questions,
@@ -42,7 +41,7 @@ class QuestionController extends Controller
         if (user()->getIsGuest())
             user()->loginRequired(false);
 
-        $this->channel = 'ask_question';
+        $this->view->params['channel'] = 'ask_question';
         $model = new QuestionForm();
 
         if (request()->getIsPost() && $model->load(request()->post()) && $model->validate()) {
@@ -92,6 +91,11 @@ class QuestionController extends Controller
         ]);
     }
 
+    public function actionTagged($name)
+    {
+        return $this->render('tagged');
+    }
+
     private static function buildFavoriteClass($question)
     {
         if (user()->getIsGuest())
@@ -113,7 +117,7 @@ class QuestionController extends Controller
         $questions = static::fetchQuestions($query, $pages);
 
         return $this->render('index', [
-            'tab_view' => '_unanswered_tab',
+            'tabView' => '_unanswered_tab',
             'sort' => $sort,
             'pages' => $pages,
             'questions' => $questions,

@@ -22,13 +22,13 @@ class PageDownAsset extends AssetBundle
     public $baseUrl = '@static';
 
     public $css = [
-        'libs/pagedown/markdown_editor.css',
+        'vendor/pagedown/markdown_editor.css',
     ];
 
     public $js = [
-        'libs/pagedown/Markdown.Converter.js',
-        'libs/pagedown/Markdown.Sanitizer.js',
-        'libs/pagedown/Markdown.Editor.js',
+        'vendor/pagedown/Markdown.Converter.js',
+        'vendor/pagedown/Markdown.Sanitizer.js',
+        'vendor/pagedown/Markdown.Editor.js',
     ];
 
     public $jsOptions = [

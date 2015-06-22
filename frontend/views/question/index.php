@@ -7,6 +7,7 @@ use yii\widgets\LinkPager;
  * @var $pages yii\widgets\LinkPager
  * @var $pages yii\data\Pagination
  * @var $questions common\models\Question[]
+ * @var $tabView string
  * @var $sort string
  */
 ?>
@@ -20,7 +21,7 @@ use yii\widgets\LinkPager;
 </div>
 
 <div class="beta-mainbar">
-    <?php echo $this->render($tab_view, ['sort'=>$sort]);?>
+    <?php echo $this->render($tabView, ['sort'=>$sort]);?>
     <?php echo $this->render('_list', ['models' => $questions]);?>
 
     <div class="pages clearfix">

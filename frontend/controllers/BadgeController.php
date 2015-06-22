@@ -10,7 +10,7 @@
 namespace frontend\controllers;
 
 
-use frontend\base\Controller;
+use yii\web\Controller;
 
 class BadgeController extends  Controller
 {
@@ -18,7 +18,7 @@ class BadgeController extends  Controller
     {
         parent::init();
 
-        $this->channel = CHANNEL_BADGE;
+        $this->view->params['channel'] = CHANNEL_BADGE;
     }
 
     public function actionIndex()

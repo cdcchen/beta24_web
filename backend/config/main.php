@@ -29,6 +29,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => buildUrlManager(UM_BACKEND, $managers, UM_BACKEND),
     ],
     'params' => $params,
 ];

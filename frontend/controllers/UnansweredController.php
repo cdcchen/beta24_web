@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use yii\data\Pagination;
-use frontend\base\Controller;
+use yii\web\Controller;
 use common\models\Question;
 use common\models\QuestionQuery;
 
@@ -13,7 +13,7 @@ class UnansweredController extends Controller
     {
         parent::init();
 
-        $this->channel = CHANNEL_UNANSWERED;
+        $this->view->params['channel'] = CHANNEL_UNANSWERED;
     }
 
     public function actionIndex($sort = '')
@@ -27,7 +27,7 @@ class UnansweredController extends Controller
         $questions = static::fetchQuestions($query, $pages);
 
         return $this->render('/question/index', [
-            'tab_view' => '_unanswered_tab',
+            'tabView' => '_unanswered_tab',
             'sort' => $sort,
             'pages' => $pages,
             'questions' => $questions,

@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "hash": "6903e7cc8ee66985b2193c524034114d",
@@ -270,12 +270,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cdcchen/yii-plus.git",
-                "reference": "07f691c622fa786532d94afd05f4a1be0851fca2"
+                "reference": "5287b9470a3ffebba6e60586c8011af8b459d686"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cdcchen/yii-plus/zipball/07f691c622fa786532d94afd05f4a1be0851fca2",
-                "reference": "07f691c622fa786532d94afd05f4a1be0851fca2",
+                "url": "https://api.github.com/repos/cdcchen/yii-plus/zipball/5287b9470a3ffebba6e60586c8011af8b459d686",
+                "reference": "5287b9470a3ffebba6e60586c8011af8b459d686",
                 "shasum": ""
             },
             "require": {
@@ -319,7 +319,7 @@
                 "yii plus",
                 "yii2"
             ],
-            "time": "2015-05-25 11:20:17"
+            "time": "2015-06-17 07:39:44"
         },
         {
             "name": "cebe/markdown",

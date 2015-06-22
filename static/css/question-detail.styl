@@ -12,7 +12,7 @@
 
 .vote-cell
   float left
-  width 60px
+  min-width 46px
   vertical-align top
 
 .post-cell
@@ -32,41 +32,44 @@
 
 .vote-up-off
 .vote-up-on
-  size(41px, 25px)
-.vote-up-off
-  background-position 0 -265px
-.vote-up-on
-  background-position 0 -230px
 .vote-down-off
 .vote-down-on
-  size(41px, 25px)
-.vote-down-off
-  background-position 0 -300px
-.vote-down-on
-  background-position 0 -330px
+.star-off
+.star-on
+  size(40px, 30px)
 
+.vote-up-off
+  background-position 0 -170px
+.vote-up-on
+  background-position -40 -170px
+.vote-down-off
+  background-position 0 -220px
+.vote-down-on
+  background-position -40 -220px
 .star-off
+  background-position 0 -115px
 .star-on
-  size(33px, 31px)
-.star-off
-  background-position 0 -150px
-.star-on
-  background-position 0 -190px
+  background-position -40 -115px
 
 .vote-accepted-off
 .vote-accepted-on
   size(39px, 40px)
 .vote-accepted-off
-  background-position 0 -560px
+  background-position 0 -270px
 .vote-accepted-on
-  background-position 0 -460px
+  background-position -40 -270px
 
 .vote-count
-  margin-top 2px
+.star-count
+  line-height 1
+  margin 8px 0
   text-align center
-  cursor pointer
   center-block()
-  font-size ($font-size-large + 6px)
+
+.vote-count
+  font-size ($font-size-large + 2px)
+.star-count
+  font-size $font-size-smaller
 
 .share-box
   float left

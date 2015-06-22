@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-use frontend\base\Controller;
+use yii\web\Controller;
 use common\models\QuestionQuery;
 use Yii;
 use common\models\Question;

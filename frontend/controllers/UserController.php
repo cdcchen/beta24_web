@@ -10,7 +10,7 @@
 namespace frontend\controllers;
 
 
-use frontend\base\Controller;
+use yii\web\Controller;
 use yii\bootstrap\BootstrapAsset;
 use yii\bootstrap\BootstrapPluginAsset;
 use yii\bootstrap\BootstrapThemeAsset;
@@ -21,7 +21,7 @@ class UserController extends  Controller
     {
         parent::init();
 
-        $this->channel = CHANNEL_USER;
+        $this->view->params['channel'] = CHANNEL_USER;
     }
 
     public function actionIndex()
@@ -29,6 +29,11 @@ class UserController extends  Controller
         BootstrapAsset::className();
         BootstrapPluginAsset::className();
         BootstrapThemeAsset::className();
+        return $this->render('index');
+    }
+
+    public function actionHome()
+    {
         return $this->render('index');
     }
 } 

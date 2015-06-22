@@ -1,4 +1,6 @@
 <?php
+$managers = require(__DIR__ . '/url_managers.php');
+
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
@@ -24,7 +26,7 @@ return [
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
                     'sourcePath' => null,
-                    'css' => ['http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css']
+                    'css' => ['http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css']
                 ],
                 'yii\bootstrap\BootstrapPluginAsset' => [
                     'sourcePath' => null,
@@ -42,5 +44,7 @@ return [
         'userConfig' => [
             'class' => 'yiiplus\config\UserConfig',
         ],
+        'urlManager' . ucfirst(UM_FRONTEND) => buildUrlManager(UM_FRONTEND, $managers),
+        'urlManager' . ucfirst(UM_BACKEND) => buildUrlManager(UM_BACKEND, $managers),
     ],
 ];

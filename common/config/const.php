@@ -9,6 +9,9 @@
 const YES = 1;
 const NO = 0;
 
+const UM_FRONTEND = 'frontend';
+const UM_BACKEND = 'backend';
+
 /*
  * Commonly used pattern
  */

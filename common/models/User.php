@@ -329,7 +329,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getHomeUrl($scheme = true)
     {
-        return Url::toRoute(['user/home', 'id' => $this->id], $scheme);
+        return Url::toRoute(['user/home', 'id' => $this->id, 'name' => $this->getDisplayName()], $scheme);
     }
 
 
