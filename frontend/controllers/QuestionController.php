@@ -11,6 +11,7 @@ use common\models\QuestionQuery;
 use frontend\models\AnswerForm;
 use frontend\models\QuestionForm;
 use yii\db\Query;
+use yii\web\Response;
 
 class QuestionController extends Controller
 {
@@ -105,7 +106,7 @@ class QuestionController extends Controller
                 ->where(['user_id' => user()->id, 'question_id' => $question->id])
                 ->exists();
 
-            return $exist ? 'star-off star-on' : 'star-off';
+            return $exist ? 'star-on' : 'star-off';
         }
     }
 
@@ -138,7 +139,7 @@ class QuestionController extends Controller
 
     private static function ajaxVote($id, $column, $step = 1)
     {
-        if (user()->getIdentity()->profile->data_reputation < 15) {
+        if (identity()->profile->data_reputation < 15) {
             $data['errno'] = YES;
             $data['message'] = '需要至少15个威望才能评价';
         }
@@ -162,9 +163,7 @@ class QuestionController extends Controller
     public function actionFavorite()
     {
         $id = (int)request()->post('id');
-        $exist = Question::find()
-            ->where('id = :question_id', [':question_id' => $id])
-            ->exists();
+        $exist = Question::find()->where(['id' => $id])->exists();
 
         if ($exist) {
             $exist = (new Query())->from(TBL_USER_QUESTION)
@@ -188,8 +187,8 @@ class QuestionController extends Controller
             $data['message'] = '问题不存在，非法操作。';
         }
 
-        echo json_encode($data);
-        exit;
+        response()->format = Response::FORMAT_JSON;
+        return $data;
     }
 
     /***************************** fetch question list *****************************/
@@ -245,7 +244,6 @@ class QuestionController extends Controller
 
     private static function fetchQuestions(QuestionQuery $query, Pagination $pages)
     {
-
         return $query->limit($pages->limit)->offset($pages->offset)->all();
     }
 

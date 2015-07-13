@@ -3,11 +3,14 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\assets\AppAsset;
 use frontend\widgets\UserNavBar;
+use common\assets\ReactAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 AppAsset::register($this);
+ReactAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

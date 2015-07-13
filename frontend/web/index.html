@@ -29,6 +29,7 @@
                     <li>加密：aes-256-cfb</li>
                     <li>密码：123123</li>
                 </ul>
+                <p class="text-right text-danger">本月剩余流量：<span id="ip-138-128-222-168"></span></p>
             </div>
         </div>
         <div class="col-md-6">
@@ -40,6 +41,7 @@
                     <li>加密：aes-256-cfb</li>
                     <li>密码：123123</li>
                 </ul>
+                <p class="text-right text-danger">本月剩余流量：<span id="ip-192-243-118-40"></span></p>
             </div>
         </div>
 
@@ -70,5 +72,12 @@
     })();
 </script>
 
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#ip-138-128-222-168').load('http://www.24beta.cn/shadowsocks/service-info?ip=138.128.222.168');
+    $('#ip-192-243-118-40').load('http://www.24beta.cn/shadowsocks/service-info?ip=192.243.118.40');
+});
+</script>
 </body>
 </html>
