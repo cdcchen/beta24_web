@@ -75,8 +75,9 @@
 <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(function(){
-    $('#ip-138-128-222-168').load('http://www.24beta.cn/shadowsocks/service-info?ip=138.128.222.168');
-    $('#ip-192-243-118-40').load('http://www.24beta.cn/shadowsocks/service-info?ip=192.243.118.40');
+    var host = 'http://www.24beta.com/shadowsocks/service-info?ip=';
+    $('#ip-138-128-222-168').load(host + '138.128.222.168');
+    $('#ip-192-243-118-40').load(host + '192.243.118.40');
 });
 </script>
 </body>
