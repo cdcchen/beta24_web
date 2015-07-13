@@ -13,8 +13,8 @@ class ReactAsset extends AssetBundle
     ];
 
     public $js = [
-        'vendor/react/JSXTransformer.js',
-        'vendor/react/react.min.js',
-        'vendor/react/react-with-addons.min.js',
+        'bower/react/JSXTransformer.js',
+        'bower/react/react.min.js',
+        'bower/react/react-with-addons.min.js',
     ];
 }
