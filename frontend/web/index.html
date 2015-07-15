@@ -22,7 +22,19 @@
     <div class="row">
         <div class="col-md-6">
             <div class="alert alert-info">
-                <h3>美国洛杉矶</h3>
+                <h3>美国洛杉矶一【最新】</h3>
+                <ul>
+                    <li>地址：45.78.1.243</li>
+                    <li>端口：8388</li>
+                    <li>加密：aes-256-cfb</li>
+                    <li>密码：20150713</li>
+                </ul>
+                <p class="text-right text-danger">本月剩余流量：<span id="ip-45-78-1-243"></span></p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-info">
+                <h3>美国洛杉矶二</h3>
                 <ul>
                     <li>地址：138.128.222.168</li>
                     <li>端口：8388</li>
@@ -78,6 +90,7 @@ $(function(){
     var host = 'http://www.24beta.com/shadowsocks/service-info?ip=';
     $('#ip-138-128-222-168').load(host + '138.128.222.168');
     $('#ip-192-243-118-40').load(host + '192.243.118.40');
+    $('#ip-45-78-1-243').load(host + '45.78.1.243');
 });
 </script>
 </body>
