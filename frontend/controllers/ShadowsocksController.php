@@ -37,6 +37,7 @@ class ShadowsocksController extends Controller
             response()->format = Response::FORMAT_HTML;
             $data = $http->getJsonData();
             $bytes = (int)$data['plan_monthly_data'] - (int)$data['data_counter'];
+            $bytes = $bytes > 0 ? $bytes : 0;
 
             return formatter()->asSizeNumber($bytes, 2, true);
         }
