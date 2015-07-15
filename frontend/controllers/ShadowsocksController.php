@@ -20,6 +20,7 @@ class ShadowsocksController extends Controller
     static public $servers = [
         '138.128.222.168' => 'private_T7Z2t0u4TB4AqevGFPJjJN8y',
         '192.243.118.40' => 'private_J3REwg3t42ivgDOheIQIvRxB',
+        '45.78.1.243' => 'private_5p40axG0ZdcPDEcwQfiaz3Lq',
     ];
 
     public function actionServiceInfo($ip)
