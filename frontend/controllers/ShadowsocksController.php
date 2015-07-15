@@ -18,18 +18,18 @@ use yii\web\ServerErrorHttpException;
 class ShadowsocksController extends Controller
 {
     static public $servers = [
-        '138.128.222.168' => 'private_T7Z2t0u4TB4AqevGFPJjJN8y',
-        '192.243.118.40' => 'private_J3REwg3t42ivgDOheIQIvRxB',
-        '45.78.1.243' => 'private_5p40axG0ZdcPDEcwQfiaz3Lq',
+        '138.128.222.168' => [159293, 'private_T7Z2t0u4TB4AqevGFPJjJN8y'],
+        '192.243.118.40' => [159293, 'private_J3REwg3t42ivgDOheIQIvRxB'],
+        '45.78.1.243' => [180400, 'private_5p40axG0ZdcPDEcwQfiaz3Lq'],
     ];
 
     public function actionServiceInfo($ip)
     {
-        $key = static::$servers[$ip];
-        if (empty($key))
+        $server = static::$servers[$ip];
+        if (empty($server))
             throw new ForbiddenHttpException('无效请求');
-
-        $url = 'https://api.kiwivm.it7.net/v1/getServiceInfo?veid=159293&api_key=' . static::$servers[$ip];
+            
+        $url = sprintf('https://api.kiwivm.it7.net/v1/getServiceInfo?veid=%s&api_key=%s', $server[0], $server[1]);
 
         $http = new CUrl();
         $http->get($url);
