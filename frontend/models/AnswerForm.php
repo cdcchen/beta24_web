@@ -31,7 +31,7 @@ class AnswerForm extends Model
     {
         parent::beforeValidate();
 
-        $userID = user()->getId();
+        $userID = appUser()->getId();
         if ($userID === null) {
             $this->addError('user_id', '您需要先登录');
             return false;

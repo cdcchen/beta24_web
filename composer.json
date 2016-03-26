@@ -14,10 +14,10 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "*",
-        "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*",
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "^2.0.7",
+        "yiisoft/yii2-bootstrap": "^2.0.5",
+        "yiisoft/yii2-swiftmailer": "^2.0.4",
 	    "cdcchen/php-plus": "1.0.x-dev",
 	    "cdcchen/yii-plus": "1.0.x-dev"
     },
